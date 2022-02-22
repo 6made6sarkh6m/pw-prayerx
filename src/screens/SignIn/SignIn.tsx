@@ -20,7 +20,7 @@ const SignIn = ({navigation}: SignUpScreenProps) => {
       />
       <StyledButton text="Sign in" onPress={handleSignInPress} />
       <StyledButton
-        text="Don't have an account?"
+        text="Press to sign up"
         onPress={() => {
           navigation.navigate('SignUp');
         }}
