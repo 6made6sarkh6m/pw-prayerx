@@ -32,7 +32,7 @@ export function* signUpSaga({values}: ISignUpAction) {
   }
 }
 
-export function* singInSaga({values}: ISignInAction) {
+export function* signInSaga({values}: ISignInAction) {
   try {
     const request: {data: ISignInResponse} = yield http.post(
       '/auth/sign-in/',
@@ -49,5 +49,5 @@ export function* observeSignUpSaga() {
 }
 
 export function* observeSignInSaga() {
-  yield takeLatest(signIn.type, singInSaga);
+  yield takeLatest(signIn.type, signInSaga);
 }

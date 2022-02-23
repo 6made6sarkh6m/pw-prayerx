@@ -14,14 +14,21 @@ const AuthSlice = createSlice({
   reducers: {
     signIn(state) {
       state.requestStatus = 'pending';
+      console.log(
+        'signIn: ' + state.requestStatus,
+        state.email,
+        state.username,
+      );
     },
     signInSuccess(state, {payload}: PayloadAction<ISignInResponse>) {
       state.token = payload.token;
       state.username = payload.username;
       state.email = payload.email;
+      console.log('signInSuccess: ' + state.token, state.username);
     },
     signInFailed(state) {
       state.requestStatus = 'failed';
+      console.log('signInFail: ' + state.requestStatus);
     },
     signOut(state) {
       state.token = '';
