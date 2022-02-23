@@ -1,5 +1,6 @@
 import React, {Dispatch, FC, SetStateAction} from 'react';
 import {View, TextInput, StyleSheet} from 'react-native';
+import styled from 'styled-components/native';
 import {COLORS} from '../../../styles/colors';
 interface StyledTextInputProps {
   value: string;
@@ -14,27 +15,24 @@ const StyledTextInput: FC<StyledTextInputProps> = ({
   secureTextEntry,
 }) => {
   return (
-    <View style={styles.container}>
+    <Container>
       <TextInput
         value={value}
         onChangeText={setValue}
         placeholder={placeholder}
         secureTextEntry={secureTextEntry}
       />
-    </View>
+    </Container>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: `${COLORS.blindingWhite}`,
-    border: `1px solid ${COLORS.lightGrey}`,
-    borderRadius: 5,
-    width: '100%',
-    paddingHorizontal: 10,
-    marginVertical: 10,
-  },
-  input: {},
-});
+const Container = styled.View`
+  background-color: ${COLORS.blindingWhite};
+  border: 1px solid ${COLORS.lightGrey};
+  border-radius: 5px;
+  padding-horizontal: 10px;
+  margin-vertical: 10px;
+  width: 100%;
+`;
 
 export default StyledTextInput;

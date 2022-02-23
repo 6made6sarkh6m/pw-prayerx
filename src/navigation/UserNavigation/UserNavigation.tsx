@@ -13,18 +13,20 @@ const UserNavigation = () => {
     dispatch({type: signOut.type});
   };
   return (
-    <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          headerTitleAlign: 'center',
-          headerRightContainerStyle: {
-            paddingRight: 20,
-          },
-        }}>
-        <Stack.Screen name="My Desk" component={Board} />
-      </Stack.Navigator>
+    <>
+      <NavigationContainer>
+        <Stack.Navigator
+          screenOptions={{
+            headerTitleAlign: 'center',
+            headerRightContainerStyle: {
+              paddingRight: 20,
+            },
+          }}>
+          <Stack.Screen name="My Desk" component={Board} />
+        </Stack.Navigator>
+      </NavigationContainer>
       <StyledButton text="Sign out" onPress={handleSignOut} />
-    </NavigationContainer>
+    </>
   );
 };
 

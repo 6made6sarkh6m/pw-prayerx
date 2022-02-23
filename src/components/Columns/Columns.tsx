@@ -4,6 +4,8 @@ import {getColumns} from '../../redux/ducks/Columns';
 import {selectColumns} from '../../redux/ducks/Columns/selectors';
 import {IColumn} from '../../redux/ducks/Columns/types';
 import {FlatList, Text, View} from 'react-native';
+import styled from 'styled-components/native';
+import {COLORS} from '../../styles/colors';
 
 const Item = ({data}: {data: IColumn}) => {
   return (
@@ -17,16 +19,14 @@ const Columns = () => {
   const columns = useSelector(selectColumns);
 
   useEffect(() => {
-    console.log('render columns');
+    console.log('render columns: ', columns);
     dispatch({type: getColumns.type});
   }, [dispatch]);
-  console.log('Columns component: ' + columns);
   const renderColumns = ({item}: {item: IColumn}) => {
     return <Item data={item} />;
   };
   return (
-    <FlatList
-      style={{backgroundColor: 'black'}}
+    <StyledFlatList
       data={columns}
       renderItem={renderColumns}
       keyExtractor={column => column.id.toString()}
@@ -34,4 +34,10 @@ const Columns = () => {
   );
 };
 
+const StyledFlatList = styled.FlatList`
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  background-color: ${COLORS.blindingWhite};
+` as unknown as typeof FlatList;
 export default Columns;
