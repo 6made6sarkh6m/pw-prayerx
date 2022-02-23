@@ -1,5 +1,4 @@
 import React from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
 import {useSelector} from 'react-redux';
 import {selectToken} from '../redux/ducks/Auth/selectors';
 import AuthNavigation from './AuthNavigation/AuthNavigation';

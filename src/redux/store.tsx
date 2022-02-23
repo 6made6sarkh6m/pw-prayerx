@@ -8,6 +8,7 @@ import createSagaMiddleware from '@redux-saga/core';
 import {persistStore, persistReducer, REHYDRATE} from 'redux-persist';
 import AsyncStorage from '@react-native-community/async-storage';
 import {AuthReducer} from './ducks/Auth';
+import {ColumnsReducer} from './ducks/Columns';
 import authMiddleware from './middlewares/authMiddleware';
 import rootSaga from './sagas';
 
@@ -19,6 +20,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   auth: AuthReducer,
+  columns: ColumnsReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

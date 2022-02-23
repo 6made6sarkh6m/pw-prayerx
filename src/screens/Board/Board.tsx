@@ -1,10 +1,12 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View} from 'react-native';
+
+import {Columns} from '../../components/Columns';
 
 const Board = () => {
   return (
     <View>
-      <Text>LOGGED IN</Text>
+      <Columns />
     </View>
   );
 };

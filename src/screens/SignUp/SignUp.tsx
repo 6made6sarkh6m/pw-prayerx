@@ -2,14 +2,19 @@ import StyledButton from '../../components/ui/StyledButton/StyledButton';
 import StyledTextInput from '../../components/ui/StyledTextInput/StyledTextInput';
 import React, {FC, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+import {ISignUp} from '../../redux/ducks/Auth/types';
+import {useDispatch} from 'react-redux';
+import {signUp} from '../../redux/ducks/Auth';
 
 const SignUp = () => {
+  const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSignInPress = () => {};
-
-  const handleSignUpPress = () => {};
+  const dispatch = useDispatch();
+  const handleSignUpPress = (values: ISignUp) => {
+    dispatch({type: signUp.type, values});
+  };
 
   return (
     <View style={styles.root}>
@@ -18,6 +23,7 @@ const SignUp = () => {
         setValue={setUsername}
         placeholder="Username"
       />
+      <StyledTextInput value={email} setValue={setEmail} placeholder="Email" />
       <StyledTextInput
         value={password}
         setValue={setPassword}
@@ -25,7 +31,10 @@ const SignUp = () => {
         secureTextEntry
       />
 
-      <StyledButton text="Sign up" onPress={handleSignInPress} />
+      <StyledButton
+        text="Sign up"
+        onPress={() => handleSignUpPress({email, username, password})}
+      />
     </View>
   );
 };

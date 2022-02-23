@@ -13,8 +13,7 @@ const SignIn = ({navigation}: SignUpScreenProps) => {
   const dispatch = useDispatch();
 
   const handleSignInPress = (values: ISignIn) => {
-    console.log(values);
-    dispatch({type: signIn.type, values}); // не вызывается
+    dispatch({type: signIn.type, values});
   };
 
   return (
