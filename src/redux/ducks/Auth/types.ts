@@ -1,6 +1,8 @@
+import {IColumn} from '../Columns/types';
+
 export interface IAuthSlice {
   token: string;
-  username: string;
+  name: string;
   email: string;
   requestStatus: string;
 }
@@ -11,7 +13,7 @@ export interface ISignIn {
 }
 
 export interface ISignUp {
-  username: string;
+  name: string;
   email: string;
   password: string;
 }
@@ -19,15 +21,15 @@ export interface ISignUp {
 export interface ISignInResponse {
   id: number;
   email: string;
-  username: string;
+  name: string;
   token: string;
 }
 
 export interface ISignUpResponse {
   email: string;
-  username: string;
+  name: string;
   password: string;
   token: string;
-  columns: any;
+  columns: IColumn[];
   id: number;
 }

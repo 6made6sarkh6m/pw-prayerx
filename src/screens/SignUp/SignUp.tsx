@@ -8,7 +8,7 @@ import {signUp} from '../../redux/ducks/Auth';
 
 const SignUp = () => {
   const [email, setEmail] = useState('');
-  const [username, setUsername] = useState('');
+  const [name, setName] = useState('');
   const [password, setPassword] = useState('');
 
   const dispatch = useDispatch();
@@ -18,11 +18,7 @@ const SignUp = () => {
 
   return (
     <View style={styles.root}>
-      <StyledTextInput
-        value={username}
-        setValue={setUsername}
-        placeholder="Username"
-      />
+      <StyledTextInput value={name} setValue={setName} placeholder="Username" />
       <StyledTextInput value={email} setValue={setEmail} placeholder="Email" />
       <StyledTextInput
         value={password}
@@ -33,7 +29,7 @@ const SignUp = () => {
 
       <StyledButton
         text="Sign up"
-        onPress={() => handleSignUpPress({email, username, password})}
+        onPress={() => handleSignUpPress({email, name, password})}
       />
     </View>
   );

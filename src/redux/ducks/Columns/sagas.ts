@@ -7,10 +7,8 @@ export function* loadColumns() {
   try {
     const request: {data: IColumn[]} = yield http.get('/columns/');
     yield put(getColumnsSuccess(request.data));
-    console.log('Request data: ' + request.data);
   } catch (e) {
     yield put(getColumnsFailed());
-    console.log('request columns error: ', e);
   }
 }
 

@@ -3,7 +3,7 @@ import {IAuthSlice, ISignInResponse, ISignUpResponse} from './types';
 
 const initialState: IAuthSlice = {
   token: '',
-  username: '',
+  name: '',
   email: '',
   requestStatus: 'idle',
 };
@@ -17,7 +17,7 @@ const AuthSlice = createSlice({
     },
     signInSuccess(state, {payload}: PayloadAction<ISignInResponse>) {
       state.token = payload.token;
-      state.username = payload.username;
+      state.name = payload.name;
       state.email = payload.email;
     },
     signInFailed(state) {
@@ -25,15 +25,16 @@ const AuthSlice = createSlice({
     },
     signOut(state) {
       state.token = '';
-      state.username = '';
+      state.name = '';
       state.email = '';
     },
     signUp(state) {
       state.requestStatus = 'pending';
+      console.log(' sign up action: This is being executed');
     },
     signUpSuccess(state, {payload}: PayloadAction<ISignUpResponse>) {
       state.token = payload.token;
-      state.username = payload.username;
+      state.name = payload.name;
       state.email = payload.email;
       state.requestStatus = 'succeed';
     },
