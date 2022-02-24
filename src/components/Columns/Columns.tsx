@@ -6,14 +6,8 @@ import {IColumn} from '../../redux/ducks/Columns/types';
 import {FlatList, Text, View} from 'react-native';
 import styled from 'styled-components/native';
 import {COLORS} from '../../styles/colors';
+import ColumnItem from './ColumnItem';
 
-const Item = ({data}: {data: IColumn}) => {
-  return (
-    <View>
-      <Text>{data.title}</Text>
-    </View>
-  );
-};
 const Columns = () => {
   const dispatch = useDispatch();
   const columns = useSelector(selectColumns);
@@ -22,7 +16,7 @@ const Columns = () => {
     dispatch({type: getColumns.type});
   }, [dispatch]);
   const renderColumns = ({item}: {item: IColumn}) => {
-    return <Item data={item} />;
+    return <ColumnItem data={item} />;
   };
   return (
     <StyledFlatList

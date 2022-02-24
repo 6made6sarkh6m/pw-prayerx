@@ -17,12 +17,9 @@ const UserNavigation = () => {
       <NavigationContainer>
         <Stack.Navigator
           screenOptions={{
-            headerTitleAlign: 'center',
-            headerRightContainerStyle: {
-              paddingRight: 20,
-            },
+            headerShown: false,
           }}>
-          <Stack.Screen name="My Desk" component={Board} />
+          <Stack.Screen name="Board" component={Board} />
         </Stack.Navigator>
       </NavigationContainer>
       <StyledButton text="Sign out" onPress={handleSignOut} />
