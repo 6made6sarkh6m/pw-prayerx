@@ -30,7 +30,6 @@ const AuthSlice = createSlice({
     },
     signUp(state) {
       state.requestStatus = 'pending';
-      console.log(' sign up action: This is being executed');
     },
     signUpSuccess(state, {payload}: PayloadAction<ISignUpResponse>) {
       state.token = payload.token;

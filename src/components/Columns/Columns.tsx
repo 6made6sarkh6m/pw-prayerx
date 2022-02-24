@@ -19,7 +19,6 @@ const Columns = () => {
   const columns = useSelector(selectColumns);
 
   useEffect(() => {
-    console.log('render columns: ', columns);
     dispatch({type: getColumns.type});
   }, [dispatch]);
   const renderColumns = ({item}: {item: IColumn}) => {

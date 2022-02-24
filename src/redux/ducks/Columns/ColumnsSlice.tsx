@@ -20,7 +20,6 @@ const ColumnsSlice = createSlice({
     getColumnsSuccess(state, {payload}: PayloadAction<IColumn[]>) {
       state.data = payload;
       state.requestStatus = 'succeed';
-      console.log('column list: ', state.data);
     },
     getColumnsFailed(state) {
       state.requestStatus = 'failed';
