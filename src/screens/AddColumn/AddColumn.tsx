@@ -3,11 +3,11 @@ import {IAddColumn} from '../../redux/ducks/Columns/types';
 import {addColumn} from '../../redux/ducks/Columns';
 import {useDispatch} from 'react-redux';
 import styled from 'styled-components/native';
-import {COLORS} from 'styles/colors';
+import {COLORS} from '../../styles/colors';
 import {AppHeader} from '../../components/AppHeader';
 import {Pressable} from 'react-native';
 import GoBackIcon from '../../components/ui/icons/GoBackIcon';
-import {StyledButton, StyledTextInput} from 'components';
+import {StyledButton, StyledTextInput} from '../../components/ui';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParamList} from '../../interfaces/navigator';
 
