@@ -5,13 +5,20 @@ import {Columns} from '../../components/Columns';
 import {AppHeader} from '../../components/AppHeader';
 import {Pressable} from 'react-native';
 import AddIcon from '../../components/ui/icons/AddIcon';
-const Board = () => {
+import {StackNavigationProp} from '@react-navigation/stack';
+import {RootStackParamList} from '../../interfaces/navigator';
+
+type BoardScreenProps = StackNavigationProp<RootStackParamList, 'Board'>;
+type NavProp = {
+  navigation: BoardScreenProps;
+};
+const Board = ({navigation}: NavProp) => {
   return (
     <Root>
       <AppHeader
         title="My Desk"
         rightPressable={
-          <Pressable>
+          <Pressable onPress={() => navigation.navigate('AddColumn')}>
             <AddIcon width={20} height={20} />
           </Pressable>
         }

@@ -1,9 +1,8 @@
-import {StackScreenProps} from '@react-navigation/stack';
-
 export type RootStackParamList = {
   SignIn: undefined;
   SignUp: undefined;
+  Board: undefined;
+  AddColumn: undefined;
+  Column: {columnId: number};
+  ColumnSettings: {columnId: number};
 };
-
-export type SignInScreenProps = StackScreenProps<RootStackParamList, 'SignIn'>;
-export type SignUpScreenProps = StackScreenProps<RootStackParamList, 'SignUp'>;

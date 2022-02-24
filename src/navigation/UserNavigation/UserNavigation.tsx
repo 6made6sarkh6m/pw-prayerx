@@ -5,6 +5,8 @@ import {Board} from '../../screens/Board';
 import {StyledButton} from '../../components/ui/StyledButton';
 import {useDispatch} from 'react-redux';
 import {signOut} from '../../redux/ducks/Auth';
+import {AddColumn} from '../../screens/AddColumn';
+import {AppRoutes} from './routes';
 const Stack = createStackNavigator();
 
 const UserNavigation = () => {
@@ -19,7 +21,8 @@ const UserNavigation = () => {
           screenOptions={{
             headerShown: false,
           }}>
-          <Stack.Screen name="Board" component={Board} />
+          <Stack.Screen name={AppRoutes.Board} component={Board} />
+          <Stack.Screen name={AppRoutes.AddColumn} component={AddColumn} />
         </Stack.Navigator>
       </NavigationContainer>
       <StyledButton text="Sign out" onPress={handleSignOut} />
