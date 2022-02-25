@@ -8,6 +8,7 @@ import {signOut} from '../../redux/ducks/Auth';
 import {AddColumn} from '../../screens/AddColumn';
 import {AppRoutes} from './routes';
 import {Column} from '../../screens/Column';
+import {ColumnSettings} from '../../screens/ColumnSettings';
 const Stack = createStackNavigator();
 
 const UserNavigation = () => {
@@ -25,6 +26,10 @@ const UserNavigation = () => {
           <Stack.Screen name={AppRoutes.Board} component={Board} />
           <Stack.Screen name={AppRoutes.AddColumn} component={AddColumn} />
           <Stack.Screen name={AppRoutes.Column} component={Column} />
+          <Stack.Screen
+            name={AppRoutes.ColumnSettings}
+            component={ColumnSettings}
+          />
         </Stack.Navigator>
       </NavigationContainer>
       <StyledButton text="Sign out" onPress={handleSignOut} />

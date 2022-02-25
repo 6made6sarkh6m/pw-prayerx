@@ -3,6 +3,7 @@ import {StackNavigationProp} from '@react-navigation/stack';
 import React from 'react';
 import {AppHeader} from '../../components/AppHeader';
 import GoBackIcon from '../../components/ui/icons/GoBackIcon';
+import SettingsIcon from '../../components/ui/icons/SettingsIcon';
 import {RootStackParamList} from '../../interfaces/navigator';
 import {AppRoutes} from '../../navigation/UserNavigation/routes';
 import styled from 'styled-components/native';
@@ -30,6 +31,16 @@ const Column = ({navigation, route}: NavProp) => {
         leftPressable={
           <Pressable onPress={() => navigation.goBack()}>
             <GoBackIcon />
+          </Pressable>
+        }
+        rightPressable={
+          <Pressable
+            onPress={() =>
+              navigation.navigate(AppRoutes.ColumnSettings, {
+                columnId: columnId,
+              })
+            }>
+            <SettingsIcon />
           </Pressable>
         }
         title={columnData.title}
