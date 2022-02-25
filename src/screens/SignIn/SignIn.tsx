@@ -2,7 +2,7 @@ import StyledButton from '../../components/ui/StyledButton/StyledButton';
 import StyledTextInput from '../../components/ui/StyledTextInput/StyledTextInput';
 import React, {FC, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {SignUpScreenProps} from 'interfaces/navigator';
+import {SignUpScreenProps} from '../../interfaces/navigator';
 import {useDispatch} from 'react-redux';
 import {ISignIn} from '../../redux/ducks/Auth/types';
 import {signIn} from '../../redux/ducks/Auth';
@@ -16,12 +16,23 @@ const SignIn = ({navigation}: SignUpScreenProps) => {
     dispatch({type: signIn.type, values});
   };
 
+  const handleChangeEmail = (value: string) => {
+    setEmail(value);
+  };
+
+  const handleChangePassword = (value: string) => {
+    setPassword(value);
+  };
   return (
     <View style={styles.root}>
-      <StyledTextInput value={email} setValue={setEmail} placeholder="Email" />
+      <StyledTextInput
+        value={email}
+        setValue={e => handleChangeEmail(e)}
+        placeholder="Email"
+      />
       <StyledTextInput
         value={password}
-        setValue={setPassword}
+        setValue={e => handleChangePassword(e)}
         placeholder="Password"
         secureTextEntry
       />

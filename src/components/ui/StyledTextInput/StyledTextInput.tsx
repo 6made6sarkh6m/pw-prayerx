@@ -4,7 +4,7 @@ import styled from 'styled-components/native';
 import {COLORS} from '../../../constants/colors';
 interface StyledTextInputProps {
   value: string;
-  setValue: Dispatch<SetStateAction<string>>;
+  setValue: (e: string) => void;
   placeholder: string;
   secureTextEntry?: boolean;
 }
