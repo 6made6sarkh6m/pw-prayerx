@@ -5,7 +5,7 @@ import {selectColumns} from '../../redux/ducks/Columns/selectors';
 import {IColumn} from '../../redux/ducks/Columns/types';
 import {FlatList, Text, View} from 'react-native';
 import styled from 'styled-components/native';
-import {COLORS} from '../../styles/colors';
+import {COLORS} from '../../constants/colors';
 
 const Item = ({data}: {data: IColumn}) => {
   return (

@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {COLORS} from '../../../styles/colors';
+import {COLORS} from '../../../constants/colors';
 import styled from 'styled-components/native';
 interface StyledButtonProps {
   text: string;

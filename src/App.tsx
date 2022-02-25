@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
-import {COLORS} from './styles/colors';
+import {COLORS} from './constants/colors';
 import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
 import store, {persister} from './redux/store';

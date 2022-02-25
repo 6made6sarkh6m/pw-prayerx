@@ -1,7 +1,7 @@
 import React, {Dispatch, FC, SetStateAction} from 'react';
 import {View, TextInput, StyleSheet} from 'react-native';
 import styled from 'styled-components/native';
-import {COLORS} from '../../../styles/colors';
+import {COLORS} from '../../../constants/colors';
 interface StyledTextInputProps {
   value: string;
   setValue: Dispatch<SetStateAction<string>>;
