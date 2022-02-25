@@ -1,6 +1,10 @@
 import {all} from 'redux-saga/effects';
 import {observeSignInSaga, observeSignUpSaga} from '../ducks/Auth/sagas';
-import {observeLoadColumns, observeCreateColumn} from '../ducks/Columns/sagas';
+import {
+  observeLoadColumns,
+  observeCreateColumn,
+  observeRemoveColumn,
+} from '../ducks/Columns/sagas';
 
 function* rootSaga() {
   yield all([
@@ -8,6 +12,7 @@ function* rootSaga() {
     observeSignUpSaga(),
     observeLoadColumns(),
     observeCreateColumn(),
+    observeRemoveColumn(),
   ]);
 }
 

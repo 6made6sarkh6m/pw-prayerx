@@ -2,11 +2,21 @@ import React from 'react';
 import styled from 'styled-components/native';
 import {COLORS} from '../../styles/colors';
 import {IColumn} from '../../redux/ducks/Columns/types';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {RootStackParamList} from '../../interfaces/navigator';
+import {useNavigation} from '@react-navigation/native';
+import {AppRoutes} from '../../navigation/UserNavigation/routes';
+
+type ColumnScreenProps = StackNavigationProp<RootStackParamList, 'Column'>;
 
 const ColumnItem = ({data}: {data: IColumn}) => {
+  const navigation = useNavigation<ColumnScreenProps>();
   return (
     <Container>
-      <StyledPressable>
+      <StyledPressable
+        onPress={() =>
+          navigation.navigate(AppRoutes.Column, {columnId: data.id})
+        }>
         <StyledText>{data.title}</StyledText>
       </StyledPressable>
     </Container>

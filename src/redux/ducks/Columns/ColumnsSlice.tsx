@@ -34,6 +34,19 @@ const ColumnsSlice = createSlice({
     addColumnFailed(state) {
       state.requestStatus = 'failed';
     },
+    deleteColumn(state) {
+      state.requestStatus = 'pending';
+    },
+    deleteColumnSuccess(state, {payload}: PayloadAction<number>) {
+      const index = state.data.findIndex(column => column.id === payload);
+      if (index !== -1) {
+        state.data.splice(index, 1);
+      }
+      state.requestStatus = 'succeed';
+    },
+    deleteColumnFailed(state) {
+      state.requestStatus = 'failed';
+    },
   },
 });
 
@@ -44,5 +57,8 @@ export const {
   addColumn,
   addColumnFailed,
   addColumnSuccess,
+  deleteColumn,
+  deleteColumnFailed,
+  deleteColumnSuccess,
 } = ColumnsSlice.actions;
 export default ColumnsSlice.reducer;
