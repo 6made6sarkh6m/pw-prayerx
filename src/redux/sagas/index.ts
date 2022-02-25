@@ -4,6 +4,7 @@ import {
   observeLoadColumns,
   observeCreateColumn,
   observeRemoveColumn,
+  observeChangeColumn,
 } from '../ducks/Columns/sagas';
 
 function* rootSaga() {
@@ -13,6 +14,7 @@ function* rootSaga() {
     observeLoadColumns(),
     observeCreateColumn(),
     observeRemoveColumn(),
+    observeChangeColumn(),
   ]);
 }
 

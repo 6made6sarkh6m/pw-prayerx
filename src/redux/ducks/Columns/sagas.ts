@@ -10,8 +10,11 @@ import {
   getColumns,
   getColumnsFailed,
   getColumnsSuccess,
+  updateColumn,
+  updateColumnFailed,
+  updateColumnSuccess,
 } from '.';
-import {IAddColumn, IColumn} from './types';
+import {IAddColumn, IColumn, IUdateColumn} from './types';
 
 export interface IAddColumnRequestProps {
   type: typeof addColumn.type;
@@ -21,6 +24,11 @@ export interface IAddColumnRequestProps {
 export interface IDeleteColumnRequestProps {
   type: typeof deleteColumn.type;
   columnId: number;
+}
+
+export interface IUpdateColumnRequestProps {
+  type: typeof updateColumn.type;
+  data: IUdateColumn;
 }
 
 export function* loadColumns() {
@@ -51,6 +59,19 @@ export function* removeColumn({columnId}: IDeleteColumnRequestProps) {
   }
 }
 
+export function* changeColumn({data}: IUpdateColumnRequestProps) {
+  try {
+    const request: {data: IColumn} = yield http.put(
+      `/columns/${data.columnId}`,
+      data.values,
+    );
+
+    yield put(updateColumnSuccess(request.data));
+  } catch (e) {
+    yield put(updateColumnFailed());
+  }
+}
+
 export function* observeLoadColumns() {
   yield takeLatest(getColumns.type, loadColumns);
 }
@@ -61,4 +82,8 @@ export function* observeCreateColumn() {
 
 export function* observeRemoveColumn() {
   yield takeLatest(deleteColumn.type, removeColumn);
+}
+
+export function* observeChangeColumn() {
+  yield takeLatest(updateColumn.type, changeColumn);
 }

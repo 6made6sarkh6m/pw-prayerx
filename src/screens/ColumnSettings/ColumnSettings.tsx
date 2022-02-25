@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {RouteProp} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParamList} from '../../interfaces/navigator';
@@ -12,6 +12,13 @@ import {AppRoutes} from '../../navigation/UserNavigation/routes';
 import {COLORS} from '../../styles/colors';
 import {Pressable} from 'react-native';
 import {selectColumnById} from '../../redux/ducks/Columns/selectors';
+import {StyledTextInput} from '../../components/ui/StyledTextInput';
+import {StyledButton} from '../../components/ui/StyledButton';
+import {updateColumn} from '../../redux/ducks/Columns';
+interface IUpdateColumn {
+  title: string;
+  description: string;
+}
 
 type ColumnSettingsScreenNavigationProps = StackNavigationProp<
   RootStackParamList,
@@ -30,9 +37,18 @@ type NavProp = {
 const ColumnSettings = ({navigation, route}: NavProp) => {
   const dispatch = useDispatch();
 
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+
   const handleDeleteColumn = () => {
     dispatch({type: deleteColumn.type, columnId: route.params.columnId});
     navigation.navigate(AppRoutes.Board);
+  };
+
+  const handleUpdateColumn = (values: IUpdateColumn) => {
+    const data = {columnId: route.params.columnId, values};
+    dispatch({type: updateColumn.type, data});
+    navigation.goBack();
   };
 
   return (
@@ -50,6 +66,22 @@ const ColumnSettings = ({navigation, route}: NavProp) => {
         }
         title="Settings"
       />
+      <Container>
+        <StyledTextInput
+          value={title}
+          setValue={setTitle}
+          placeholder="Column Title"
+        />
+        <StyledTextInput
+          value={description}
+          setValue={setDescription}
+          placeholder="Column description"
+        />
+        <StyledButton
+          text="Update column"
+          onPress={() => handleUpdateColumn({title, description})}
+        />
+      </Container>
     </Root>
   );
 };
@@ -57,6 +89,13 @@ const ColumnSettings = ({navigation, route}: NavProp) => {
 const Root = styled.View`
   flex: 1;
   background-color: ${COLORS.blindingWhite};
+`;
+
+const Container = styled.View`
+  display: flex;
+  flex-direction: column;
+  background-color: ${COLORS.blindingWhite};
+  padding: 15px;
 `;
 
 export default ColumnSettings;
