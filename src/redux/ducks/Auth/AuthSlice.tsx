@@ -1,11 +1,11 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {IAuthSlice, ISignInResponse, ISignUpResponse} from './types';
-
+import {REQUEST_STATUS} from '../status';
 const initialState: IAuthSlice = {
   token: '',
   name: '',
   email: '',
-  requestStatus: 'idle',
+  requestStatus: REQUEST_STATUS.IDLE,
 };
 
 const AuthSlice = createSlice({
@@ -13,15 +13,16 @@ const AuthSlice = createSlice({
   name: 'auth',
   reducers: {
     signIn(state) {
-      state.requestStatus = 'pending';
+      state.requestStatus = REQUEST_STATUS.PENDING;
     },
     signInSuccess(state, {payload}: PayloadAction<ISignInResponse>) {
       state.token = payload.token;
       state.name = payload.name;
       state.email = payload.email;
+      state.requestStatus = REQUEST_STATUS.SUCCEED;
     },
     signInFailed(state) {
-      state.requestStatus = 'failed';
+      state.requestStatus = REQUEST_STATUS.FAILED;
     },
     signOut(state) {
       state.token = '';
@@ -29,16 +30,16 @@ const AuthSlice = createSlice({
       state.email = '';
     },
     signUp(state) {
-      state.requestStatus = 'pending';
+      state.requestStatus = REQUEST_STATUS.PENDING;
     },
     signUpSuccess(state, {payload}: PayloadAction<ISignUpResponse>) {
       state.token = payload.token;
       state.name = payload.name;
       state.email = payload.email;
-      state.requestStatus = 'succeed';
+      state.requestStatus = REQUEST_STATUS.SUCCEED;
     },
     signUpFailed(state) {
-      state.requestStatus = 'failed';
+      state.requestStatus = REQUEST_STATUS.FAILED;
     },
   },
 });

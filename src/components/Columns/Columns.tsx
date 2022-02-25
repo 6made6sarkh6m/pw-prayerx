@@ -14,16 +14,19 @@ const Item = ({data}: {data: IColumn}) => {
     </View>
   );
 };
+
 const Columns = () => {
   const dispatch = useDispatch();
   const columns = useSelector(selectColumns);
 
-  useEffect(() => {
-    dispatch({type: getColumns.type});
-  }, [dispatch]);
   const renderColumns = ({item}: {item: IColumn}) => {
     return <Item data={item} />;
   };
+
+  useEffect(() => {
+    dispatch({type: getColumns.type});
+  }, []);
+
   return (
     <StyledFlatList
       data={columns}

@@ -1,5 +1,6 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {IColumn} from './types';
+import {REQUEST_STATUS} from '../status';
 
 interface initialState {
   data: IColumn[];
@@ -7,7 +8,7 @@ interface initialState {
 }
 const initialState: initialState = {
   data: [],
-  requestStatus: 'idle',
+  requestStatus: REQUEST_STATUS.IDLE,
 };
 
 const ColumnsSlice = createSlice({
@@ -15,24 +16,24 @@ const ColumnsSlice = createSlice({
   name: 'columns',
   reducers: {
     getColumns(state) {
-      state.requestStatus = 'pending';
+      state.requestStatus = REQUEST_STATUS.PENDING;
     },
     getColumnsSuccess(state, {payload}: PayloadAction<IColumn[]>) {
       state.data = payload;
-      state.requestStatus = 'succeed';
+      state.requestStatus = REQUEST_STATUS.SUCCEED;
     },
     getColumnsFailed(state) {
-      state.requestStatus = 'failed';
+      state.requestStatus = REQUEST_STATUS.FAILED;
     },
     addColumn(state) {
-      state.requestStatus = 'pending';
+      state.requestStatus = REQUEST_STATUS.PENDING;
     },
     addColumnSuccess(state, {payload}: PayloadAction<IColumn>) {
       state.data.push(payload);
-      state.requestStatus = 'succeed';
+      state.requestStatus = REQUEST_STATUS.SUCCEED;
     },
     addColumnFailed(state) {
-      state.requestStatus = 'failed';
+      state.requestStatus = REQUEST_STATUS.FAILED;
     },
   },
 });

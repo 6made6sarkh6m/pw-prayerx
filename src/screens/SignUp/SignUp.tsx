@@ -5,6 +5,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import {ISignUp} from '../../redux/ducks/Auth/types';
 import {useDispatch} from 'react-redux';
 import {signUp} from '../../redux/ducks/Auth';
+import styled from 'styled-components/native';
 
 const SignUp = () => {
   const [email, setEmail] = useState('');
@@ -12,17 +13,38 @@ const SignUp = () => {
   const [password, setPassword] = useState('');
 
   const dispatch = useDispatch();
+
   const handleSignUpPress = (values: ISignUp) => {
     dispatch({type: signUp.type, values});
   };
 
+  const handleChangeEmail = (value: string) => {
+    setEmail(value);
+  };
+
+  const handleChangePassword = (value: string) => {
+    setPassword(value);
+  };
+
+  const handleChangeName = (value: string) => {
+    setName(value);
+  };
+
   return (
-    <View style={styles.root}>
-      <StyledTextInput value={name} setValue={setName} placeholder="Username" />
-      <StyledTextInput value={email} setValue={setEmail} placeholder="Email" />
+    <Root>
+      <StyledTextInput
+        value={name}
+        setValue={e => handleChangeName(e)}
+        placeholder="Username"
+      />
+      <StyledTextInput
+        value={email}
+        setValue={e => handleChangeEmail(e)}
+        placeholder="Email"
+      />
       <StyledTextInput
         value={password}
-        setValue={setPassword}
+        setValue={e => handleChangePassword(e)}
         placeholder="Password"
         secureTextEntry
       />
@@ -31,14 +53,13 @@ const SignUp = () => {
         text="Sign up"
         onPress={() => handleSignUpPress({email, name, password})}
       />
-    </View>
+    </Root>
   );
 };
 
-const styles = StyleSheet.create({
-  root: {
-    alignItems: 'center',
-    padding: 20,
-  },
-});
+const Root = styled.View`
+  align-items: center;
+  padding: 20px;
+`;
+
 export default SignUp;

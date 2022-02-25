@@ -6,7 +6,7 @@ import {SignUpScreenProps} from '../../interfaces/navigator';
 import {useDispatch} from 'react-redux';
 import {ISignIn} from '../../redux/ducks/Auth/types';
 import {signIn} from '../../redux/ducks/Auth';
-
+import styled from 'styled-components/native';
 const SignIn = ({navigation}: SignUpScreenProps) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -24,7 +24,7 @@ const SignIn = ({navigation}: SignUpScreenProps) => {
     setPassword(value);
   };
   return (
-    <View style={styles.root}>
+    <Root>
       <StyledTextInput
         value={email}
         setValue={e => handleChangeEmail(e)}
@@ -46,14 +46,13 @@ const SignIn = ({navigation}: SignUpScreenProps) => {
           navigation.navigate('SignUp');
         }}
       />
-    </View>
+    </Root>
   );
 };
 
-const styles = StyleSheet.create({
-  root: {
-    alignItems: 'center',
-    padding: 20,
-  },
-});
+const Root = styled.View`
+  align-items: center;
+  padding: 20px;
+`;
+
 export default SignIn;
