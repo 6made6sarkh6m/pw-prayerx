@@ -1,32 +1,32 @@
-import React, {Dispatch, FC, SetStateAction} from 'react';
-import {View, TextInput, StyleSheet} from 'react-native';
+import React, {FC} from 'react';
+import {TextInput} from 'react-native';
 import styled from 'styled-components/native';
-import {COLORS} from '../../../styles/colors';
+import {COLORS} from '../../../constants/colors';
 interface StyledTextInputProps {
   value: string;
-  setValue: Dispatch<SetStateAction<string>>;
+  setValue: (e: string) => void;
   placeholder: string;
   secureTextEntry?: boolean;
 }
-const StyledTextInput: FC<StyledTextInputProps> = ({
+const Textinput: FC<StyledTextInputProps> = ({
   value,
   setValue,
   placeholder,
   secureTextEntry,
 }) => {
   return (
-    <Container>
+    <Root>
       <TextInput
         value={value}
         onChangeText={setValue}
         placeholder={placeholder}
         secureTextEntry={secureTextEntry}
       />
-    </Container>
+    </Root>
   );
 };
 
-const Container = styled.View`
+const Root = styled.View`
   background-color: ${COLORS.blindingWhite};
   border: 1px solid ${COLORS.lightGrey};
   border-radius: 5px;
@@ -35,4 +35,4 @@ const Container = styled.View`
   width: 100%;
 `;
 
-export default StyledTextInput;
+export default Textinput;

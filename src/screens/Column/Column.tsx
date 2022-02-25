@@ -7,7 +7,7 @@ import SettingsIcon from '../../components/ui/icons/SettingsIcon';
 import {RootStackParamList} from '../../interfaces/navigator';
 import {AppRoutes} from '../../navigation/UserNavigation/routes';
 import styled from 'styled-components/native';
-import {COLORS} from '../../styles/colors';
+import {COLORS} from '../../constants/colors';
 import {Pressable} from 'react-native';
 import {useSelector} from 'react-redux';
 import {selectColumnById} from '../../redux/ducks/Columns/selectors';

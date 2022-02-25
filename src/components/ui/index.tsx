@@ -1,2 +1,2 @@
-export {StyledTextInput} from './StyledTextInput';
-export {StyledButton} from './StyledButton';
+export {Textinput} from './Textinput';
+export {Button} from './Button';

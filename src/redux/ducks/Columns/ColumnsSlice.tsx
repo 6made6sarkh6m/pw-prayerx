@@ -1,5 +1,6 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {IColumn} from './types';
+import {REQUEST_STATUS} from '../status';
 
 interface initialState {
   data: IColumn[];
@@ -7,7 +8,7 @@ interface initialState {
 }
 const initialState: initialState = {
   data: [],
-  requestStatus: 'idle',
+  requestStatus: REQUEST_STATUS.IDLE,
 };
 
 const ColumnsSlice = createSlice({
@@ -15,40 +16,40 @@ const ColumnsSlice = createSlice({
   name: 'columns',
   reducers: {
     getColumns(state) {
-      state.requestStatus = 'pending';
+      state.requestStatus = REQUEST_STATUS.PENDING;
     },
     getColumnsSuccess(state, {payload}: PayloadAction<IColumn[]>) {
       state.data = payload;
-      state.requestStatus = 'succeed';
+      state.requestStatus = REQUEST_STATUS.SUCCEED;
     },
     getColumnsFailed(state) {
-      state.requestStatus = 'failed';
+      state.requestStatus = REQUEST_STATUS.FAILED;
     },
     addColumn(state) {
-      state.requestStatus = 'pending';
+      state.requestStatus = REQUEST_STATUS.PENDING;
     },
     addColumnSuccess(state, {payload}: PayloadAction<IColumn>) {
       state.data.push(payload);
-      state.requestStatus = 'succeed';
+      state.requestStatus = REQUEST_STATUS.SUCCEED;
     },
     addColumnFailed(state) {
-      state.requestStatus = 'failed';
+      state.requestStatus = REQUEST_STATUS.FAILED;
     },
     deleteColumn(state) {
-      state.requestStatus = 'pending';
+      state.requestStatus = REQUEST_STATUS.PENDING;
     },
     deleteColumnSuccess(state, {payload}: PayloadAction<number>) {
       const index = state.data.findIndex(column => column.id === payload);
       if (index !== -1) {
         state.data.splice(index, 1);
       }
-      state.requestStatus = 'succeed';
+      state.requestStatus = REQUEST_STATUS.SUCCEED;
     },
     deleteColumnFailed(state) {
-      state.requestStatus = 'failed';
+      state.requestStatus = REQUEST_STATUS.FAILED;
     },
     updateColumn(state) {
-      state.requestStatus = 'pending';
+      state.requestStatus = REQUEST_STATUS.PENDING;
     },
     updateColumnSuccess(state, {payload}: PayloadAction<IColumn>) {
       const index = state.data.findIndex(column => column.id === payload.id);
@@ -56,10 +57,10 @@ const ColumnsSlice = createSlice({
         state.data[index].title = payload.title;
         state.data[index].description = payload.description;
       }
-      state.requestStatus = 'succeed';
+      state.requestStatus = REQUEST_STATUS.SUCCEED;
     },
     updateColumnFailed(state) {
-      state.requestStatus = 'failed';
+      state.requestStatus = REQUEST_STATUS.FAILED;
     },
   },
 });

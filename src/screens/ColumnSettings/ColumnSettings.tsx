@@ -2,18 +2,17 @@ import React, {useState} from 'react';
 import {RouteProp} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParamList} from '../../interfaces/navigator';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import styled from 'styled-components/native';
 import {AppHeader} from '../../components/AppHeader';
 import GoBackIcon from '../../components/ui/icons/GoBackIcon';
 import TrashIcon from '../../components/ui/icons/TrashIcon';
 import {deleteColumn} from '../../redux/ducks/Columns';
 import {AppRoutes} from '../../navigation/UserNavigation/routes';
-import {COLORS} from '../../styles/colors';
+import {COLORS} from '../../constants/colors';
 import {Pressable} from 'react-native';
-import {selectColumnById} from '../../redux/ducks/Columns/selectors';
-import {StyledTextInput} from '../../components/ui/StyledTextInput';
-import {StyledButton} from '../../components/ui/StyledButton';
+import {Textinput} from '../../components/ui/Textinput';
+import {Button} from '../../components/ui/Button';
 import {updateColumn} from '../../redux/ducks/Columns';
 interface IUpdateColumn {
   title: string;
@@ -39,6 +38,14 @@ const ColumnSettings = ({navigation, route}: NavProp) => {
 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+
+  const handleSetTitle = (value: string) => {
+    setTitle(value);
+  };
+
+  const handleSetDescription = (value: string) => {
+    setDescription(value);
+  };
 
   const handleDeleteColumn = () => {
     dispatch({type: deleteColumn.type, columnId: route.params.columnId});
@@ -67,17 +74,17 @@ const ColumnSettings = ({navigation, route}: NavProp) => {
         title="Settings"
       />
       <Container>
-        <StyledTextInput
+        <Textinput
           value={title}
-          setValue={setTitle}
+          setValue={e => handleSetTitle(e)}
           placeholder="Column Title"
         />
-        <StyledTextInput
+        <Textinput
           value={description}
-          setValue={setDescription}
+          setValue={e => handleSetDescription(e)}
           placeholder="Column description"
         />
-        <StyledButton
+        <Button
           text="Update column"
           onPress={() => handleUpdateColumn({title, description})}
         />

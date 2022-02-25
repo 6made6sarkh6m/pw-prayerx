@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import {COLORS} from '../../styles/colors';
+import {COLORS} from '../../constants/colors';
 import {Columns} from '../../components/Columns';
 import {AppHeader} from '../../components/AppHeader';
 import {Pressable} from 'react-native';

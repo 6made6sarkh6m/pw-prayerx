@@ -2,7 +2,7 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
 import {Board} from '../../screens/Board';
-import {StyledButton} from '../../components/ui/StyledButton';
+import {Button} from '../../components/ui/Button';
 import {useDispatch} from 'react-redux';
 import {signOut} from '../../redux/ducks/Auth';
 import {AddColumn} from '../../screens/AddColumn';
@@ -32,7 +32,7 @@ const UserNavigation = () => {
           />
         </Stack.Navigator>
       </NavigationContainer>
-      <StyledButton text="Sign out" onPress={handleSignOut} />
+      <Button text="Sign out" onPress={handleSignOut} />
     </>
   );
 };

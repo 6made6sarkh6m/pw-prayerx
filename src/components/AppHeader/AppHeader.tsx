@@ -1,6 +1,6 @@
 import React, {ReactElement} from 'react';
 import styled from 'styled-components/native';
-import {COLORS} from '../../styles/colors';
+import {COLORS} from '../../constants/colors';
 interface AppHeaderProps {
   title: string;
   leftPressable?: ReactElement;

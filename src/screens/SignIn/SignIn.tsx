@@ -1,13 +1,13 @@
-import StyledButton from '../../components/ui/StyledButton/StyledButton';
-import StyledTextInput from '../../components/ui/StyledTextInput/StyledTextInput';
+import Button from '../../components/ui/Button/Button';
+import Textinput from '../../components/ui/Textinput/Textinput';
 import React, {FC, useState} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {ISignIn} from '../../redux/ducks/Auth/types';
 import {signIn} from '../../redux/ducks/Auth';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParamList} from '../../interfaces/navigator';
 import {AuthRoutes} from '../../navigation/AuthNavigation/routes';
+import styled from 'styled-components/native';
 
 type SignInScreenProps = StackNavigationProp<RootStackParamList, 'SignIn'>;
 type NavProp = {
@@ -22,33 +22,43 @@ const SignIn = ({navigation}: NavProp) => {
     dispatch({type: signIn.type, values});
   };
 
+  const handleChangeEmail = (value: string) => {
+    setEmail(value);
+  };
+
+  const handleChangePassword = (value: string) => {
+    setPassword(value);
+  };
   return (
-    <View style={styles.root}>
-      <StyledTextInput value={email} setValue={setEmail} placeholder="Email" />
-      <StyledTextInput
+    <Root>
+      <Textinput
+        value={email}
+        setValue={e => handleChangeEmail(e)}
+        placeholder="Email"
+      />
+      <Textinput
         value={password}
-        setValue={setPassword}
+        setValue={e => handleChangePassword(e)}
         placeholder="Password"
         secureTextEntry
       />
-      <StyledButton
+      <Button
         text="Sign in"
         onPress={() => handleSignInPress({email, password})}
       />
-      <StyledButton
+      <Button
         text="Press to sign up"
         onPress={() => {
           navigation.navigate(AuthRoutes.SignUp);
         }}
       />
-    </View>
+    </Root>
   );
 };
 
-const styles = StyleSheet.create({
-  root: {
-    alignItems: 'center',
-    padding: 20,
-  },
-});
+const Root = styled.View`
+  align-items: center;
+  padding: 20px;
+`;
+
 export default SignIn;

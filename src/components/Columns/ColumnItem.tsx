@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import {COLORS} from '../../styles/colors';
+import {COLORS} from '../../constants/colors';
 import {IColumn} from '../../redux/ducks/Columns/types';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParamList} from '../../interfaces/navigator';
@@ -17,7 +17,7 @@ const ColumnItem = ({data}: {data: IColumn}) => {
         onPress={() =>
           navigation.navigate(AppRoutes.Column, {columnId: data.id})
         }>
-        <StyledText>{data.title}</StyledText>
+        <Text>{data.title}</Text>
       </StyledPressable>
     </Container>
   );
@@ -35,7 +35,7 @@ const StyledPressable = styled.Pressable`
   padding: 20px 15px;
 `;
 
-const StyledText = styled.Text`
+const Text = styled.Text`
   font-size: 17px;
   line-height: 20px;
   color: ${COLORS.coffeeGrey};
