@@ -9,6 +9,7 @@ import {persistStore, persistReducer, REHYDRATE} from 'redux-persist';
 import AsyncStorage from '@react-native-community/async-storage';
 import {AuthReducer} from './ducks/Auth';
 import {ColumnsReducer} from './ducks/Columns';
+import { PrayersReducer } from './ducks/Prayers';
 import authMiddleware from './middlewares/authMiddleware';
 import rootSaga from './sagas';
 
@@ -21,6 +22,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   auth: AuthReducer,
   columns: ColumnsReducer,
+  prayers: PrayersReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
