@@ -3,4 +3,5 @@ export const COLORS = {
   blindingWhite: '#FFFFFF',
   lightGrey: '#E5E5E5',
   coffeeGrey: '#514D47',
+  skyBlue: '#72A8BC',
 };

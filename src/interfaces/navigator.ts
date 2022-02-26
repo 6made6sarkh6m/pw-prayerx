@@ -5,4 +5,6 @@ export type RootStackParamList = {
   AddColumn: undefined;
   Column: {columnId: number};
   ColumnSettings: {columnId: number};
+  Prayers: {columnId: number};
+  PrayerDetails: {prayerId: number};
 };

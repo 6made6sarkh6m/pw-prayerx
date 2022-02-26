@@ -11,6 +11,8 @@ import {COLORS} from '../../constants/colors';
 import {Pressable} from 'react-native';
 import {useSelector} from 'react-redux';
 import {selectColumnById} from '../../redux/ducks/Columns/selectors';
+import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
+import {Prayers} from '../Prayers';
 type ColumnScreenNavigationProps = StackNavigationProp<
   RootStackParamList,
   'Column'
@@ -22,6 +24,7 @@ type NavProp = {
   route: ColumnScreenRouteProps;
 };
 
+const Tab = createMaterialTopTabNavigator();
 const Column = ({navigation, route}: NavProp) => {
   const {columnId} = route.params;
   const columnData = useSelector(selectColumnById(columnId));
@@ -45,6 +48,23 @@ const Column = ({navigation, route}: NavProp) => {
         }
         title={columnData.title}
       />
+      <Tab.Navigator
+        screenOptions={{
+          tabBarLabelStyle: {fontSize: 13, fontWeight: '500'},
+          tabBarActiveTintColor: COLORS.skyBlue,
+          tabBarInactiveTintColor: COLORS.lightGrey,
+          tabBarIndicatorStyle: {backgroundColor: COLORS.skyBlue},
+          swipeEnabled: false,
+        }}>
+        <Tab.Screen
+          name="Prayers"
+          component={Prayers}
+          options={{
+            tabBarLabel: 'My prayers',
+          }}
+          initialParams={{columnId: columnId}}
+        />
+      </Tab.Navigator>
     </Root>
   );
 };

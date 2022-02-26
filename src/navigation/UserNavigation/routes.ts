@@ -3,4 +3,5 @@ export enum AppRoutes {
   Column = 'Column',
   AddColumn = 'AddColumn',
   ColumnSettings = 'ColumnSettings',
+  PrayerDetails = 'PrayerDetails',
 }
