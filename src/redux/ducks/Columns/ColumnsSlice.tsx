@@ -1,6 +1,6 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {IColumn} from './types';
-import {REQUEST_STATUS} from '../status';
+import {REQUEST_STATUS} from '../types';
 
 interface initialState {
   data: IColumn[];

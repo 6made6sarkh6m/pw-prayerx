@@ -15,18 +15,18 @@ const StyledTextInput: FC<StyledTextInputProps> = ({
   secureTextEntry,
 }) => {
   return (
-    <Container>
+    <Root>
       <TextInput
         value={value}
         onChangeText={setValue}
         placeholder={placeholder}
         secureTextEntry={secureTextEntry}
       />
-    </Container>
+    </Root>
   );
 };
 
-const Container = styled.View`
+const Root = styled.View`
   background-color: ${COLORS.blindingWhite};
   border: 1px solid ${COLORS.lightGrey};
   border-radius: 5px;
