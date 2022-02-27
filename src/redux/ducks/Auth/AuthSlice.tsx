@@ -25,7 +25,10 @@ const AuthSlice = createSlice({
       state.requestStatus = REQUEST_STATUS.FAILED;
     },
     signOut(state) {
-      state = initialState;
+      state.token = initialState.token;
+      state.name = initialState.name;
+      state.email = initialState.email;
+      state.requestStatus = initialState.requestStatus;
     },
     signUp(state) {
       state.requestStatus = REQUEST_STATUS.PENDING;
