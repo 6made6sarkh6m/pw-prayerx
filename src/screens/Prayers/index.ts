@@ -1,1 +1,1 @@
-export {default as Prayers} from './Prayers';
+export {default as PrayersScreen} from './PrayersScreen';

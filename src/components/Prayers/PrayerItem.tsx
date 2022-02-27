@@ -10,6 +10,8 @@ import {RootStackParamList} from '../../interfaces/navigator';
 import {AppRoutes} from '../../navigation/UserNavigation/routes';
 import {COLORS} from '../../constants/colors';
 import {updatePrayer} from '../../redux/ducks/Prayers';
+import UserIcon from '../../components/ui/icons/UserIcon';
+import PrayerIcon from '../../components/ui/icons/PrayerIcon';
 
 interface IPrayerItemProps {
   item: IPrayerItem;
@@ -63,9 +65,11 @@ const PrayerItem = ({item}: IPrayerItemProps) => {
             <Title checked={checked}>{dataItem.title}</Title>
             <IconsList>
               <Icon>
+                <UserIcon />
                 <IconText>3</IconText>
               </Icon>
               <Icon>
+                <PrayerIcon />
                 <IconText>120</IconText>
               </Icon>
             </IconsList>

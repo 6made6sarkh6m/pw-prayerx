@@ -3,19 +3,21 @@ import styled from 'styled-components/native';
 import {RootStackParamList} from '../../interfaces/navigator';
 import {RouteProp} from '@react-navigation/native';
 import {COLORS} from '../../constants/colors';
-
+import {Prayers} from '../../components/Prayers';
 type PrayersScreenRouteProps = RouteProp<RootStackParamList, 'Prayers'>;
 
 type NavProps = {
   route: PrayersScreenRouteProps;
 };
 
-const Prayers = ({route}: NavProps) => {
+const PrayersScreen = ({route}: NavProps) => {
   const {columnId} = route.params;
 
-  return(
-      <Root></Root>
-  )
+  return (
+    <Root>
+      <Prayers columnId={columnId} />
+    </Root>
+  );
 };
 
 const Root = styled.View`
@@ -24,5 +26,4 @@ const Root = styled.View`
   background-color: ${COLORS.blindingWhite};
 `;
 
-
-export default Prayers;
+export default PrayersScreen;

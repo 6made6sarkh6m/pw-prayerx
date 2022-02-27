@@ -12,7 +12,7 @@ import {Pressable} from 'react-native';
 import {useSelector} from 'react-redux';
 import {selectColumnById} from '../../redux/ducks/Columns/selectors';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
-import {Prayers} from '../Prayers';
+import {PrayersScreen} from '../Prayers';
 type ColumnScreenNavigationProps = StackNavigationProp<
   RootStackParamList,
   'Column'
@@ -58,7 +58,7 @@ const Column = ({navigation, route}: NavProp) => {
         }}>
         <Tab.Screen
           name="Prayers"
-          component={Prayers}
+          component={PrayersScreen}
           options={{
             tabBarLabel: 'My prayers',
           }}

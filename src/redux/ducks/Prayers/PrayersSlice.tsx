@@ -22,6 +22,7 @@ const PrayersSlice = createSlice({
     getPrayersSuccess(state, {payload}: PayloadAction<IPrayer[]>) {
       state.data = payload;
       state.requestStatus = REQUEST_STATUS.SUCCEED;
+      console.log('get prayers succeed: ', state.data);
     },
     getPrayersFailed(state) {
       state.requestStatus = REQUEST_STATUS.FAILED;
@@ -32,9 +33,11 @@ const PrayersSlice = createSlice({
     addPrayerSuccess(state, {payload}: PayloadAction<IPrayer>) {
       state.data.push(payload);
       state.requestStatus = REQUEST_STATUS.SUCCEED;
+      console.log('ADD SUCC');
     },
     addPrayerFailed(state) {
       state.requestStatus = REQUEST_STATUS.FAILED;
+      console.log('ADD failed');
     },
     deletePrayer(state) {
       state.requestStatus = REQUEST_STATUS.PENDING;

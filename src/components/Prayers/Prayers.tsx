@@ -3,9 +3,10 @@ import {Animated, Dimensions} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {SwipeListView} from 'react-native-swipe-list-view';
 import {IPrayer} from '../../redux/ducks/Prayers/types';
-import {selectPrayersByColumnId} from 'redux/ducks/Prayers/selectors';
-import {deletePrayer, getPrayers} from 'redux/ducks/Prayers';
+import {selectPrayersByColumnId} from '../../redux/ducks/Prayers/selectors';
+import {deletePrayer, getPrayers} from '../../redux/ducks/Prayers';
 import PrayerItem from './PrayerItem';
+import {AddPrayerInput} from '../../components/ui/AddPrayerInput';
 
 export interface ISwipeData {
   direction: 'left' | 'right';
@@ -49,10 +50,6 @@ const Prayers = (props: IPrayersProps) => {
 
   const renderItem = (data: IPrayerItem) => <PrayerItem item={data} />;
 
-  const prayersData = useMemo(() => {
-    prayers.filter(item => !item.checked);
-  }, []);
-
   useEffect(() => {
     dispatch({type: getPrayers.type});
   }, []);
@@ -60,7 +57,7 @@ const Prayers = (props: IPrayersProps) => {
   return (
     <SwipeListView
       disableRightSwipe
-      data={prayersData}
+      data={prayers.filter(item => !item.checked)}
       renderItem={renderItem}
       rightOpenValue={-Dimensions.get('window').width}
       previewRowKey={'0'}
@@ -69,6 +66,11 @@ const Prayers = (props: IPrayersProps) => {
       onSwipeValueChange={handleSwipeValueChange}
       useNativeDriver={true}
       keyExtractor={(item: IPrayer) => item.id.toString()}
+      ListHeaderComponent={
+        props.withoutInput ? null : <AddPrayerInput columnId={columnId} />
+      }
     />
   );
 };
+
+export default Prayers;
