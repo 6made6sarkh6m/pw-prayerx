@@ -1,6 +1,6 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {IAuthSlice, ISignInResponse, ISignUpResponse} from './types';
-import {REQUEST_STATUS} from '../status';
+import {REQUEST_STATUS} from '../types';
 const initialState: IAuthSlice = {
   token: '',
   name: '',
@@ -25,9 +25,7 @@ const AuthSlice = createSlice({
       state.requestStatus = REQUEST_STATUS.FAILED;
     },
     signOut(state) {
-      state.token = '';
-      state.name = '';
-      state.email = '';
+      state = initialState;
     },
     signUp(state) {
       state.requestStatus = REQUEST_STATUS.PENDING;
