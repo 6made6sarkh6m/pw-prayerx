@@ -56,7 +56,7 @@ const Prayers = (props: IPrayersProps) => {
 
   useEffect(() => {
     dispatch({type: getPrayers.type});
-  }, [dispatch]);
+  }, []);
 
   return (
     <SwipeListView
