@@ -8,11 +8,14 @@ import {RootStackParamList} from '../../interfaces/navigator';
 import {AppRoutes} from '../../navigation/UserNavigation/routes';
 import styled from 'styled-components/native';
 import {COLORS} from '../../constants/colors';
-import {Pressable} from 'react-native';
+import {Pressable, Text} from 'react-native';
 import {useSelector} from 'react-redux';
 import {selectColumnById} from '../../redux/ducks/Columns/selectors';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import {PrayersScreen} from '../Prayers';
+import {SubscribedPrayersScreen} from '../Prayers';
+import {selectPrayersByColumnId} from '../../redux/ducks/Prayers/selectors';
+import {SubscribedPrayerText} from '../../components/SubscribedPrayerText';
 type ColumnScreenNavigationProps = StackNavigationProp<
   RootStackParamList,
   'Column'
@@ -28,6 +31,7 @@ const Tab = createMaterialTopTabNavigator();
 const Column = ({navigation, route}: NavProp) => {
   const {columnId} = route.params;
   const columnData = useSelector(selectColumnById(columnId));
+  const prayersData = useSelector(selectPrayersByColumnId(columnId));
   return (
     <Root>
       <AppHeader
@@ -61,6 +65,16 @@ const Column = ({navigation, route}: NavProp) => {
           component={PrayersScreen}
           options={{
             tabBarLabel: 'My prayers',
+          }}
+          initialParams={{columnId: columnId}}
+        />
+        <Tab.Screen
+          name="Subscribed"
+          component={SubscribedPrayersScreen}
+          options={{
+            tabBarLabel: ({color}) => (
+              <SubscribedPrayerText color={color} count={prayersData.length} />
+            ),
           }}
           initialParams={{columnId: columnId}}
         />

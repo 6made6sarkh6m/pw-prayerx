@@ -158,6 +158,7 @@ const Icon = styled(IconsList)`
 const IconText = styled.Text`
   font-size: 12px;
   line-height: 14px;
+  margin-left: 5px;
   color: ${COLORS.coffeeGrey};
 `;
 

@@ -7,4 +7,5 @@ export type RootStackParamList = {
   ColumnSettings: {columnId: number};
   Prayers: {columnId: number};
   PrayerDetails: {prayerId: number};
+  SubscribedPrayers: {columnId: number};
 };
