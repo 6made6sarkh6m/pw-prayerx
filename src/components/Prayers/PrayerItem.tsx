@@ -43,6 +43,11 @@ const PrayerItem = ({item}: IPrayerItemProps) => {
             }}
             onPress={() => {
               setChecked(!checked);
+              console.log('data', {
+                title: dataItem.title,
+                description: dataItem.description,
+                checked: checked,
+              });
               dispatch({
                 type: updatePrayer.type,
                 values: {
@@ -56,11 +61,12 @@ const PrayerItem = ({item}: IPrayerItemProps) => {
           />
         </CheckBoxWrapper>
         <StyledPressable
-          onPress={() =>
-            navigation.navigate(AppRoutes.PrayerDetails, {
-              prayerId: dataItem.id,
-            })
-          }>
+        // onPress={() =>
+        //   navigation.navigate(AppRoutes.PrayerDetails, {
+        //     prayerId: dataItem.id,
+        //   })
+        // }
+        >
           <ContentWrapper>
             <Title checked={checked}>{dataItem.title}</Title>
             <IconsList>

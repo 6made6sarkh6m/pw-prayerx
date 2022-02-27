@@ -7,7 +7,8 @@ import {selectPrayersByColumnId} from '../../redux/ducks/Prayers/selectors';
 import {deletePrayer, getPrayers} from '../../redux/ducks/Prayers';
 import PrayerItem from './PrayerItem';
 import {AddPrayerInput} from '../../components/ui/AddPrayerInput';
-
+import {CheckedPrayers} from '.';
+import {PrayerDeleteElement} from '../../components/ui/PrayerDeleteElement';
 export interface ISwipeData {
   direction: 'left' | 'right';
   isOpen: boolean;
@@ -41,6 +42,7 @@ const Prayers = (props: IPrayersProps) => {
         useNativeDriver: true,
       }).start(({finished}) => {
         if (finished) {
+          console.log(key);
           setIsAnimating(false);
           dispatch({type: deletePrayer.type, prayerId: Number(key)});
         }
@@ -50,15 +52,18 @@ const Prayers = (props: IPrayersProps) => {
 
   const renderItem = (data: IPrayerItem) => <PrayerItem item={data} />;
 
+  const renderHiddenItem = () => <PrayerDeleteElement />;
+
   useEffect(() => {
     dispatch({type: getPrayers.type});
-  }, []);
+  }, [dispatch]);
 
   return (
     <SwipeListView
       disableRightSwipe
       data={prayers.filter(item => !item.checked)}
       renderItem={renderItem}
+      renderHiddenItem={renderHiddenItem}
       rightOpenValue={-Dimensions.get('window').width}
       previewRowKey={'0'}
       previewOpenValue={-40}
@@ -68,6 +73,16 @@ const Prayers = (props: IPrayersProps) => {
       keyExtractor={(item: IPrayer) => item.id.toString()}
       ListHeaderComponent={
         props.withoutInput ? null : <AddPrayerInput columnId={columnId} />
+      }
+      ListFooterComponent={
+        prayers.filter(item => item.checked).length > 0 ? (
+          <CheckedPrayers
+            prayersData={prayers}
+            onSwipeValueChange={handleSwipeValueChange}
+            renderItem={renderItem}
+            renderHiddenItem={renderHiddenItem}
+          />
+        ) : null
       }
     />
   );

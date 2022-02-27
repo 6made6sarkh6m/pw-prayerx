@@ -46,12 +46,15 @@ const PrayersSlice = createSlice({
       const index = state.data.findIndex(prayer => prayer.id === payload);
       if (index !== -1) state.data.splice(index, 1);
       state.requestStatus = REQUEST_STATUS.SUCCEED;
+      console.log('DELETE SUCCESS');
     },
     deletePrayerFailed(state) {
       state.requestStatus = REQUEST_STATUS.FAILED;
+      console.log('DELETE FAIL');
     },
     updatePrayer(state) {
       state.requestStatus = REQUEST_STATUS.PENDING;
+      console.log('UPDATE PENDING');
     },
     updatePrayerSuccess(state, {payload}: PayloadAction<IPrayer>) {
       const index = state.data.findIndex(prayer => prayer.id === payload.id);
@@ -61,9 +64,11 @@ const PrayersSlice = createSlice({
         state.data[index].checked = payload.checked;
       }
       state.requestStatus = REQUEST_STATUS.SUCCEED;
+      console.log('UPDATE SUCC');
     },
     updatePrayerFailed(state) {
       state.requestStatus = REQUEST_STATUS.FAILED;
+      console.log('UPDATE FAIL');
     },
   },
 });
