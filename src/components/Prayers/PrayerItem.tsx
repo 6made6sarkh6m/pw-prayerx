@@ -12,6 +12,7 @@ import {COLORS} from '../../constants/colors';
 import {updatePrayer} from '../../redux/ducks/Prayers';
 import UserIcon from '../../components/ui/icons/UserIcon';
 import PrayerIcon from '../../components/ui/icons/PrayerIcon';
+import CheckedIcon from '../../components/ui/icons/CheckedIcon';
 
 interface IPrayerItemProps {
   item: IPrayerItem;
@@ -36,7 +37,7 @@ const PrayerItem = ({item}: IPrayerItemProps) => {
             unfillColor={COLORS.blindingWhite}
             isChecked={checked}
             disableText={true}
-            ImageComponent={() => {}}
+            ImageComponent={() => <CheckedIcon />}
             iconStyle={{
               borderColor: COLORS.coffeeGrey,
               borderRadius: 4,
