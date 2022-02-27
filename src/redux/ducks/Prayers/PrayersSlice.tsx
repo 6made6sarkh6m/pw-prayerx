@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {REQUEST_STATUS} from '../status';
+import {REQUEST_STATUS} from '../types';
 import {IPrayer} from './types';
 
 export interface InitialState {
