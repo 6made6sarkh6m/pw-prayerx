@@ -3,6 +3,8 @@ import {TextInput} from 'react-native';
 import styled from 'styled-components/native';
 import {COLORS} from '../../../constants/colors';
 import {Field} from 'react-final-form';
+import {hasEmptyValue} from '../../../helpers/validators';
+import {composeValidators} from '../../../utils/composeValidators';
 interface StyledTextInputProps {
   name: string;
   placeholder: string;
@@ -18,14 +20,20 @@ const Textinput: FC<StyledTextInputProps> = ({
       <Field
         name={name}
         placeholder={placeholder}
-        render={({input, placeholder}) => {
+        validate={composeValidators(hasEmptyValue)}
+        render={({input, placeholder, meta}) => {
           return (
-            <TextInput
-              placeholder={placeholder}
-              onChangeText={input.onChange}
-              value={input.value}
-              secureTextEntry={secureTextEntry}
-            />
+            <>
+              <TextInput
+                placeholder={placeholder}
+                onChangeText={input.onChange}
+                value={input.value}
+                secureTextEntry={secureTextEntry}
+              />
+              {meta.error && meta.touched && (
+                <ErrorText>{meta.error}</ErrorText>
+              )}
+            </>
           );
         }}
       />
@@ -40,6 +48,10 @@ const Root = styled.View`
   padding-horizontal: 10px;
   margin-vertical: 10px;
   width: 100%;
+`;
+
+const ErrorText = styled.Text`
+  color: ${COLORS.dangerRed};
 `;
 
 export default Textinput;

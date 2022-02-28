@@ -9,7 +9,6 @@ import {RootStackParamList} from '../../interfaces/navigator';
 import {AuthRoutes} from '../../navigation/AuthNavigation/routes';
 import styled from 'styled-components/native';
 import {Form} from 'react-final-form';
-import {View} from 'react-native';
 
 type SignInScreenProps = StackNavigationProp<RootStackParamList, 'SignIn'>;
 type NavProp = {

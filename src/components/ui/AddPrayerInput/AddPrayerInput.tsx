@@ -4,8 +4,9 @@ import {useDispatch} from 'react-redux';
 import styled from 'styled-components/native';
 import {addPrayer} from '../../../redux/ducks/Prayers';
 import AddIcon from '../icons/AddIcon';
-import {Pressable} from 'react-native';
 import {Form, Field} from 'react-final-form';
+import {hasEmptyValue} from '../../../helpers/validators';
+import {composeValidators} from '../../../utils/composeValidators';
 interface IAddPrayerProps {
   columnId: number;
 }
@@ -38,17 +39,20 @@ const AddPrayerInput = ({columnId}: IAddPrayerProps) => {
               <Field
                 name="title"
                 placeholder="Add a prayer..."
-                render={({input, values, placeholder}) => {
+                validate={composeValidators(hasEmptyValue)}
+                render={({input, values, placeholder, meta}) => {
                   return (
-                    <StyledInput
-                      placeholder={placeholder}
-                      onChange={input.onChange}
-                      value={input.value}
-                      onSubmitEditing={() => {
-                        handleSubmit(values);
-                        form.reset();
-                      }}
-                    />
+                    <>
+                      <StyledInput
+                        placeholder={placeholder}
+                        onChange={input.onChange}
+                        value={input.value}
+                        onSubmitEditing={() => {
+                          handleSubmit(values);
+                          form.reset();
+                        }}
+                      />
+                    </>
                   );
                 }}
               />
@@ -96,6 +100,10 @@ const StyledAddIcon = styled(AddIcon).attrs(() => ({
   height: '22',
 }))`
   margin-right: 15px;
+`;
+
+const ErrorText = styled.Text`
+  color: ${COLORS.dangerRed};
 `;
 
 export default AddPrayerInput;
