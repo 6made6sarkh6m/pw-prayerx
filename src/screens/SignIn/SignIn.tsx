@@ -8,43 +8,31 @@ import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParamList} from '../../interfaces/navigator';
 import {AuthRoutes} from '../../navigation/AuthNavigation/routes';
 import styled from 'styled-components/native';
+import {Form} from 'react-final-form';
+import {View} from 'react-native';
 
 type SignInScreenProps = StackNavigationProp<RootStackParamList, 'SignIn'>;
 type NavProp = {
   navigation: SignInScreenProps;
 };
 const SignIn = ({navigation}: NavProp) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const dispatch = useDispatch();
 
-  const handleSignInPress = (values: ISignIn) => {
+  const onSubmit = (values: ISignIn) => {
     dispatch({type: signIn.type, values});
   };
 
-  const handleChangeEmail = (value: string) => {
-    setEmail(value);
-  };
-
-  const handleChangePassword = (value: string) => {
-    setPassword(value);
-  };
   return (
     <Root>
-      <Textinput
-        value={email}
-        setValue={e => handleChangeEmail(e)}
-        placeholder="Email"
-      />
-      <Textinput
-        value={password}
-        setValue={e => handleChangePassword(e)}
-        placeholder="Password"
-        secureTextEntry
-      />
-      <Button
-        text="Sign in"
-        onPress={() => handleSignInPress({email, password})}
+      <Form
+        onSubmit={onSubmit}
+        render={({handleSubmit}) => (
+          <FieldWrap>
+            <Textinput name="email" placeholder="Email" />
+            <Textinput name="password" placeholder="Password" secureTextEntry />
+            <Button text="Sign in" onPress={handleSubmit} />
+          </FieldWrap>
+        )}
       />
       <Button
         text="Press to sign up"
@@ -59,6 +47,11 @@ const SignIn = ({navigation}: NavProp) => {
 const Root = styled.View`
   align-items: center;
   padding: 20px;
+`;
+
+const FieldWrap = styled.View`
+  width: 100%;
+  flex-grow: 1;
 `;
 
 export default SignIn;

@@ -2,25 +2,32 @@ import React, {FC} from 'react';
 import {TextInput} from 'react-native';
 import styled from 'styled-components/native';
 import {COLORS} from '../../../constants/colors';
+import {Field} from 'react-final-form';
 interface StyledTextInputProps {
-  value: string;
-  setValue: (e: string) => void;
+  name: string;
   placeholder: string;
   secureTextEntry?: boolean;
 }
 const Textinput: FC<StyledTextInputProps> = ({
-  value,
-  setValue,
+  name,
   placeholder,
   secureTextEntry,
 }) => {
   return (
     <Root>
-      <TextInput
-        value={value}
-        onChangeText={setValue}
+      <Field
+        name={name}
         placeholder={placeholder}
-        secureTextEntry={secureTextEntry}
+        render={({input, placeholder}) => {
+          return (
+            <TextInput
+              placeholder={placeholder}
+              onChangeText={input.onChange}
+              value={input.value}
+              secureTextEntry={secureTextEntry}
+            />
+          );
+        }}
       />
     </Root>
   );

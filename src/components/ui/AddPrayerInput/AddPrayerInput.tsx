@@ -5,7 +5,7 @@ import styled from 'styled-components/native';
 import {addPrayer} from '../../../redux/ducks/Prayers';
 import AddIcon from '../icons/AddIcon';
 import {Pressable} from 'react-native';
-
+import {Form, Field} from 'react-final-form';
 interface IAddPrayerProps {
   columnId: number;
 }
@@ -15,10 +15,9 @@ interface IAddPrayerValues {
 }
 
 const AddPrayerInput = ({columnId}: IAddPrayerProps) => {
-  const [title, setTitle] = useState('');
   const dispatch = useDispatch();
 
-  const handleSubmit = (values: IAddPrayerValues) => {
+  const onSubmit = (values: IAddPrayerValues) => {
     console.log('values:  ', values);
     const data = {
       columnId: columnId,
@@ -28,19 +27,33 @@ const AddPrayerInput = ({columnId}: IAddPrayerProps) => {
     dispatch({type: addPrayer.type, data: data});
   };
 
-  const handleChangeTitle = (e: string) => {
-    setTitle(e);
-  };
   return (
     <InputWrap>
       <InputContainer>
-        <Pressable onPress={() => handleSubmit({title})}>
-          <StyledAddIcon />
-        </Pressable>
-        <StyledInput
-          value={title}
-          onChangeText={e => handleChangeTitle(e)}
-          placeholder="Add a prayer..."
+        <StyledAddIcon />
+        <Form
+          onSubmit={onSubmit}
+          render={({handleSubmit, form}) => (
+            <FieldWrap>
+              <Field
+                name="title"
+                placeholder="Add a prayer..."
+                render={({input, placeholder, form}) => {
+                  return (
+                    <StyledInput
+                      placeholder={placeholder}
+                      onChange={input.onChange}
+                      value={input.value}
+                      onSubmitEditing={() => {
+                        handleSubmit(form.values);
+                        form.reset();
+                      }}
+                    />
+                  );
+                }}
+              />
+            </FieldWrap>
+          )}
         />
       </InputContainer>
     </InputWrap>
@@ -61,6 +74,10 @@ const InputContainer = styled.View`
   width: 100%;
   flex-grow: 1;
   overflow: hidden;
+`;
+
+const FieldWrap = styled.View`
+  flex-grow: 1;
 `;
 
 const StyledInput = styled.TextInput`

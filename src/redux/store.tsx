@@ -9,7 +9,7 @@ import {persistStore, persistReducer, REHYDRATE} from 'redux-persist';
 import AsyncStorage from '@react-native-community/async-storage';
 import {AuthReducer} from './ducks/Auth';
 import {ColumnsReducer} from './ducks/Columns';
-import { PrayersReducer } from './ducks/Prayers';
+import {PrayersReducer} from './ducks/Prayers';
 import authMiddleware from './middlewares/authMiddleware';
 import rootSaga from './sagas';
 
