@@ -38,14 +38,14 @@ const AddPrayerInput = ({columnId}: IAddPrayerProps) => {
               <Field
                 name="title"
                 placeholder="Add a prayer..."
-                render={({input, placeholder, form}) => {
+                render={({input, values, placeholder}) => {
                   return (
                     <StyledInput
                       placeholder={placeholder}
                       onChange={input.onChange}
                       value={input.value}
                       onSubmitEditing={() => {
-                        handleSubmit(form.values);
+                        handleSubmit(values);
                         form.reset();
                       }}
                     />
