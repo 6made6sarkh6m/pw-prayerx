@@ -42,12 +42,12 @@ const PrayerItem = ({item}: IPrayerItemProps) => {
               borderColor: COLORS.coffeeGrey,
               borderRadius: 4,
             }}
-            onPress={() => {
+            onPress={(isChecked?: boolean) => {
               setChecked(!checked);
               console.log('data', {
                 title: dataItem.title,
                 description: dataItem.description,
-                checked: checked,
+                checked: isChecked,
               });
               dispatch({
                 type: updatePrayer.type,
@@ -55,7 +55,7 @@ const PrayerItem = ({item}: IPrayerItemProps) => {
                   id: dataItem.id,
                   title: dataItem.title,
                   description: dataItem.description,
-                  checked: checked,
+                  checked: isChecked,
                 },
               });
             }}

@@ -1,4 +1,4 @@
-import {put, takeLatest, takeLeading} from 'redux-saga/effects';
+import {put, takeEvery, takeLatest, takeLeading} from 'redux-saga/effects';
 import {http} from '../../../services/httpClient';
 import {IPrayer, IAddPrayer, IUpdatePrayer} from './types';
 import {
