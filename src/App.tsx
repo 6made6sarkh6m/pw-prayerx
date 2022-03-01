@@ -12,5 +12,5 @@ const App = () => {
     </Provider>
   );
 };
-
+console.log(process.env);
 export default App;

@@ -5,25 +5,23 @@ import {IColumn} from '../../redux/ducks/Columns/types';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParamList} from '../../interfaces/navigator';
 import {useNavigation} from '@react-navigation/native';
-import {AppRoutes} from '../../navigation/UserNavigation/routes';
+import {ROUTES} from '../../navigation/UserNavigation/routes';
 
 type ColumnScreenProps = StackNavigationProp<RootStackParamList, 'Column'>;
 
 const ColumnItem = ({data}: {data: IColumn}) => {
   const navigation = useNavigation<ColumnScreenProps>();
   return (
-    <Container>
+    <Root>
       <StyledPressable
-        onPress={() =>
-          navigation.navigate(AppRoutes.Column, {columnId: data.id})
-        }>
+        onPress={() => navigation.navigate(ROUTES.COLUMN, {columnId: data.id})}>
         <Text>{data.title}</Text>
       </StyledPressable>
-    </Container>
+    </Root>
   );
 };
 
-const Container = styled.View`
+const Root = styled.View`
   border-width: 1px;
   border-color: ${COLORS.lightGrey};
   border-radius: 4px;

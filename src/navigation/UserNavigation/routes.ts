@@ -1,6 +1,6 @@
-export enum AppRoutes {
-  Board = 'Board',
-  Column = 'Column',
-  AddColumn = 'AddColumn',
-  ColumnSettings = 'ColumnSettings',
+export enum ROUTES {
+  BOARD = 'Board',
+  COLUMN = 'Column',
+  ADDCOLUMN = 'AddColumn',
+  COLUMNSETTINGS = 'ColumnSettings',
 }

@@ -12,10 +12,6 @@ const Columns = () => {
   const dispatch = useDispatch();
   const columns = useSelector(selectColumns);
 
-  const renderColumns = ({item}: {item: IColumn}) => {
-    return <ColumnItem data={item} />;
-  };
-
   useEffect(() => {
     dispatch({type: getColumns.type});
   }, []);
@@ -23,7 +19,9 @@ const Columns = () => {
   return (
     <StyledFlatList
       data={columns}
-      renderItem={renderColumns}
+      renderItem={({item}: {item: IColumn}) => {
+        return <ColumnItem data={item} />;
+      }}
       keyExtractor={column => column.id.toString()}
     />
   );

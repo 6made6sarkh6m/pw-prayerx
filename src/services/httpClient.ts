@@ -1,8 +1,7 @@
-import {API_BASE_URL} from '../constants/index';
 import axios, {AxiosError, AxiosInstance} from 'axios';
 import store from '../redux/store';
 import {signOut} from '../redux/ducks/Auth';
-
+import {REACT_APP_API_BASE_URL} from '../constants';
 export class httpClient {
   constructor(private readonly _axios: AxiosInstance) {
     this.useInterceptors();
@@ -54,9 +53,8 @@ export class httpClient {
     return this._axios;
   }
 }
-
 export const http = new httpClient(
   axios.create({
-    baseURL: API_BASE_URL,
+    baseURL: process.env.REACT_APP_API_BASE_URL,
   }),
 );

@@ -6,7 +6,7 @@ import {ISignIn} from '../../redux/ducks/Auth/types';
 import {signIn} from '../../redux/ducks/Auth';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParamList} from '../../interfaces/navigator';
-import {AuthRoutes} from '../../navigation/AuthNavigation/routes';
+import {ROUTES} from '../../navigation/AuthNavigation/routes';
 import styled from 'styled-components/native';
 
 type SignInScreenProps = StackNavigationProp<RootStackParamList, 'SignIn'>;
@@ -49,7 +49,7 @@ const SignIn = ({navigation}: NavProp) => {
       <Button
         text="Press to sign up"
         onPress={() => {
-          navigation.navigate(AuthRoutes.SignUp);
+          navigation.navigate(ROUTES.SIGNUP);
         }}
       />
     </Root>

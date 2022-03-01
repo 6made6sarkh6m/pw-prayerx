@@ -1,16 +1,19 @@
 import {RouteProp} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import React from 'react';
-import {AppHeader} from '../../components/AppHeader';
+import {Header} from '../../components/Header';
 import GoBackIcon from '../../components/ui/icons/GoBackIcon';
 import SettingsIcon from '../../components/ui/icons/SettingsIcon';
 import {RootStackParamList} from '../../interfaces/navigator';
-import {AppRoutes} from '../../navigation/UserNavigation/routes';
+import {ROUTES} from '../../navigation/UserNavigation/routes';
 import styled from 'styled-components/native';
 import {COLORS} from '../../constants/colors';
 import {Pressable} from 'react-native';
 import {useSelector} from 'react-redux';
 import {selectColumnById} from '../../redux/ducks/Columns/selectors';
+import {Button} from '../../components/ui/Button';
+import {useDispatch} from 'react-redux';
+import {signOut} from '../../redux/ducks/Auth';
 type ColumnScreenNavigationProps = StackNavigationProp<
   RootStackParamList,
   'Column'
@@ -25,26 +28,32 @@ type NavProp = {
 const Column = ({navigation, route}: NavProp) => {
   const {columnId} = route.params;
   const columnData = useSelector(selectColumnById(columnId));
+  const dispatch = useDispatch();
+  const handleSignOut = () => {
+    dispatch({type: signOut.type});
+  };
+
   return (
     <Root>
-      <AppHeader
+      <Header
         leftPressable={
           <Pressable onPress={() => navigation.goBack()}>
-            <GoBackIcon />
+            <GoBackIcon fill={COLORS.skyBlue} />
           </Pressable>
         }
         rightPressable={
           <Pressable
             onPress={() =>
-              navigation.navigate(AppRoutes.ColumnSettings, {
+              navigation.navigate(ROUTES.COLUMNSETTINGS, {
                 columnId: columnId,
               })
             }>
-            <SettingsIcon />
+            <SettingsIcon fill={COLORS.skyBlue} />
           </Pressable>
         }
         title={columnData.title}
       />
+      <Button text="Sign out" onPress={handleSignOut} />
     </Root>
   );
 };

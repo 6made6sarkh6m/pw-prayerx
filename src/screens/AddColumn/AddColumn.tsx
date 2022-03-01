@@ -4,7 +4,7 @@ import {addColumn} from '../../redux/ducks/Columns';
 import {useDispatch} from 'react-redux';
 import styled from 'styled-components/native';
 import {COLORS} from '../../constants/colors';
-import {AppHeader} from '../../components/AppHeader';
+import {Header} from '../../components/Header';
 import {Pressable} from 'react-native';
 import GoBackIcon from '../../components/ui/icons/GoBackIcon';
 import {Button, Textinput} from '../../components/ui';
@@ -31,7 +31,7 @@ const AddColumn = ({navigation}: NavProp) => {
 
   return (
     <Root>
-      <AppHeader
+      <Header
         title="Add Column"
         leftPressable={
           <Pressable onPress={() => navigation.goBack()}>

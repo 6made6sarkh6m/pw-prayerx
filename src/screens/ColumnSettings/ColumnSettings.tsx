@@ -4,11 +4,11 @@ import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParamList} from '../../interfaces/navigator';
 import {useDispatch} from 'react-redux';
 import styled from 'styled-components/native';
-import {AppHeader} from '../../components/AppHeader';
+import {Header} from '../../components/Header';
 import GoBackIcon from '../../components/ui/icons/GoBackIcon';
 import TrashIcon from '../../components/ui/icons/TrashIcon';
 import {deleteColumn} from '../../redux/ducks/Columns';
-import {AppRoutes} from '../../navigation/UserNavigation/routes';
+import {ROUTES} from '../../navigation/UserNavigation/routes';
 import {COLORS} from '../../constants/colors';
 import {Pressable} from 'react-native';
 import {Textinput} from '../../components/ui/Textinput';
@@ -49,7 +49,7 @@ const ColumnSettings = ({navigation, route}: NavProp) => {
 
   const handleDeleteColumn = () => {
     dispatch({type: deleteColumn.type, columnId: route.params.columnId});
-    navigation.navigate(AppRoutes.Board);
+    navigation.navigate(ROUTES.BOARD);
   };
 
   const handleUpdateColumn = (values: IUpdateColumn) => {
@@ -60,7 +60,7 @@ const ColumnSettings = ({navigation, route}: NavProp) => {
 
   return (
     <Root>
-      <AppHeader
+      <Header
         leftPressable={
           <Pressable onPress={() => navigation.goBack()}>
             <GoBackIcon />
@@ -68,7 +68,7 @@ const ColumnSettings = ({navigation, route}: NavProp) => {
         }
         rightPressable={
           <Pressable onPress={() => handleDeleteColumn()}>
-            <TrashIcon />
+            <TrashIcon fill={COLORS.dangerRed} />
           </Pressable>
         }
         title="Settings"
