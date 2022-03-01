@@ -1,4 +1,4 @@
-import {put, takeLatest} from 'redux-saga/effects';
+import {put, takeLatest, takeLeading} from 'redux-saga/effects';
 import {http} from '../../../services/httpClient';
 import {IPrayer, IAddPrayer, IUpdatePrayer} from './types';
 import {
@@ -79,11 +79,10 @@ export function* observeCreatePrayer() {
   yield takeLatest(addPrayer.type, createPrayer);
 }
 
-
 export function* observeDeletePrayer() {
-    yield(deletePrayer.type, removePrayer)
+  yield takeLatest(deletePrayer.type, removePrayer);
 }
 
 export function* observeChangePrayer() {
-    yield(updatePrayer.type, changePrayer)
+  yield takeLatest(updatePrayer.type, changePrayer);
 }
