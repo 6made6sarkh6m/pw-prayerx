@@ -1,13 +1,19 @@
-import StyledButton from '../../components/ui/StyledButton/StyledButton';
-import StyledTextInput from '../../components/ui/StyledTextInput/StyledTextInput';
+import Button from '../../components/ui/Button/Button';
+import Textinput from '../../components/ui/Textinput/Textinput';
 import React, {FC, useState} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import {SignUpScreenProps} from '../../interfaces/navigator';
 import {useDispatch} from 'react-redux';
 import {ISignIn} from '../../redux/ducks/Auth/types';
 import {signIn} from '../../redux/ducks/Auth';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {RootStackParamList} from '../../interfaces/navigator';
+import {ROUTES} from '../../navigation/AuthNavigation/routes';
 import styled from 'styled-components/native';
-const SignIn = ({navigation}: SignUpScreenProps) => {
+
+type SignInScreenProps = StackNavigationProp<RootStackParamList, 'SignIn'>;
+type NavProp = {
+  navigation: SignInScreenProps;
+};
+const SignIn = ({navigation}: NavProp) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
@@ -25,25 +31,25 @@ const SignIn = ({navigation}: SignUpScreenProps) => {
   };
   return (
     <Root>
-      <StyledTextInput
+      <Textinput
         value={email}
         setValue={e => handleChangeEmail(e)}
         placeholder="Email"
       />
-      <StyledTextInput
+      <Textinput
         value={password}
         setValue={e => handleChangePassword(e)}
         placeholder="Password"
         secureTextEntry
       />
-      <StyledButton
+      <Button
         text="Sign in"
         onPress={() => handleSignInPress({email, password})}
       />
-      <StyledButton
+      <Button
         text="Press to sign up"
         onPress={() => {
-          navigation.navigate('SignUp');
+          navigation.navigate(ROUTES.SIGNUP);
         }}
       />
     </Root>

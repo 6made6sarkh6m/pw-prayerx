@@ -35,6 +35,33 @@ const ColumnsSlice = createSlice({
     addColumnFailed(state) {
       state.requestStatus = REQUEST_STATUS.FAILED;
     },
+    deleteColumn(state) {
+      state.requestStatus = REQUEST_STATUS.PENDING;
+    },
+    deleteColumnSuccess(state, {payload}: PayloadAction<number>) {
+      const index = state.data.findIndex(column => column.id === payload);
+      if (index !== -1) {
+        state.data.splice(index, 1);
+      }
+      state.requestStatus = REQUEST_STATUS.SUCCEED;
+    },
+    deleteColumnFailed(state) {
+      state.requestStatus = REQUEST_STATUS.FAILED;
+    },
+    updateColumn(state) {
+      state.requestStatus = REQUEST_STATUS.PENDING;
+    },
+    updateColumnSuccess(state, {payload}: PayloadAction<IColumn>) {
+      const index = state.data.findIndex(column => column.id === payload.id);
+      if (index !== -1) {
+        state.data[index].title = payload.title;
+        state.data[index].description = payload.description;
+      }
+      state.requestStatus = REQUEST_STATUS.SUCCEED;
+    },
+    updateColumnFailed(state) {
+      state.requestStatus = REQUEST_STATUS.FAILED;
+    },
   },
 });
 
@@ -45,5 +72,11 @@ export const {
   addColumn,
   addColumnFailed,
   addColumnSuccess,
+  deleteColumn,
+  deleteColumnFailed,
+  deleteColumnSuccess,
+  updateColumn,
+  updateColumnFailed,
+  updateColumnSuccess,
 } = ColumnsSlice.actions;
 export default ColumnsSlice.reducer;

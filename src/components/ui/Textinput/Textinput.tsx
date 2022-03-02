@@ -1,5 +1,5 @@
-import React, {Dispatch, FC, SetStateAction} from 'react';
-import {View, TextInput, StyleSheet} from 'react-native';
+import React, {FC} from 'react';
+import {TextInput} from 'react-native';
 import styled from 'styled-components/native';
 import {COLORS} from '../../../constants/colors';
 interface StyledTextInputProps {
@@ -8,7 +8,7 @@ interface StyledTextInputProps {
   placeholder: string;
   secureTextEntry?: boolean;
 }
-const StyledTextInput: FC<StyledTextInputProps> = ({
+const Textinput: FC<StyledTextInputProps> = ({
   value,
   setValue,
   placeholder,
@@ -35,4 +35,4 @@ const Root = styled.View`
   width: 100%;
 `;
 
-export default StyledTextInput;
+export default Textinput;

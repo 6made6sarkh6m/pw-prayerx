@@ -7,7 +7,13 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "android:staging": "react-native run-android --variant=stagingdebug",
+    "android:staging-release": "react-native run-android --variant=stagingrelease",
+    "android:dev": "react-native run-android --variant=developmentdebug",
+    "android:dev-release": "react-native run-android --variant=developmentrelease",
+    "android:prod": "react-native run-android --variant=productiondebug",
+    "android:prod-release": "react-native run-android --variant=productionrelease"
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.12.1",
@@ -20,9 +26,11 @@
     "axios": "^0.26.0",
     "react": "17.0.2",
     "react-native": "0.67.2",
+    "react-native-config": "^1.4.5",
     "react-native-gesture-handler": "^2.2.0",
     "react-native-safe-area-context": "^3.4.1",
     "react-native-screens": "^3.12.0",
+    "react-native-svg": "^12.1.1",
     "react-redux": "^7.2.6",
     "redux-persist": "^6.0.0",
     "redux-saga": "^1.1.3",

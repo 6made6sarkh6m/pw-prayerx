@@ -6,4 +6,10 @@ export {
   addColumn,
   addColumnFailed,
   addColumnSuccess,
+  deleteColumn,
+  deleteColumnFailed,
+  deleteColumnSuccess,
+  updateColumn,
+  updateColumnFailed,
+  updateColumnSuccess,
 } from './ColumnsSlice';

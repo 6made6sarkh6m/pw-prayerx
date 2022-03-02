@@ -5,10 +5,10 @@ interface StyledButtonProps {
   text: string;
   onPress: () => void;
 }
-const StyledButton: FC<StyledButtonProps> = ({text, onPress}) => {
+const Button: FC<StyledButtonProps> = ({text, onPress}) => {
   return (
     <StyledPressable onPress={onPress}>
-      <StyledText>{text}</StyledText>
+      <Text>{text}</Text>
     </StyledPressable>
   );
 };
@@ -22,9 +22,9 @@ const StyledPressable = styled.Pressable`
   margin-vertical: 5px;
 `;
 
-const StyledText = styled.Text`
+const Text = styled.Text`
 font-weight: bold,
 color: ${COLORS.blindingWhite};
 `;
 
-export default StyledButton;
+export default Button;

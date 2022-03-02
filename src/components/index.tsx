@@ -1,2 +1,2 @@
-export {StyledTextInput} from './ui';
-export {StyledButton} from './ui';
+export {Textinput} from './ui';
+export {Button} from './ui';
