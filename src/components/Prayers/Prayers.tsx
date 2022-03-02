@@ -50,10 +50,6 @@ const Prayers = (props: IPrayersProps) => {
     }
   };
 
-  const renderItem = (data: IPrayerItem) => <PrayerItem item={data} />;
-
-  const renderHiddenItem = () => <PrayerDeleteElement />;
-
   useEffect(() => {
     dispatch({type: getPrayers.type});
   }, []);
@@ -62,8 +58,8 @@ const Prayers = (props: IPrayersProps) => {
     <SwipeListView
       disableRightSwipe
       data={prayers.filter(item => !item.checked)}
-      renderItem={renderItem}
-      renderHiddenItem={renderHiddenItem}
+      renderItem={(data: IPrayerItem) => <PrayerItem item={data} />}
+      renderHiddenItem={() => <PrayerDeleteElement />}
       rightOpenValue={-Dimensions.get('window').width}
       previewRowKey={'0'}
       previewOpenValue={-40}
@@ -79,8 +75,8 @@ const Prayers = (props: IPrayersProps) => {
           <CheckedPrayers
             prayersData={prayers}
             onSwipeValueChange={handleSwipeValueChange}
-            renderItem={renderItem}
-            renderHiddenItem={renderHiddenItem}
+            renderItem={(data: IPrayerItem) => <PrayerItem item={data} />}
+            renderHiddenItem={() => <PrayerDeleteElement />}
           />
         ) : null
       }

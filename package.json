@@ -7,7 +7,13 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "android:staging": "react-native run-android --variant=stagingdebug",
+    "android:staging-release": "react-native run-android --variant=stagingrelease",
+    "android:dev": "react-native run-android --variant=developmentdebug",
+    "android:dev-release": "react-native run-android --variant=developmentrelease",
+    "android:prod": "react-native run-android --variant=productiondebug",
+    "android:prod-release": "react-native run-android --variant=productionrelease"
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.12.1",
@@ -25,6 +31,7 @@
     "react-final-form": "^6.5.8",
     "react-native": "0.67.2",
     "react-native-bouncy-checkbox": "^2.1.10",
+    "react-native-config": "^1.4.5",
     "react-native-gesture-handler": "^2.2.0",
     "react-native-pager-view": "^5.4.11",
     "react-native-safe-area-context": "^3.4.1",

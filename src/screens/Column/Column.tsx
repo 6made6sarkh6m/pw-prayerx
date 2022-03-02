@@ -1,11 +1,11 @@
 import {RouteProp} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import React from 'react';
-import {AppHeader} from '../../components/AppHeader';
+import {Header} from '../../components/Header';
 import GoBackIcon from '../../components/ui/icons/GoBackIcon';
 import SettingsIcon from '../../components/ui/icons/SettingsIcon';
 import {RootStackParamList} from '../../interfaces/navigator';
-import {AppRoutes} from '../../navigation/UserNavigation/routes';
+import {ROUTES} from '../../navigation/UserNavigation/routes';
 import styled from 'styled-components/native';
 import {COLORS} from '../../constants/colors';
 import {Pressable, Text} from 'react-native';
@@ -16,6 +16,9 @@ import {PrayersScreen} from '../Prayers';
 import {SubscribedPrayersScreen} from '../Prayers';
 import {selectPrayersByColumnId} from '../../redux/ducks/Prayers/selectors';
 import {SubscribedPrayerText} from '../../components/SubscribedPrayerText';
+import {Button} from '../../components/ui/Button';
+import {useDispatch} from 'react-redux';
+import {signOut} from '../../redux/ducks/Auth';
 type ColumnScreenNavigationProps = StackNavigationProp<
   RootStackParamList,
   'Column'
@@ -34,7 +37,7 @@ const Column = ({navigation, route}: NavProp) => {
   const prayersData = useSelector(selectPrayersByColumnId(columnId));
   return (
     <Root>
-      <AppHeader
+      <Header
         leftPressable={
           <Pressable onPress={() => navigation.goBack()}>
             <GoBackIcon />
@@ -43,7 +46,7 @@ const Column = ({navigation, route}: NavProp) => {
         rightPressable={
           <Pressable
             onPress={() =>
-              navigation.navigate(AppRoutes.ColumnSettings, {
+              navigation.navigate(ROUTES.COLUMN_SETTINGS, {
                 columnId: columnId,
               })
             }>

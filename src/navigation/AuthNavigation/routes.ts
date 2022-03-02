@@ -1,4 +1,4 @@
-export enum AuthRoutes {
-  SignIn = 'SignIn',
-  SignUp = 'SignUp',
+export enum ROUTES {
+  SIGNIN = 'SignIn',
+  SIGNUP = 'SignUp',
 }

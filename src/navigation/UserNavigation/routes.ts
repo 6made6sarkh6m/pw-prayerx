@@ -1,7 +1,6 @@
-export enum AppRoutes {
-  Board = 'Board',
-  Column = 'Column',
-  AddColumn = 'AddColumn',
-  ColumnSettings = 'ColumnSettings',
-  PrayerDetails = 'PrayerDetails',
+export enum ROUTES {
+  BOARD = 'Board',
+  COLUMN = 'Column',
+  ADDCOLUMN = 'AddColumn',
+  COLUMN_SETTINGS = 'ColumnSettings',
 }

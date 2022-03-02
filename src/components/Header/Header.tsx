@@ -7,17 +7,17 @@ interface AppHeaderProps {
   rightPressable?: ReactElement;
 }
 
-const AppHeader = ({title, rightPressable, leftPressable}: AppHeaderProps) => {
+const Header = ({title, rightPressable, leftPressable}: AppHeaderProps) => {
   return (
-    <Header>
+    <Root>
       {leftPressable ? leftPressable : null}
       <Title>{title}</Title>
       {rightPressable ? rightPressable : null}
-    </Header>
+    </Root>
   );
 };
 
-const Header = styled.View`
+const Root = styled.View`
   position: relative;
   display: flex;
   flex-direction: row;
@@ -39,4 +39,4 @@ const Title = styled.Text`
   margin: 0 auto;
 `;
 
-export default AppHeader;
+export default Header;
