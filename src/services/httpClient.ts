@@ -1,7 +1,7 @@
 import axios, {AxiosError, AxiosInstance} from 'axios';
 import store from '../redux/store';
 import {signOut} from '../redux/ducks/Auth';
-import {REACT_APP_API_BASE_URL} from '../constants';
+import Config from 'react-native-config';
 export class httpClient {
   constructor(private readonly _axios: AxiosInstance) {
     this.useInterceptors();
@@ -55,6 +55,6 @@ export class httpClient {
 }
 export const http = new httpClient(
   axios.create({
-    baseURL: process.env.REACT_APP_API_BASE_URL,
+    baseURL: Config.API_URL,
   }),
 );
