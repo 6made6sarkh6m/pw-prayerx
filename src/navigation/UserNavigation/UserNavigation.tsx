@@ -20,7 +20,7 @@ const UserNavigation = () => {
           <Stack.Screen name={ROUTES.ADDCOLUMN} component={AddColumn} />
           <Stack.Screen name={ROUTES.COLUMN} component={Column} />
           <Stack.Screen
-            name={ROUTES.COLUMNSETTINGS}
+            name={ROUTES.COLUMN_SETTINGS}
             component={ColumnSettings}
           />
         </Stack.Navigator>

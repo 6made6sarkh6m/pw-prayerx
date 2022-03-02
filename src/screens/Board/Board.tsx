@@ -26,7 +26,7 @@ const Board = ({navigation}: NavProp) => {
         title="My Desk"
         rightPressable={
           <Pressable onPress={() => navigation.navigate('AddColumn')}>
-            <AddIcon fill={COLORS.skyBlue} />
+            <AddIcon />
           </Pressable>
         }
       />

@@ -68,7 +68,7 @@ const ColumnSettings = ({navigation, route}: NavProp) => {
         }
         rightPressable={
           <Pressable onPress={() => handleDeleteColumn()}>
-            <TrashIcon fill={COLORS.dangerRed} />
+            <TrashIcon />
           </Pressable>
         }
         title="Settings"

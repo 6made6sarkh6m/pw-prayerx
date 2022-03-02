@@ -38,17 +38,17 @@ const Column = ({navigation, route}: NavProp) => {
       <Header
         leftPressable={
           <Pressable onPress={() => navigation.goBack()}>
-            <GoBackIcon fill={COLORS.skyBlue} />
+            <GoBackIcon />
           </Pressable>
         }
         rightPressable={
           <Pressable
             onPress={() =>
-              navigation.navigate(ROUTES.COLUMNSETTINGS, {
+              navigation.navigate(ROUTES.COLUMN_SETTINGS, {
                 columnId: columnId,
               })
             }>
-            <SettingsIcon fill={COLORS.skyBlue} />
+            <SettingsIcon />
           </Pressable>
         }
         title={columnData.title}
