@@ -56,7 +56,12 @@ const PrayerItem = ({item}: IPrayerItemProps) => {
             }}
           />
         </CheckBoxWrapper>
-        <StyledPressable>
+        <StyledPressable
+          onPress={() =>
+            navigation.navigate(ROUTES.PRAYER_DETAILS, {
+              prayerId: dataItem.id,
+            })
+          }>
           <ContentWrapper>
             <Title checked={checked}>{dataItem.title}</Title>
             <IconsList>

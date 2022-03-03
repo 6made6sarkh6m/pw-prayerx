@@ -3,4 +3,5 @@ export enum ROUTES {
   COLUMN = 'Column',
   ADDCOLUMN = 'AddColumn',
   COLUMN_SETTINGS = 'ColumnSettings',
+  PRAYER_DETAILS = 'PrayerDetails',
 }
