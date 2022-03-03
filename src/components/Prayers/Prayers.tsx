@@ -42,13 +42,16 @@ const Prayers = (props: IPrayersProps) => {
         useNativeDriver: true,
       }).start(({finished}) => {
         if (finished) {
-          console.log(key);
           setIsAnimating(false);
           dispatch({type: deletePrayer.type, prayerId: Number(key)});
         }
       });
     }
   };
+
+  const uncheckedPrayers = useMemo(() => {
+    return prayers.filter(item => !item.checked);
+  }, [prayers]);
 
   useEffect(() => {
     dispatch({type: getPrayers.type});
@@ -57,7 +60,7 @@ const Prayers = (props: IPrayersProps) => {
   return (
     <SwipeListView
       disableRightSwipe
-      data={prayers.filter(item => !item.checked)}
+      data={uncheckedPrayers}
       renderItem={(data: IPrayerItem) => <PrayerItem item={data} />}
       renderHiddenItem={() => <PrayerDeleteElement />}
       rightOpenValue={-Dimensions.get('window').width}

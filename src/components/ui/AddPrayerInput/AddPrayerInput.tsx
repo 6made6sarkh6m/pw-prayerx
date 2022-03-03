@@ -19,12 +19,10 @@ const AddPrayerInput = ({columnId}: IAddPrayerProps) => {
   const dispatch = useDispatch();
 
   const onSubmit = (values: IAddPrayerValues) => {
-    console.log('values:  ', values);
     const data = {
       columnId: columnId,
       values: {description: '', checked: false, ...values},
     };
-    console.log('data: ', data);
     dispatch({type: addPrayer.type, data: data});
   };
 

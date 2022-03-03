@@ -7,7 +7,7 @@ import {useDispatch} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParamList} from '../../interfaces/navigator';
-import {AppRoutes} from '../../navigation/UserNavigation/routes';
+import {ROUTES} from '../../navigation/UserNavigation/routes';
 import {COLORS} from '../../constants/colors';
 import {updatePrayer} from '../../redux/ducks/Prayers';
 import UserIcon from '../../components/ui/icons/UserIcon';
@@ -44,11 +44,6 @@ const PrayerItem = ({item}: IPrayerItemProps) => {
             }}
             onPress={(isChecked?: boolean) => {
               setChecked(!checked);
-              console.log('data', {
-                title: dataItem.title,
-                description: dataItem.description,
-                checked: isChecked,
-              });
               dispatch({
                 type: updatePrayer.type,
                 values: {
@@ -61,13 +56,7 @@ const PrayerItem = ({item}: IPrayerItemProps) => {
             }}
           />
         </CheckBoxWrapper>
-        <StyledPressable
-        // onPress={() =>
-        //   navigation.navigate(AppRoutes.PrayerDetails, {
-        //     prayerId: dataItem.id,
-        //   })
-        // }
-        >
+        <StyledPressable>
           <ContentWrapper>
             <Title checked={checked}>{dataItem.title}</Title>
             <IconsList>

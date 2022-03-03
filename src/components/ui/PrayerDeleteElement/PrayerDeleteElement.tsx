@@ -3,15 +3,15 @@ import styled from 'styled-components/native';
 import {COLORS} from '../../../constants/colors';
 const PrayerDeleteElement = () => {
   return (
-    <Wrapper>
+    <Root>
       <DeleteElement>
         <DeleteElementText>Delete</DeleteElementText>
       </DeleteElement>
-    </Wrapper>
+    </Root>
   );
 };
 
-const Wrapper = styled.View`
+const Root = styled.View`
   display: flex;
   align-items: center;
   justify-content: space-between;

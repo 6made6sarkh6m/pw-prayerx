@@ -55,7 +55,6 @@ export function* removePrayer({prayerId}: IDeletePrayerRequestProps) {
     yield put(deletePrayerSuccess(prayerId));
   } catch (e: any) {
     yield put(deletePrayerFailed());
-    console.log('ERROR DELETE PRAYER: ', e);
   }
 }
 

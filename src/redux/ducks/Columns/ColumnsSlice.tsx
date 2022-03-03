@@ -39,10 +39,8 @@ const ColumnsSlice = createSlice({
       state.requestStatus = REQUEST_STATUS.PENDING;
     },
     deleteColumnSuccess(state, {payload}: PayloadAction<number>) {
-      const index = state.data.findIndex(column => column.id === payload);
-      if (index !== -1) {
-        state.data.splice(index, 1);
-      }
+      const newState = state.data.filter(column => column.id !== payload);
+      state.data = newState;
       state.requestStatus = REQUEST_STATUS.SUCCEED;
     },
     deleteColumnFailed(state) {
@@ -54,8 +52,7 @@ const ColumnsSlice = createSlice({
     updateColumnSuccess(state, {payload}: PayloadAction<IColumn>) {
       const index = state.data.findIndex(column => column.id === payload.id);
       if (index !== -1) {
-        state.data[index].title = payload.title;
-        state.data[index].description = payload.description;
+        state.data[index] = payload;
       }
       state.requestStatus = REQUEST_STATUS.SUCCEED;
     },

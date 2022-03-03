@@ -9,7 +9,6 @@ export const selectPrayersByColumnId = (columnId: number) =>
   );
 
 export const selectPrayerById = (prayerId: number) =>
-  createSelector(
-    selectPrayers,
-    state => state.filter(prayer => prayer.id === prayerId)[0],
+  createSelector(selectPrayers, state =>
+    state.find(prayer => prayer.id === prayerId),
   );
