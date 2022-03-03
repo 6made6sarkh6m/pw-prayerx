@@ -10,6 +10,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import {AuthReducer} from './ducks/Auth';
 import {ColumnsReducer} from './ducks/Columns';
 import {PrayersReducer} from './ducks/Prayers';
+import {CommentsReducer} from './ducks/Comments';
 import authMiddleware from './middlewares/authMiddleware';
 import rootSaga from './sagas';
 
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
   auth: AuthReducer,
   columns: ColumnsReducer,
   prayers: PrayersReducer,
+  comments: CommentsReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
