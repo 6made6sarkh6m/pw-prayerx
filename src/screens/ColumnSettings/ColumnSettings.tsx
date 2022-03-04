@@ -68,8 +68,16 @@ const ColumnSettings = ({navigation, route}: NavProp) => {
           onSubmit={onSubmit}
           render={({handleSubmit}) => (
             <View>
-              <Textinput name="title" placeholder="Column title" />
-              <Textinput name="description" placeholder="Column description" />
+              <Textinput
+                name="title"
+                placeholder="Column title"
+                initialValue={route.params.title}
+              />
+              <Textinput
+                name="description"
+                placeholder="Column description"
+                initialValue={route.params.description}
+              />
               <Button text="Update Column" onPress={handleSubmit} />
             </View>
           )}

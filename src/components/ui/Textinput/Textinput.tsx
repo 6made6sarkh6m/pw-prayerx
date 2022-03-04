@@ -9,17 +9,20 @@ interface StyledTextInputProps {
   name: string;
   placeholder: string;
   secureTextEntry?: boolean;
+  initialValue?: string;
 }
 const Textinput: FC<StyledTextInputProps> = ({
   name,
   placeholder,
   secureTextEntry,
+  initialValue,
 }) => {
   return (
     <Root>
       <Field
         name={name}
         placeholder={placeholder}
+        initialValue={initialValue}
         validate={composeValidators(hasEmptyValue)}
         render={({input, placeholder, meta}) => {
           return (
