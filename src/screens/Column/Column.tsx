@@ -33,7 +33,11 @@ type NavProp = {
 const Tab = createMaterialTopTabNavigator();
 const Column = ({navigation, route}: NavProp) => {
   const {columnId} = route.params;
-  const columnData = useSelector(selectColumnById(columnId));
+  const columnData = useSelector(selectColumnById(columnId)) || {
+    id: 1,
+    title: '',
+    description: '',
+  };
   const prayersData = useSelector(selectPrayersByColumnId(columnId));
   return (
     <Root>
@@ -48,6 +52,8 @@ const Column = ({navigation, route}: NavProp) => {
             onPress={() =>
               navigation.navigate(ROUTES.COLUMN_SETTINGS, {
                 columnId: columnId,
+                title: columnData.title,
+                description: columnData.description,
               })
             }>
             <SettingsIcon />
