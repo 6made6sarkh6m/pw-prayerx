@@ -12,6 +12,8 @@ import {COLORS} from '../../constants/colors';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RouteProp} from '@react-navigation/core';
 import {selectPrayerById} from '../../redux/ducks/Prayers/selectors';
+import {Comments} from '../../components/Comments';
+import {AddCommentInput} from '../../components/ui/AddCommentInput';
 type PrayerDetailScreenRouteProp = RouteProp<
   RootStackParamList,
   'PrayerDetails'
@@ -77,6 +79,8 @@ const PrayerDetails = ({navigation, route}: NavProp) => {
         ListFooterComponent={
           <View>
             <CommentsTitle>COMMENTS</CommentsTitle>
+            <Comments prayerId={prayerId} />
+            <AddCommentInput prayerId={prayerId} />
           </View>
         }
       />
