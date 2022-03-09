@@ -6,7 +6,12 @@ import {
   observeRemoveColumn,
   observeChangeColumn,
 } from '../ducks/Columns/sagas';
-
+import {
+  observeLoadPrayers,
+  observeChangePrayer,
+  observeCreatePrayer,
+  observeDeletePrayer,
+} from '../ducks/Prayers/sagas';
 function* rootSaga() {
   yield all([
     observeSignInSaga(),
@@ -15,6 +20,10 @@ function* rootSaga() {
     observeCreateColumn(),
     observeRemoveColumn(),
     observeChangeColumn(),
+    observeCreatePrayer(),
+    observeChangePrayer(),
+    observeDeletePrayer(),
+    observeLoadPrayers(),
   ]);
 }
 

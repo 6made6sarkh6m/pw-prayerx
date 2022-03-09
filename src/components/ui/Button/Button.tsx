@@ -23,8 +23,8 @@ const StyledPressable = styled.Pressable`
 `;
 
 const Text = styled.Text`
-font-weight: bold,
-color: ${COLORS.blindingWhite};
+  font-weight: bold;
+  color: ${COLORS.blindingWhite};
 `;
 
 export default Button;

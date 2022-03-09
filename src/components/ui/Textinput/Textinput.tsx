@@ -2,25 +2,43 @@ import React, {FC} from 'react';
 import {TextInput} from 'react-native';
 import styled from 'styled-components/native';
 import {COLORS} from '../../../constants/colors';
+import {Field} from 'react-final-form';
+import {hasEmptyValue} from '../../../helpers/validators';
+import {composeValidators} from '../../../utils/composeValidators';
 interface StyledTextInputProps {
-  value: string;
-  setValue: (e: string) => void;
+  name: string;
   placeholder: string;
   secureTextEntry?: boolean;
+  initialValue?: string;
 }
 const Textinput: FC<StyledTextInputProps> = ({
-  value,
-  setValue,
+  name,
   placeholder,
   secureTextEntry,
+  initialValue,
 }) => {
   return (
     <Root>
-      <TextInput
-        value={value}
-        onChangeText={setValue}
+      <Field
+        name={name}
         placeholder={placeholder}
-        secureTextEntry={secureTextEntry}
+        initialValue={initialValue}
+        validate={composeValidators(hasEmptyValue)}
+        render={({input, placeholder, meta}) => {
+          return (
+            <>
+              <TextInput
+                placeholder={placeholder}
+                onChangeText={input.onChange}
+                value={input.value}
+                secureTextEntry={secureTextEntry}
+              />
+              {meta.error && meta.touched && (
+                <ErrorText>{meta.error}</ErrorText>
+              )}
+            </>
+          );
+        }}
       />
     </Root>
   );
@@ -33,6 +51,10 @@ const Root = styled.View`
   padding-horizontal: 10px;
   margin-vertical: 10px;
   width: 100%;
+`;
+
+const ErrorText = styled.Text`
+  color: ${COLORS.dangerRed};
 `;
 
 export default Textinput;

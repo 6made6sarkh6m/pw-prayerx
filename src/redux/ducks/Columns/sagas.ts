@@ -46,7 +46,6 @@ export function* createColumn({values}: IAddColumnRequestProps) {
     yield put(addColumnSuccess(request.data));
   } catch (e) {
     yield put(addColumnFailed());
-    console.log('Error add column: ', e);
   }
 }
 

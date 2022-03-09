@@ -1,79 +1,81 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {IColumn} from './types';
 import {REQUEST_STATUS} from '../types';
+import {IPrayer} from './types';
 
-interface initialState {
-  data: IColumn[];
+export interface InitialState {
+  data: IPrayer[];
   requestStatus: string;
 }
-const initialState: initialState = {
+
+const initialState: InitialState = {
   data: [],
   requestStatus: REQUEST_STATUS.IDLE,
 };
 
-const ColumnsSlice = createSlice({
+const PrayersSlice = createSlice({
   initialState: initialState,
-  name: 'columns',
+  name: 'prayers',
   reducers: {
-    getColumns(state) {
+    getPrayers(state) {
       state.requestStatus = REQUEST_STATUS.PENDING;
     },
-    getColumnsSuccess(state, {payload}: PayloadAction<IColumn[]>) {
+    getPrayersSuccess(state, {payload}: PayloadAction<IPrayer[]>) {
       state.data = payload;
       state.requestStatus = REQUEST_STATUS.SUCCEED;
     },
-    getColumnsFailed(state) {
+    getPrayersFailed(state) {
       state.requestStatus = REQUEST_STATUS.FAILED;
     },
-    addColumn(state) {
+    addPrayer(state) {
       state.requestStatus = REQUEST_STATUS.PENDING;
     },
-    addColumnSuccess(state, {payload}: PayloadAction<IColumn>) {
+    addPrayerSuccess(state, {payload}: PayloadAction<IPrayer>) {
       state.data.push(payload);
       state.requestStatus = REQUEST_STATUS.SUCCEED;
     },
-    addColumnFailed(state) {
+    addPrayerFailed(state) {
       state.requestStatus = REQUEST_STATUS.FAILED;
     },
-    deleteColumn(state) {
+    deletePrayer(state) {
       state.requestStatus = REQUEST_STATUS.PENDING;
     },
-    deleteColumnSuccess(state, {payload}: PayloadAction<number>) {
-      const newState = state.data.filter(column => column.id !== payload);
+    deletePrayerSuccess(state, {payload}: PayloadAction<number>) {
+      const newState = state.data.filter(prayer => prayer.id !== payload);
       state.data = newState;
       state.requestStatus = REQUEST_STATUS.SUCCEED;
     },
-    deleteColumnFailed(state) {
+    deletePrayerFailed(state) {
       state.requestStatus = REQUEST_STATUS.FAILED;
     },
-    updateColumn(state) {
+    updatePrayer(state) {
       state.requestStatus = REQUEST_STATUS.PENDING;
     },
-    updateColumnSuccess(state, {payload}: PayloadAction<IColumn>) {
-      const index = state.data.findIndex(column => column.id === payload.id);
+    updatePrayerSuccess(state, {payload}: PayloadAction<IPrayer>) {
+      const index = state.data.findIndex(prayer => prayer.id === payload.id);
       if (index !== -1) {
         state.data[index] = payload;
       }
       state.requestStatus = REQUEST_STATUS.SUCCEED;
     },
-    updateColumnFailed(state) {
+    updatePrayerFailed(state) {
       state.requestStatus = REQUEST_STATUS.FAILED;
     },
   },
 });
 
 export const {
-  getColumns,
-  getColumnsFailed,
-  getColumnsSuccess,
-  addColumn,
-  addColumnFailed,
-  addColumnSuccess,
-  deleteColumn,
-  deleteColumnFailed,
-  deleteColumnSuccess,
-  updateColumn,
-  updateColumnFailed,
-  updateColumnSuccess,
-} = ColumnsSlice.actions;
-export default ColumnsSlice.reducer;
+  getPrayers,
+  getPrayersFailed,
+  getPrayersSuccess,
+  addPrayer,
+  addPrayerFailed,
+  addPrayerSuccess,
+  updatePrayer,
+  updatePrayerFailed,
+  updatePrayerSuccess,
+  deletePrayer,
+  deletePrayerFailed,
+  deletePrayerSuccess,
+} = PrayersSlice.actions;
+
+export default PrayersSlice.reducer;

@@ -8,9 +8,14 @@ import {RootStackParamList} from '../../interfaces/navigator';
 import {ROUTES} from '../../navigation/UserNavigation/routes';
 import styled from 'styled-components/native';
 import {COLORS} from '../../constants/colors';
-import {Pressable} from 'react-native';
+import {Pressable, Text} from 'react-native';
 import {useSelector} from 'react-redux';
 import {selectColumnById} from '../../redux/ducks/Columns/selectors';
+import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
+import {PrayersScreen} from '../Prayers';
+import {SubscribedPrayersScreen} from '../Prayers';
+import {selectPrayersByColumnId} from '../../redux/ducks/Prayers/selectors';
+import {SubscribedPrayerText} from '../../components/SubscribedPrayerText';
 import {Button} from '../../components/ui/Button';
 import {useDispatch} from 'react-redux';
 import {signOut} from '../../redux/ducks/Auth';
@@ -25,14 +30,15 @@ type NavProp = {
   route: ColumnScreenRouteProps;
 };
 
+const Tab = createMaterialTopTabNavigator();
 const Column = ({navigation, route}: NavProp) => {
   const {columnId} = route.params;
-  const columnData = useSelector(selectColumnById(columnId));
-  const dispatch = useDispatch();
-  const handleSignOut = () => {
-    dispatch({type: signOut.type});
+  const columnData = useSelector(selectColumnById(columnId)) || {
+    id: 1,
+    title: '',
+    description: '',
   };
-
+  const prayersData = useSelector(selectPrayersByColumnId(columnId));
   return (
     <Root>
       <Header
@@ -46,6 +52,8 @@ const Column = ({navigation, route}: NavProp) => {
             onPress={() =>
               navigation.navigate(ROUTES.COLUMN_SETTINGS, {
                 columnId: columnId,
+                title: columnData.title,
+                description: columnData.description,
               })
             }>
             <SettingsIcon />
@@ -53,7 +61,33 @@ const Column = ({navigation, route}: NavProp) => {
         }
         title={columnData.title}
       />
-      <Button text="Sign out" onPress={handleSignOut} />
+      <Tab.Navigator
+        screenOptions={{
+          tabBarLabelStyle: {fontSize: 13, fontWeight: '500'},
+          tabBarActiveTintColor: COLORS.skyBlue,
+          tabBarInactiveTintColor: COLORS.lightGrey,
+          tabBarIndicatorStyle: {backgroundColor: COLORS.skyBlue},
+          swipeEnabled: false,
+        }}>
+        <Tab.Screen
+          name="Prayers"
+          component={PrayersScreen}
+          options={{
+            tabBarLabel: 'My prayers',
+          }}
+          initialParams={{columnId: columnId}}
+        />
+        <Tab.Screen
+          name="Subscribed"
+          component={SubscribedPrayersScreen}
+          options={{
+            tabBarLabel: ({color}) => (
+              <SubscribedPrayerText color={color} count={prayersData.length} />
+            ),
+          }}
+          initialParams={{columnId: columnId}}
+        />
+      </Tab.Navigator>
     </Root>
   );
 };

@@ -4,12 +4,13 @@ import {addColumn} from '../../redux/ducks/Columns';
 import {useDispatch} from 'react-redux';
 import styled from 'styled-components/native';
 import {COLORS} from '../../constants/colors';
+import {Pressable, View} from 'react-native';
 import {Header} from '../../components/Header';
-import {Pressable} from 'react-native';
 import GoBackIcon from '../../components/ui/icons/GoBackIcon';
 import {Button, Textinput} from '../../components/ui';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParamList} from '../../interfaces/navigator';
+import {Form} from 'react-final-form';
 
 type AddColumnScreenProps = StackNavigationProp<
   RootStackParamList,
@@ -20,11 +21,9 @@ type NavProp = {
 };
 
 const AddColumn = ({navigation}: NavProp) => {
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
   const dispatch = useDispatch();
 
-  const handleAddColumn = (values: IAddColumn) => {
+  const onSubmit = (values: IAddColumn) => {
     dispatch({type: addColumn.type, values});
     navigation.goBack();
   };
@@ -40,15 +39,15 @@ const AddColumn = ({navigation}: NavProp) => {
         }
       />
       <Container>
-        <Textinput value={title} setValue={setTitle} placeholder="Title" />
-        <Textinput
-          value={description}
-          setValue={setDescription}
-          placeholder="Description"
-        />
-        <Button
-          text="Add Column"
-          onPress={() => handleAddColumn({title, description})}
+        <Form
+          onSubmit={onSubmit}
+          render={({handleSubmit}) => (
+            <View>
+              <Textinput name="title" placeholder="Column title" />
+              <Textinput name="description" placeholder="Column description" />
+              <Button text="Add column" onPress={handleSubmit} />
+            </View>
+          )}
         />
       </Container>
     </Root>

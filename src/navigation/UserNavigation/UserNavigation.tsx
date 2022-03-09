@@ -15,6 +15,7 @@ const UserNavigation = () => {
         <Stack.Navigator
           screenOptions={{
             headerShown: false,
+            gestureEnabled: true,
           }}>
           <Stack.Screen name={ROUTES.BOARD} component={Board} />
           <Stack.Screen name={ROUTES.ADDCOLUMN} component={AddColumn} />

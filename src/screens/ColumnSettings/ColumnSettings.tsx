@@ -10,10 +10,11 @@ import TrashIcon from '../../components/ui/icons/TrashIcon';
 import {deleteColumn} from '../../redux/ducks/Columns';
 import {ROUTES} from '../../navigation/UserNavigation/routes';
 import {COLORS} from '../../constants/colors';
-import {Pressable} from 'react-native';
+import {Pressable, View} from 'react-native';
 import {Textinput} from '../../components/ui/Textinput';
 import {Button} from '../../components/ui/Button';
 import {updateColumn} from '../../redux/ducks/Columns';
+import {Form} from 'react-final-form';
 interface IUpdateColumn {
   title: string;
   description: string;
@@ -36,23 +37,12 @@ type NavProp = {
 const ColumnSettings = ({navigation, route}: NavProp) => {
   const dispatch = useDispatch();
 
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-
-  const handleSetTitle = (value: string) => {
-    setTitle(value);
-  };
-
-  const handleSetDescription = (value: string) => {
-    setDescription(value);
-  };
-
   const handleDeleteColumn = () => {
     dispatch({type: deleteColumn.type, columnId: route.params.columnId});
     navigation.navigate(ROUTES.BOARD);
   };
 
-  const handleUpdateColumn = (values: IUpdateColumn) => {
+  const onSubmit = (values: IUpdateColumn) => {
     const data = {columnId: route.params.columnId, values};
     dispatch({type: updateColumn.type, data});
     navigation.goBack();
@@ -74,19 +64,23 @@ const ColumnSettings = ({navigation, route}: NavProp) => {
         title="Settings"
       />
       <Container>
-        <Textinput
-          value={title}
-          setValue={e => handleSetTitle(e)}
-          placeholder="Column Title"
-        />
-        <Textinput
-          value={description}
-          setValue={e => handleSetDescription(e)}
-          placeholder="Column description"
-        />
-        <Button
-          text="Update column"
-          onPress={() => handleUpdateColumn({title, description})}
+        <Form
+          onSubmit={onSubmit}
+          render={({handleSubmit}) => (
+            <View>
+              <Textinput
+                name="title"
+                placeholder="Column title"
+                initialValue={route.params.title}
+              />
+              <Textinput
+                name="description"
+                placeholder="Column description"
+                initialValue={route.params.description}
+              />
+              <Button text="Update Column" onPress={handleSubmit} />
+            </View>
+          )}
         />
       </Container>
     </Root>

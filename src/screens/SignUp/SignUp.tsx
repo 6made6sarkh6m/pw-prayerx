@@ -5,51 +5,27 @@ import {ISignUp} from '../../redux/ducks/Auth/types';
 import {useDispatch} from 'react-redux';
 import {signUp} from '../../redux/ducks/Auth';
 import styled from 'styled-components/native';
-
+import {Form} from 'react-final-form';
+import {View} from 'react-native';
 const SignUp = () => {
-  const [email, setEmail] = useState('');
-  const [name, setName] = useState('');
-  const [password, setPassword] = useState('');
   const dispatch = useDispatch();
 
-  const handleSignUpPress = (values: ISignUp) => {
+  const onSubmit = (values: ISignUp) => {
     dispatch({type: signUp.type, values});
-  };
-
-  const handleChangeEmail = (value: string) => {
-    setEmail(value);
-  };
-
-  const handleChangePassword = (value: string) => {
-    setPassword(value);
-  };
-
-  const handleChangeName = (value: string) => {
-    setName(value);
   };
 
   return (
     <Root>
-      <Textinput
-        value={name}
-        setValue={e => handleChangeName(e)}
-        placeholder="Username"
-      />
-      <Textinput
-        value={email}
-        setValue={e => handleChangeEmail(e)}
-        placeholder="Email"
-      />
-      <Textinput
-        value={password}
-        setValue={e => handleChangePassword(e)}
-        placeholder="Password"
-        secureTextEntry
-      />
-
-      <Button
-        text="Sign up"
-        onPress={() => handleSignUpPress({email, name, password})}
+      <Form
+        onSubmit={onSubmit}
+        render={({handleSubmit}) => (
+          <FieldWrap>
+            <Textinput name="email" placeholder="Email" />
+            <Textinput name="name" placeholder="Username" />
+            <Textinput name="password" placeholder="Password" />
+            <Button text="Sign up" onPress={handleSubmit} />
+          </FieldWrap>
+        )}
       />
     </Root>
   );
@@ -58,6 +34,11 @@ const SignUp = () => {
 const Root = styled.View`
   align-items: center;
   padding: 20px;
+`;
+
+const FieldWrap = styled.View`
+  width: 100%;
+  flex-grow: 1;
 `;
 
 export default SignUp;

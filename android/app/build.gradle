@@ -1,10 +1,4 @@
 apply plugin: "com.android.application"
-
-project.ext.envConfigFiles = [
-    developmentrelease: ".env.development",
-    developmentdebug: ".env.development"
-]
-
 apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
 
 import com.android.build.OutputFile
@@ -163,7 +157,7 @@ android {
     buildTypes {
         debug {
             signingConfig signingConfigs.debug
-            matchingFallbacks = ['debug', 'release']
+            
             if (nativeArchitectures) {
                 ndk {
                     abiFilters nativeArchitectures.split(',')
@@ -177,14 +171,6 @@ android {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
-    }
-    flavorDimensions "default"
-        productFlavors {
-        production {}
-        staging {
-        // We can have build-specific configurations here. Like using applicationIdSuffix to create different package name (ex. ".staging")
-        }
-        development {}
     }
 
     // applicationVariants are e.g. debug, release
@@ -208,7 +194,7 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     //noinspection GradleDynamicVersion
     implementation "com.facebook.react:react-native:+"  // From node_modules
-
+    implementation project(':react-native-config')
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
 
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {
