@@ -27,23 +27,23 @@ const CommentItem = (props: ICommentItemProps) => {
   return (
     <Root>
       <StyledUserIcon width={40} />
-      <CommentInfoWrapper>
-        <CommentInfoTop>
-          <CommentAuthor>{userName}</CommentAuthor>
+      <Wrapper>
+        <Top>
+          <Author>{userName}</Author>
           <CommentTime>{created}</CommentTime>
-        </CommentInfoTop>
-        <CommentBody>{commentData.body}</CommentBody>
-      </CommentInfoWrapper>
-      <CommentDeleteBtn onPress={handleDeleteComment}>
+        </Top>
+        <Body>{commentData.body}</Body>
+      </Wrapper>
+      <DeleteBtn onPress={handleDeleteComment}>
         <TrashIcon width={20} height={20} />
-      </CommentDeleteBtn>
+      </DeleteBtn>
     </Root>
   );
 };
 
-const Root = styled.View`   
+const Root = styled.View`
   display: flex;
-  flex-direction: rowl
+  flex-direction: row;
   align-items: flex-start;
   position: relative;
   padding: 15px 17px;
@@ -56,17 +56,17 @@ const StyledUserIcon = styled(UserIcon)`
   margin-right: 12px;
 `;
 
-const CommentInfoWrapper = styled.View`
+const Wrapper = styled.View`
   display: flex;
   flex-grow: 1;
 `;
-const CommentInfoTop = styled.View`
+const Top = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
   margin-bottom: 2px;
 `;
-const CommentAuthor = styled.Text`
+const Author = styled.Text`
   font-size: 17px;
   line-height: 20px;
   color: ${COLORS.coffeeGrey};
@@ -77,12 +77,12 @@ const CommentTime = styled.Text`
   line-height: 16px;
   color: ${COLORS.concreteGrey};
 `;
-const CommentBody = styled.Text`
+const Body = styled.Text`
   font-size: 17px;
   line-height: 20px;
   color: ${COLORS.coffeeGrey};
 `;
-const CommentDeleteBtn = styled.Pressable`
+const DeleteBtn = styled.Pressable`
   position: absolute;
   right: 10px;
   top: 10px;

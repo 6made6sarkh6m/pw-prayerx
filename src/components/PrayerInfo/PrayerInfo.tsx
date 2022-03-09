@@ -4,23 +4,23 @@ import styled from 'styled-components/native';
 const PrayerInfo = () => {
   return (
     <Root>
-      <LeftPrayerInfoItem>
-        <MinifiedPrayerInfoTitle>July 25 2017</MinifiedPrayerInfoTitle>
-        <PrayerInfoText>Date Added</PrayerInfoText>
-        <PrayerInfoTextBlue>Opened for 4 days</PrayerInfoTextBlue>
-      </LeftPrayerInfoItem>
-      <PrayerInfoItem>
-        <PrayerInfoTitle>123</PrayerInfoTitle>
-        <PrayerInfoText>Times Prayed Total</PrayerInfoText>
-      </PrayerInfoItem>
-      <LeftPrayerInfoItem>
-        <PrayerInfoTitle>63</PrayerInfoTitle>
-        <PrayerInfoText>Times Prayed by Me</PrayerInfoText>
-      </LeftPrayerInfoItem>
-      <PrayerInfoItem>
-        <PrayerInfoTitle>60</PrayerInfoTitle>
-        <PrayerInfoText>Times Prayed by Others</PrayerInfoText>
-      </PrayerInfoItem>
+      <LeftInfoItem>
+        <MinifiedTitle>July 25 2017</MinifiedTitle>
+        <Text>Date Added</Text>
+        <TextBlue>Opened for 4 days</TextBlue>
+      </LeftInfoItem>
+      <InfoItem>
+        <Title>123</Title>
+        <Text>Times Prayed Total</Text>
+      </InfoItem>
+      <LeftInfoItem>
+        <Title>63</Title>
+        <Text>Times Prayed by Me</Text>
+      </LeftInfoItem>
+      <InfoItem>
+        <Title>60</Title>
+        <Text>Times Prayed by Others</Text>
+      </InfoItem>
     </Root>
   );
 };
@@ -37,7 +37,7 @@ const Root = styled.View`
   border-bottom-width: 0;
 `;
 
-const PrayerInfoItem = styled.View`
+const InfoItem = styled.View`
   width: 50%;
   min-height: 108px;
   padding: 15px;
@@ -48,29 +48,29 @@ const PrayerInfoItem = styled.View`
   border-color: #e5e5e5;
 `;
 
-const LeftPrayerInfoItem = styled(PrayerInfoItem)`
+const LeftInfoItem = styled(InfoItem)`
   border-left-width: 0;
 `;
 
-const PrayerInfoTitle = styled.Text`
+const Title = styled.Text`
   font-size: 32px;
   line-height: 37px;
   color: #bfb393;
 `;
 
-const MinifiedPrayerInfoTitle = styled(PrayerInfoTitle)`
+const MinifiedTitle = styled(Title)`
   font-size: 22px;
   line-height: 26px;
   margin-bottom: 6px;
 `;
 
-const PrayerInfoText = styled.Text`
+const Text = styled.Text`
   font-size: 13px;
   line-height: 15px;
   color: #514d47;
 `;
 
-const PrayerInfoTextBlue = styled.Text`
+const TextBlue = styled.Text`
   color: #72a8bc;
 `;
 

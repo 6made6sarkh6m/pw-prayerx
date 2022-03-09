@@ -36,10 +36,10 @@ const PrayerDetails = ({navigation, route}: NavProp) => {
       <Header>
         <HeaderTop>
           <Pressable onPress={() => navigation.goBack()}>
-            <GoBackIcon fillPath={COLORS.blindingWhite} />
+            <GoBackIcon fill={COLORS.blindingWhite} />
           </Pressable>
           <Pressable>
-            <PrayerIcon fillPath={COLORS.blindingWhite} />
+            <PrayerIcon fill={COLORS.blindingWhite} />
           </Pressable>
         </HeaderTop>
         <View>
@@ -60,17 +60,13 @@ const PrayerDetails = ({navigation, route}: NavProp) => {
               <SectionTitle>MEMBERS</SectionTitle>
               <MembersListContainer>
                 <AvatarContainer>
-                  <UserIcon fillPath={COLORS.blindingWhite} />
+                  <UserIcon fill={COLORS.blindingWhite} />
                 </AvatarContainer>
                 <AvatarContainer>
-                  <UserIcon fillPath={COLORS.blindingWhite} />
+                  <UserIcon fill={COLORS.blindingWhite} />
                 </AvatarContainer>
                 <AddMemberBtn>
-                  <AddIcon
-                    fillPath={COLORS.blindingWhite}
-                    width={18}
-                    height={18}
-                  />
+                  <AddIcon fill={COLORS.blindingWhite} width={18} height={18} />
                 </AddMemberBtn>
               </MembersListContainer>
             </MembersWrapper>
