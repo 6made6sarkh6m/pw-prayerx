@@ -80,10 +80,10 @@ const PrayerDetails = ({navigation, route}: NavProp) => {
           </>
         }
         ListFooterComponent={
-          <View>
+          <>
             <CommentsTitle>COMMENTS</CommentsTitle>
             <Comments prayerId={prayerId} />
-          </View>
+          </>
         }
       />
       <AddCommentInput prayerId={prayerId} />

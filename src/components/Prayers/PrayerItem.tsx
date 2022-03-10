@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
+import React, {useState, useMemo} from 'react';
 import {Animated} from 'react-native';
 import styled from 'styled-components/native';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
 import {IPrayerItem} from './Prayers';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParamList} from '../../interfaces/navigator';
@@ -13,6 +13,7 @@ import {updatePrayer} from '../../redux/ducks/Prayers';
 import UserIcon from '../../components/ui/icons/UserIcon';
 import PrayerIcon from '../../components/ui/icons/PrayerIcon';
 import CheckedIcon from '../../components/ui/icons/CheckedIcon';
+import {getCommentsByPrayerId} from '../../redux/ducks/Comments/selectors';
 
 interface IPrayerItemProps {
   item: IPrayerItem;
@@ -25,7 +26,7 @@ const PrayerItem = ({item}: IPrayerItemProps) => {
   const navigation = useNavigation<PrayerScreenNavigationProp>();
   const [dataItem, setDataItem] = useState(item.item);
   const [checked, setChecked] = useState(dataItem.checked);
-
+  const comments = useSelector(getCommentsByPrayerId(dataItem.id)).length;
   return (
     <StyledAnimatedView>
       <Row>
@@ -67,7 +68,7 @@ const PrayerItem = ({item}: IPrayerItemProps) => {
             <IconsList>
               <Icon>
                 <UserIcon />
-                <IconText>3</IconText>
+                <IconText>{comments}</IconText>
               </Icon>
               <Icon>
                 <PrayerIcon />
