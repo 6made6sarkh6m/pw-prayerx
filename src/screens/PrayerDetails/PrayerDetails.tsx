@@ -83,10 +83,10 @@ const PrayerDetails = ({navigation, route}: NavProp) => {
           <View>
             <CommentsTitle>COMMENTS</CommentsTitle>
             <Comments prayerId={prayerId} />
-            <AddCommentInput prayerId={prayerId} />
           </View>
         }
       />
+      <AddCommentInput prayerId={prayerId} />
     </Root>
   );
 };
@@ -101,7 +101,6 @@ const Container = styled.FlatList`
   display: flex;
   background-color: ${COLORS.blindingWhite};
 `;
-
 const Header = styled.View`
   padding: 24px 15px;
   position: relative;
