@@ -36,7 +36,7 @@ export function* loadComments() {
 export function* createComment({data}: IAddCommentRequestProps) {
   try {
     const request: {data: IComment} = yield http.post(
-      `/prayers/${data.prayerId}/commets`,
+      `/prayers/${data.prayerId}/comments`,
       data.values,
     );
     yield put(addCommentSuccess(request.data));

@@ -9,6 +9,8 @@ export interface IComment {
 export interface IAddComment {
   values: {
     body: string;
+    created: string;
+    prayerId: number;
   };
   prayerId: string;
 }

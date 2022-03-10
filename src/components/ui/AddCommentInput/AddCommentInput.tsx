@@ -23,8 +23,11 @@ const AddCommentInput = ({prayerId}: ICommentProps) => {
     const dateCreated = moment().format('YYYY-MM-DD');
     const data = {
       prayerId: prayerId,
-      body: values.body,
-      created: dateCreated,
+      values: {
+        body: values.body,
+        created: dateCreated,
+        prayerId: prayerId,
+      },
     };
     dispatch({type: addComment.type, data: data});
   };

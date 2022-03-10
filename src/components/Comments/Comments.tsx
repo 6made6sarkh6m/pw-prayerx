@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {FlatList} from 'react-native';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import styled from 'styled-components/native';
 import {IComment} from '../../redux/ducks/Comments/types';
 import {getCommentsByPrayerId} from '../../redux/ducks/Comments/selectors';
+import {getComments} from '../../redux/ducks/Comments';
 import CommentItem from './CommentItem';
 
 interface ICommentsProps {
@@ -12,7 +13,6 @@ interface ICommentsProps {
 
 const Comments = ({prayerId}: ICommentsProps) => {
   const comments = useSelector(getCommentsByPrayerId(prayerId));
-
   return (
     <StyledCommentsList
       data={comments}

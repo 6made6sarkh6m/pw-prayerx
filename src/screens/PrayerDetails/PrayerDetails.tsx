@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import styled from 'styled-components/native';
 import {PrayerInfo} from '../../components/PrayerInfo';
@@ -14,6 +14,8 @@ import {RouteProp} from '@react-navigation/core';
 import {selectPrayerById} from '../../redux/ducks/Prayers/selectors';
 import {Comments} from '../../components/Comments';
 import {AddCommentInput} from '../../components/ui/AddCommentInput';
+import {ScrollView} from 'react-native-gesture-handler';
+import {getComments} from '../../redux/ducks/Comments';
 type PrayerDetailScreenRouteProp = RouteProp<
   RootStackParamList,
   'PrayerDetails'
@@ -31,6 +33,11 @@ const PrayerDetails = ({navigation, route}: NavProp) => {
   const dispatch = useDispatch();
   const {prayerId} = route.params;
   const prayerData = useSelector(selectPrayerById(prayerId));
+
+  useEffect(() => {
+    dispatch({type: getComments.type});
+  }, []);
+
   return (
     <Root>
       <Header>
