@@ -14,6 +14,12 @@ import {
   updateColumnFailed,
   updateColumnSuccess,
 } from '.';
+import {
+  startLoading,
+  stopLoading,
+  setErrorMessage,
+  unsetErrorMessage,
+} from '../RequestFlow';
 import {IAddColumn, IColumn, IUdateColumn} from './types';
 
 export interface IAddColumnRequestProps {
@@ -41,11 +47,16 @@ export function* loadColumns() {
 }
 
 export function* createColumn({values}: IAddColumnRequestProps) {
+  yield put(startLoading());
   try {
     const request: {data: IColumn} = yield http.post('/columns/', values);
     yield put(addColumnSuccess(request.data));
+    yield put(unsetErrorMessage());
   } catch (e) {
     yield put(addColumnFailed());
+    yield put(setErrorMessage('Something went wrong'));
+  } finally {
+    yield put(stopLoading());
   }
 }
 

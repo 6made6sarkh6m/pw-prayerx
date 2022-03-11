@@ -1,13 +1,18 @@
 import React, {useState} from 'react';
 import {IAddColumn} from '../../redux/ducks/Columns/types';
 import {addColumn} from '../../redux/ducks/Columns';
-import {useDispatch} from 'react-redux';
+import {
+  selectLoading,
+  selectErrorMessage,
+} from '../../redux/ducks/RequestFlow/selectors';
+import {useDispatch, useSelector} from 'react-redux';
 import styled from 'styled-components/native';
 import {COLORS} from '../../constants/colors';
-import {Pressable, View} from 'react-native';
+import {Pressable, Text, View} from 'react-native';
 import {Header} from '../../components/Header';
 import GoBackIcon from '../../components/ui/icons/GoBackIcon';
 import {Button, Textinput} from '../../components/ui';
+import {Loader} from '../../components/ui/Loader';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParamList} from '../../interfaces/navigator';
 import {Form} from 'react-final-form';
@@ -23,9 +28,14 @@ type NavProp = {
 const AddColumn = ({navigation}: NavProp) => {
   const dispatch = useDispatch();
 
+  const isLoading = useSelector(selectLoading);
+  const errorMessage = useSelector(selectErrorMessage);
+
   const onSubmit = (values: IAddColumn) => {
     dispatch({type: addColumn.type, values});
-    navigation.goBack();
+    if (!errorMessage) {
+      navigation.goBack();
+    }
   };
 
   return (
@@ -49,6 +59,8 @@ const AddColumn = ({navigation}: NavProp) => {
             </View>
           )}
         />
+        <Loader isLoading={isLoading} />
+        <Text>{errorMessage}</Text>
       </Container>
     </Root>
   );
