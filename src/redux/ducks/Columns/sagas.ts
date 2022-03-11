@@ -65,6 +65,7 @@ export function* removeColumn({columnId}: IDeleteColumnRequestProps) {
   try {
     yield http.delete(`/columns/${columnId}`);
     yield put(deleteColumnSuccess(columnId));
+    yield put(unsetErrorMessage());
   } catch (e) {
     yield put(deleteColumnFailed());
     yield put(setErrorMessage('Something went wrong'));
@@ -82,6 +83,7 @@ export function* changeColumn({data}: IUpdateColumnRequestProps) {
     );
 
     yield put(updateColumnSuccess(request.data));
+    yield put(unsetErrorMessage());
   } catch (e) {
     yield put(updateColumnFailed());
     yield put(setErrorMessage('Something went wrong'));
