@@ -9,7 +9,12 @@ import {
   signUpFailed,
   signUpSuccess,
 } from './index';
-
+import {
+  startLoading,
+  stopLoading,
+  setErrorMessage,
+  unsetErrorMessage,
+} from '../RequestFlow';
 export interface ISignInAction {
   type: typeof signIn.type;
   values: ISignIn;
@@ -33,14 +38,23 @@ export function* signUpSaga({values}: ISignUpAction) {
 }
 
 export function* signInSaga({values}: ISignInAction) {
+  yield put(startLoading());
   try {
     const request: {data: ISignInResponse} = yield http.post(
       '/auth/sign-in/',
       values,
     );
+    if (request.data?.message) {
+      yield put(setErrorMessage('Something went wrong'));
+    } else {
+      yield put(unsetErrorMessage());
+    }
+
     yield put(signInSuccess(request.data));
   } catch (e) {
     yield put(signInFailed());
+  } finally {
+    yield put(stopLoading());
   }
 }
 

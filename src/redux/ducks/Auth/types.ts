@@ -23,6 +23,7 @@ export interface ISignInResponse {
   email: string;
   name: string;
   token: string;
+  message?: string;
 }
 
 export interface ISignUpResponse {

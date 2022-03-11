@@ -11,6 +11,7 @@ import {AuthReducer} from './ducks/Auth';
 import {ColumnsReducer} from './ducks/Columns';
 import {PrayersReducer} from './ducks/Prayers';
 import {CommentsReducer} from './ducks/Comments';
+import {RequestFlowReducer} from './ducks/RequestFlow';
 import authMiddleware from './middlewares/authMiddleware';
 import rootSaga from './sagas';
 
@@ -25,6 +26,7 @@ const rootReducer = combineReducers({
   columns: ColumnsReducer,
   prayers: PrayersReducer,
   comments: CommentsReducer,
+  requestFlow: RequestFlowReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
