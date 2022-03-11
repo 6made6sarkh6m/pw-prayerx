@@ -61,15 +61,20 @@ export function* createColumn({values}: IAddColumnRequestProps) {
 }
 
 export function* removeColumn({columnId}: IDeleteColumnRequestProps) {
+  yield put(startLoading());
   try {
     yield http.delete(`/columns/${columnId}`);
     yield put(deleteColumnSuccess(columnId));
   } catch (e) {
     yield put(deleteColumnFailed());
+    yield put(setErrorMessage('Something went wrong'));
+  } finally {
+    yield put(stopLoading());
   }
 }
 
 export function* changeColumn({data}: IUpdateColumnRequestProps) {
+  yield put(startLoading());
   try {
     const request: {data: IColumn} = yield http.put(
       `/columns/${data.columnId}`,
@@ -79,6 +84,9 @@ export function* changeColumn({data}: IUpdateColumnRequestProps) {
     yield put(updateColumnSuccess(request.data));
   } catch (e) {
     yield put(updateColumnFailed());
+    yield put(setErrorMessage('Something went wrong'));
+  } finally {
+    yield put(stopLoading());
   }
 }
 

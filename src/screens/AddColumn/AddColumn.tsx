@@ -60,7 +60,7 @@ const AddColumn = ({navigation}: NavProp) => {
           )}
         />
         <Loader isLoading={isLoading} />
-        <Text>{errorMessage}</Text>
+        <ErrorText>{errorMessage}</ErrorText>
       </Container>
     </Root>
   );
@@ -73,6 +73,10 @@ const Root = styled.View`
 
 const Container = styled.View`
   padding: 15px;
+`;
+
+const ErrorText = styled.Text`
+  align-self: center;
 `;
 
 export default AddColumn;
