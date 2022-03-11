@@ -26,14 +26,22 @@ export interface ISignUpAction {
 }
 
 export function* signUpSaga({values}: ISignUpAction) {
+  yield put(startLoading());
   try {
     const request: {data: ISignUpResponse} = yield http.post(
       '/auth/sign-up/',
       values,
     );
+    if (request.data?.severity) {
+      yield put(setErrorMessage('User already exists'));
+    } else {
+      yield put(unsetErrorMessage());
+    }
     yield put(signUpSuccess(request.data));
   } catch (e) {
     yield put(signUpFailed());
+  } finally {
+    yield put(stopLoading());
   }
 }
 

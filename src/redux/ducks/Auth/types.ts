@@ -33,4 +33,5 @@ export interface ISignUpResponse {
   token: string;
   columns: IColumn[];
   id: number;
+  severity?: string;
 }
