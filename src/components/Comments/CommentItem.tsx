@@ -5,8 +5,7 @@ import styled, {DefaultTheme} from 'styled-components/native';
 import {COLORS} from '../../constants/colors';
 import {IComment} from '../../redux/ducks/Comments/types';
 import {deleteComment} from '../../redux/ducks/Comments';
-import TrashIcon from '../ui/icons/TrashIcon';
-import UserIcon from '../ui/icons/UserIcon';
+import {UserIcon, TrashIcon} from '../ui/icons';
 import {selectUsername} from '../../redux/ducks/Auth/selectors';
 
 interface ICommentItemProps {

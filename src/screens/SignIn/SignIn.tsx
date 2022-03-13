@@ -1,5 +1,4 @@
-import Button from '../../components/ui/Button/Button';
-import Textinput from '../../components/ui/Textinput/Textinput';
+import {Button, Textinput} from '../../components/ui';
 import React, {FC, useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {ISignIn} from '../../redux/ducks/Auth/types';

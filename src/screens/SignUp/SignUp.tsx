@@ -1,12 +1,11 @@
-import Button from '../../components/ui/Button/Button';
-import Textinput from '../../components/ui/Textinput/Textinput';
+import {Button, Textinput} from '../../components/ui';
 import React, {FC, useState} from 'react';
 import {ISignUp} from '../../redux/ducks/Auth/types';
 import {useDispatch} from 'react-redux';
 import {signUp} from '../../redux/ducks/Auth';
 import styled from 'styled-components/native';
 import {Form} from 'react-final-form';
-import {View} from 'react-native';
+
 const SignUp = () => {
   const dispatch = useDispatch();
 

@@ -6,9 +6,8 @@ import {IPrayer} from '../../redux/ducks/Prayers/types';
 import {selectPrayersByColumnId} from '../../redux/ducks/Prayers/selectors';
 import {deletePrayer, getPrayers} from '../../redux/ducks/Prayers';
 import PrayerItem from './PrayerItem';
-import {AddPrayerInput} from '../../components/ui/AddPrayerInput';
+import {AddPrayerForm, PrayerDeleteElement} from '../ui';
 import {CheckedPrayers} from '.';
-import {PrayerDeleteElement} from '../../components/ui/PrayerDeleteElement';
 export interface ISwipeData {
   direction: 'left' | 'right';
   isOpen: boolean;
@@ -71,7 +70,7 @@ const Prayers = (props: IPrayersProps) => {
       useNativeDriver={true}
       keyExtractor={(item: IPrayer) => item.id.toString()}
       ListHeaderComponent={
-        props.withoutInput ? null : <AddPrayerInput columnId={columnId} />
+        props.withoutInput ? null : <AddPrayerForm columnId={columnId} />
       }
       ListFooterComponent={
         prayers.filter(item => item.checked).length > 0 ? (

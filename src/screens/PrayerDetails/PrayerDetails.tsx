@@ -1,20 +1,20 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import styled from 'styled-components/native';
-import {PrayerInfo} from '../../components/PrayerInfo';
+import {PrayerInfo, Comments} from '../../components';
 import {RootStackParamList} from '../../interfaces/navigator';
-import GoBackIcon from '../../components/ui/icons/GoBackIcon';
-import PrayerIcon from '../../components/ui/icons/PrayerIcon';
-import UserIcon from '../../components/ui/icons/UserIcon';
-import AddIcon from '../../components/ui/icons/AddIcon';
+import {
+  AddIcon,
+  GoBackIcon,
+  PrayerIcon,
+  UserIcon,
+} from '../../components/ui/icons';
 import {Pressable, View} from 'react-native';
 import {COLORS} from '../../constants/colors';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RouteProp} from '@react-navigation/core';
 import {selectPrayerById} from '../../redux/ducks/Prayers/selectors';
-import {Comments} from '../../components/Comments';
-import {AddCommentInput} from '../../components/ui/AddCommentInput';
-import {ScrollView} from 'react-native-gesture-handler';
+import {AddCommentForm} from '../../components/ui';
 import {getComments} from '../../redux/ducks/Comments';
 type PrayerDetailScreenRouteProp = RouteProp<
   RootStackParamList,
@@ -86,7 +86,7 @@ const PrayerDetails = ({navigation, route}: NavProp) => {
           </>
         }
       />
-      <AddCommentInput prayerId={prayerId} />
+      <AddCommentForm prayerId={prayerId} />
     </Root>
   );
 };

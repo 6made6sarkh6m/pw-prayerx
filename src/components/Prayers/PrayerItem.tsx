@@ -10,9 +10,7 @@ import {RootStackParamList} from '../../interfaces/navigator';
 import {ROUTES} from '../../navigation/UserNavigation/routes';
 import {COLORS} from '../../constants/colors';
 import {updatePrayer} from '../../redux/ducks/Prayers';
-import UserIcon from '../../components/ui/icons/UserIcon';
-import PrayerIcon from '../../components/ui/icons/PrayerIcon';
-import CheckedIcon from '../../components/ui/icons/CheckedIcon';
+import {PrayerIcon, UserIcon, CheckedIcon} from '../../components/ui/icons';
 import {getCommentsByPrayerId} from '../../redux/ducks/Comments/selectors';
 
 interface IPrayerItemProps {
