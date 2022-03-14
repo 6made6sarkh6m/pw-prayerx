@@ -1,13 +1,17 @@
 import React, {useState} from 'react';
 import {IAddColumn} from '../../redux/ducks/Columns/types';
 import {addColumn} from '../../redux/ducks/Columns';
-import {useDispatch} from 'react-redux';
+import {
+  selectLoading,
+  selectErrorMessage,
+} from '../../redux/ducks/RequestFlow/selectors';
+import {useDispatch, useSelector} from 'react-redux';
 import styled from 'styled-components/native';
 import {COLORS} from '../../constants/colors';
 import {Pressable, View} from 'react-native';
 import {Header} from '../../components';
 import {GoBackIcon} from '../../components/ui/icons';
-import {Button, Textinput} from '../../components/ui';
+import {Button, Textinput, Loader} from '../../components/ui';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParamList} from '../../interfaces/navigator';
 import {Form} from 'react-final-form';
@@ -23,9 +27,14 @@ type NavProp = {
 const AddColumn = ({navigation}: NavProp) => {
   const dispatch = useDispatch();
 
+  const isLoading = useSelector(selectLoading);
+  const errorMessage = useSelector(selectErrorMessage);
+
   const onSubmit = (values: IAddColumn) => {
     dispatch({type: addColumn.type, values});
-    navigation.goBack();
+    if (!errorMessage) {
+      navigation.goBack();
+    }
   };
 
   return (
@@ -49,6 +58,8 @@ const AddColumn = ({navigation}: NavProp) => {
             </View>
           )}
         />
+        <Loader isLoading={isLoading} />
+        <ErrorText>{errorMessage}</ErrorText>
       </Container>
     </Root>
   );
@@ -61,6 +72,10 @@ const Root = styled.View`
 
 const Container = styled.View`
   padding: 15px;
+`;
+
+const ErrorText = styled.Text`
+  align-self: center;
 `;
 
 export default AddColumn;

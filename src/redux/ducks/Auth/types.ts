@@ -23,6 +23,7 @@ export interface ISignInResponse {
   email: string;
   name: string;
   token: string;
+  message?: string;
 }
 
 export interface ISignUpResponse {
@@ -32,4 +33,5 @@ export interface ISignUpResponse {
   token: string;
   columns: IColumn[];
   id: number;
+  severity?: string;
 }
