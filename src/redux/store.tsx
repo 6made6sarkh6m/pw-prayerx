@@ -7,18 +7,11 @@ import {
 import createSagaMiddleware from '@redux-saga/core';
 import {persistStore, persistReducer, REHYDRATE} from 'redux-persist';
 import AsyncStorage from '@react-native-community/async-storage';
-<<<<<<< HEAD
-import {AuthReducer} from './ducks/Auth';
-import {ColumnsReducer} from './ducks/Columns';
-import {PrayersReducer} from './ducks/Prayers';
-import {CommentsReducer} from './ducks/Comments';
-import {RequestFlowReducer} from './ducks/RequestFlow';
-=======
 import {AuthReducer} from './ducks/auth';
 import {ColumnsReducer} from './ducks/columns';
 import {PrayersReducer} from './ducks/prayers';
 import {CommentsReducer} from './ducks/comments';
->>>>>>> feature/prayer-details
+import {RequestFlowReducer} from './ducks/RequestFlow';
 import authMiddleware from './middlewares/authMiddleware';
 import rootSaga from './sagas';
 
