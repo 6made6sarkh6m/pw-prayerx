@@ -4,7 +4,7 @@ import styled from 'styled-components/native';
 import {Form, Field} from 'react-final-form';
 import {hasEmptyValue} from '../../../helpers/validators';
 import {composeValidators} from '../../../utils/composeValidators';
-import {addComment} from '../../../redux/ducks/Comments';
+import {addComment} from '../../../redux/ducks/comments';
 import {CommentIcon} from '../icons';
 import {COLORS} from '../../../constants/colors';
 import moment from 'moment';

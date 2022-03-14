@@ -1,26 +1,26 @@
 import {all} from 'redux-saga/effects';
 
-import {observeSignInSaga, observeSignUpSaga} from '../ducks/Auth/sagas';
+import {observeSignInSaga, observeSignUpSaga} from '../ducks/auth/sagas';
 
 import {
   observeLoadColumns,
   observeCreateColumn,
   observeRemoveColumn,
   observeChangeColumn,
-} from '../ducks/Columns/sagas';
+} from '../ducks/columns/sagas';
 
 import {
   observeLoadPrayers,
   observeChangePrayer,
   observeCreatePrayer,
   observeDeletePrayer,
-} from '../ducks/Prayers/sagas';
+} from '../ducks/prayers/sagas';
 
 import {
   observeLoadComments,
   observeCreateComment,
   observeRemoveComment,
-} from '../ducks/Comments/sagas';
+} from '../ducks/comments/sagas';
 
 function* rootSaga() {
   yield all([

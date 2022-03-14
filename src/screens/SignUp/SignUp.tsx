@@ -1,8 +1,8 @@
 import {Button, Textinput} from '../../components/ui';
 import React, {FC, useState} from 'react';
-import {ISignUp} from '../../redux/ducks/Auth/types';
+import {ISignUp} from '../../redux/ducks/auth/types';
 import {useDispatch} from 'react-redux';
-import {signUp} from '../../redux/ducks/Auth';
+import {signUp} from '../../redux/ducks/auth';
 import styled from 'styled-components/native';
 import {Form} from 'react-final-form';
 

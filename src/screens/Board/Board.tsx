@@ -1,9 +1,9 @@
 import React from 'react';
 import {useDispatch} from 'react-redux';
-import {signOut} from '../../redux/ducks/Auth';
+import {signOut} from '../../redux/ducks/auth';
 import styled from 'styled-components/native';
 import {COLORS} from '../../constants/colors';
-import {Columns, Header} from '../../components';
+import {ColumnsList, Header} from '../../components';
 import {Pressable} from 'react-native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParamList} from '../../interfaces/navigator';
@@ -29,7 +29,7 @@ const Board = ({navigation}: NavProp) => {
           </Pressable>
         }
       />
-      <Columns />
+      <ColumnsList />
       <Button text="Sign out" onPress={handleSignOut} />
     </Root>
   );

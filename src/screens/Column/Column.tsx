@@ -9,10 +9,10 @@ import styled from 'styled-components/native';
 import {COLORS} from '../../constants/colors';
 import {Pressable} from 'react-native';
 import {useSelector} from 'react-redux';
-import {selectColumnById} from '../../redux/ducks/Columns/selectors';
+import {selectColumnById} from '../../redux/ducks/columns/selectors';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import {PrayersScreen, SubscribedPrayersScreen} from '../Prayers';
-import {selectPrayersByColumnId} from '../../redux/ducks/Prayers/selectors';
+import {selectPrayersByColumnId} from '../../redux/ducks/prayers/selectors';
 type ColumnScreenNavigationProps = StackNavigationProp<
   RootStackParamList,
   'Column'

@@ -13,3 +13,5 @@ export {
   updateColumnFailed,
   updateColumnSuccess,
 } from './ColumnsSlice';
+
+export type {IColumn, IAddColumn, IUpdateColumn} from './types';

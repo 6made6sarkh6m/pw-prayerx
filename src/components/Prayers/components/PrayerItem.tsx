@@ -2,16 +2,16 @@ import React, {useState, useMemo} from 'react';
 import {Animated} from 'react-native';
 import styled from 'styled-components/native';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
-import {IPrayerItem} from './Prayers';
+import {IPrayerItem} from './PrayersList';
 import {useDispatch, useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {RootStackParamList} from '../../interfaces/navigator';
-import {ROUTES} from '../../navigation/UserNavigation/routes';
-import {COLORS} from '../../constants/colors';
-import {updatePrayer} from '../../redux/ducks/Prayers';
-import {PrayerIcon, UserIcon, CheckedIcon} from '../../components/ui/icons';
-import {getCommentsByPrayerId} from '../../redux/ducks/Comments/selectors';
+import {RootStackParamList} from '../../../interfaces/navigator';
+import {ROUTES} from '../../../navigation/UserNavigation/routes';
+import {COLORS} from '../../../constants/colors';
+import {updatePrayer} from '../../../redux/ducks/prayers';
+import {PrayerIcon, UserIcon, CheckedIcon} from '../../ui/icons';
+import {getCommentsByPrayerId} from '../../../redux/ducks/comments/selectors';
 
 interface IPrayerItemProps {
   item: IPrayerItem;

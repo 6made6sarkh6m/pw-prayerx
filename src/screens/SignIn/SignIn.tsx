@@ -1,8 +1,8 @@
 import {Button, Textinput} from '../../components/ui';
 import React, {FC, useState} from 'react';
 import {useDispatch} from 'react-redux';
-import {ISignIn} from '../../redux/ducks/Auth/types';
-import {signIn} from '../../redux/ducks/Auth';
+import {ISignIn} from '../../redux/ducks/auth/types';
+import {signIn} from '../../redux/ducks/auth';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParamList} from '../../interfaces/navigator';
 import {ROUTES} from '../../navigation/AuthNavigation/routes';

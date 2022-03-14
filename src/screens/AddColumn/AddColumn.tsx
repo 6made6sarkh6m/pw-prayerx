@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
-import {IAddColumn} from '../../redux/ducks/Columns/types';
-import {addColumn} from '../../redux/ducks/Columns';
+import {addColumn, IAddColumn} from '../../redux/ducks/columns';
 import {useDispatch} from 'react-redux';
 import styled from 'styled-components/native';
 import {COLORS} from '../../constants/colors';

@@ -1,4 +1,4 @@
-import {IColumn} from '../Columns/types';
+import {IColumn} from '../columns/types';
 
 export interface IAuthSlice {
   token: string;

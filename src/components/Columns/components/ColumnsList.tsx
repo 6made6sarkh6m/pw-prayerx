@@ -1,14 +1,14 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {getColumns} from '../../redux/ducks/Columns';
-import {selectColumns} from '../../redux/ducks/Columns/selectors';
-import {IColumn} from '../../redux/ducks/Columns/types';
+import {getColumns} from '../../../redux/ducks/columns';
+import {selectColumns} from '../../../redux/ducks/columns/selectors';
+import {IColumn} from '../../../redux/ducks/columns/types';
 import {FlatList} from 'react-native';
 import styled from 'styled-components/native';
-import {COLORS} from '../../constants/colors';
+import {COLORS} from '../../../constants/colors';
 import ColumnItem from './ColumnItem';
 
-const Columns = () => {
+const ColumnsList = () => {
   const dispatch = useDispatch();
   const columns = useSelector(selectColumns);
 
@@ -34,4 +34,4 @@ const StyledFlatList = styled.FlatList`
   background-color: ${COLORS.blindingWhite};
 ` as unknown as typeof FlatList;
 
-export default Columns;
+export default ColumnsList;

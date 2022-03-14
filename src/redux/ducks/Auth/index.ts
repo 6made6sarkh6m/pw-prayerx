@@ -8,3 +8,11 @@ export {
   signUpFailed,
   signUpSuccess,
 } from './AuthSlice';
+
+export type {
+  ISignIn,
+  ISignUp,
+  IAuthSlice,
+  ISignInResponse,
+  ISignUpResponse,
+} from './types';

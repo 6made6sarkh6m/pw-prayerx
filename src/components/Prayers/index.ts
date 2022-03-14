@@ -1,3 +1,3 @@
-export {default as Prayers} from './Prayers';
-export {default as PrayerItem} from './PrayerItem';
-export {default as CheckedPrayers} from './CheckedPrayers';
+export {default as PrayersList} from './components/PrayersList';
+export {default as PrayerItem} from './components/PrayerItem';
+export {default as CheckedPrayers} from './components/CheckedPrayers';

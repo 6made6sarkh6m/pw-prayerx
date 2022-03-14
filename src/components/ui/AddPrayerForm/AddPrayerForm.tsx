@@ -2,7 +2,7 @@ import {COLORS} from '../../../constants/colors';
 import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import styled from 'styled-components/native';
-import {addPrayer} from '../../../redux/ducks/Prayers';
+import {addPrayer} from '../../../redux/ducks/prayers';
 import {AddIcon} from '../icons';
 import {Form, Field} from 'react-final-form';
 import {hasEmptyValue} from '../../../helpers/validators';
