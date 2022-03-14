@@ -2,11 +2,10 @@ import React, {useState} from 'react';
 import moment from 'moment';
 import {useDispatch, useSelector} from 'react-redux';
 import styled, {DefaultTheme} from 'styled-components/native';
-import {COLORS} from '../../constants/colors';
-import {IComment} from '../../redux/ducks/Comments/types';
-import {deleteComment} from '../../redux/ducks/Comments';
-import {UserIcon, TrashIcon} from '../ui/icons';
-import {selectUsername} from '../../redux/ducks/Auth/selectors';
+import {COLORS} from '../../../constants/colors';
+import {deleteComment, IComment} from '../../../redux/ducks/comments';
+import {UserIcon, TrashIcon} from '../../ui/icons';
+import {selectUsername} from '../../../redux/ducks/auth/selectors';
 
 interface ICommentItemProps {
   data: IComment;

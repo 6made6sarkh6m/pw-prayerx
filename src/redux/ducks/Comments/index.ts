@@ -10,3 +10,5 @@ export {
   deleteCommentFailed,
   deleteCommentSuccess,
 } from './CommentsSlice';
+
+export type {IComment, IAddComment} from './types';

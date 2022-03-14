@@ -10,7 +10,7 @@ export interface IAddColumn {
   description: string;
 }
 
-export interface IUdateColumn {
+export interface IUpdateColumn {
   values: IAddColumn;
   columnId: number;
 }

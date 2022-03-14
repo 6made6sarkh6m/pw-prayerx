@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 import {RootStackParamList} from '../../interfaces/navigator';
 import {RouteProp} from '@react-navigation/native';
 import {COLORS} from '../../constants/colors';
-import {Prayers} from '../../components';
+import {PrayersList} from '../../components';
 type PrayersScreenRouteProps = RouteProp<RootStackParamList, 'Prayers'>;
 
 type NavProps = {
@@ -15,7 +15,7 @@ const PrayersScreen = ({route}: NavProps) => {
 
   return (
     <Root>
-      <Prayers columnId={columnId} />
+      <PrayersList columnId={columnId} />
     </Root>
   );
 };

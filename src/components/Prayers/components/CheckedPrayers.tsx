@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
 import styled from 'styled-components/native';
 import {SwipeListView} from 'react-native-swipe-list-view';
-import {IPrayer} from '../../redux/ducks/Prayers/types';
+import {IPrayer} from '../../../redux/ducks/prayers';
 import {Dimensions} from 'react-native';
-import {IPrayerItem, ISwipeData} from './Prayers';
-import {Button} from '../ui';
-import {COLORS} from '../../constants/colors';
+import {IPrayerItem, ISwipeData} from './PrayersList';
+import {Button} from '../../ui';
+import {COLORS} from '../../../constants/colors';
 
 interface ICheckedPrayersProps {
   renderItem: (data: IPrayerItem) => JSX.Element;

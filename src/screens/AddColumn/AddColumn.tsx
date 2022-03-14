@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
-import {IAddColumn} from '../../redux/ducks/Columns/types';
-import {addColumn} from '../../redux/ducks/Columns';
+import {addColumn, IAddColumn} from '../../redux/ducks/columns';
 import {
   selectLoading,
   selectErrorMessage,

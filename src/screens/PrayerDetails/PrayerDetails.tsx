@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import styled from 'styled-components/native';
-import {PrayerInfo, Comments} from '../../components';
+import {PrayerInfo, CommentsList} from '../../components';
 import {RootStackParamList} from '../../interfaces/navigator';
 import {
   AddIcon,
@@ -13,9 +13,9 @@ import {Pressable, View} from 'react-native';
 import {COLORS} from '../../constants/colors';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RouteProp} from '@react-navigation/core';
-import {selectPrayerById} from '../../redux/ducks/Prayers/selectors';
+import {selectPrayerById} from '../../redux/ducks/prayers/selectors';
 import {AddCommentForm} from '../../components/ui';
-import {getComments} from '../../redux/ducks/Comments';
+import {getComments} from '../../redux/ducks/comments';
 type PrayerDetailScreenRouteProp = RouteProp<
   RootStackParamList,
   'PrayerDetails'
@@ -82,7 +82,7 @@ const PrayerDetails = ({navigation, route}: NavProp) => {
         ListFooterComponent={
           <>
             <CommentsTitle>COMMENTS</CommentsTitle>
-            <Comments prayerId={prayerId} />
+            <CommentsList prayerId={prayerId} />
           </>
         }
       />
