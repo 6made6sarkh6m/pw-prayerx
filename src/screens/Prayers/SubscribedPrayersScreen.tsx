@@ -2,7 +2,7 @@ import React from 'react';
 import {RouteProp} from '@react-navigation/native';
 import styled from 'styled-components/native';
 import {COLORS} from '../../constants/colors';
-import {Prayers} from '../../components/Prayers';
+import {Prayers} from '../../components';
 import {RootStackParamList} from '../../interfaces/navigator';
 
 type SubscribedPrayersRouteProp = RouteProp<

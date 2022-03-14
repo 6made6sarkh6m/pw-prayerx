@@ -3,13 +3,12 @@ import {useDispatch} from 'react-redux';
 import {signOut} from '../../redux/ducks/Auth';
 import styled from 'styled-components/native';
 import {COLORS} from '../../constants/colors';
-import {Columns} from '../../components/Columns';
-import {Header} from '../../components/Header';
+import {Columns, Header} from '../../components';
 import {Pressable} from 'react-native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParamList} from '../../interfaces/navigator';
 import {Button} from '../../components/ui';
-import AddIcon from '../../components/ui/icons/AddIcon';
+import {AddIcon} from '../../components/ui/icons';
 
 type BoardScreenProps = StackNavigationProp<RootStackParamList, 'Board'>;
 type NavProp = {

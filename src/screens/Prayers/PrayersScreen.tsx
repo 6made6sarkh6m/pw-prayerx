@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 import {RootStackParamList} from '../../interfaces/navigator';
 import {RouteProp} from '@react-navigation/native';
 import {COLORS} from '../../constants/colors';
-import {Prayers} from '../../components/Prayers';
+import {Prayers} from '../../components';
 type PrayersScreenRouteProps = RouteProp<RootStackParamList, 'Prayers'>;
 
 type NavProps = {

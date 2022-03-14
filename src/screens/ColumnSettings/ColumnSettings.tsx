@@ -4,9 +4,8 @@ import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParamList} from '../../interfaces/navigator';
 import {useDispatch, useSelector} from 'react-redux';
 import styled from 'styled-components/native';
-import {Header} from '../../components/Header';
-import GoBackIcon from '../../components/ui/icons/GoBackIcon';
-import TrashIcon from '../../components/ui/icons/TrashIcon';
+import {Header} from '../../components';
+import {GoBackIcon, TrashIcon} from '../../components/ui/icons';
 import {deleteColumn} from '../../redux/ducks/Columns';
 import {
   selectLoading,
@@ -14,10 +13,8 @@ import {
 } from '../../redux/ducks/RequestFlow/selectors';
 import {ROUTES} from '../../navigation/UserNavigation/routes';
 import {COLORS} from '../../constants/colors';
-import {Pressable, View, Text} from 'react-native';
-import {Textinput} from '../../components/ui/Textinput';
-import {Button} from '../../components/ui/Button';
-import {Loader} from '../../components/ui/Loader';
+import {Pressable, View} from 'react-native';
+import {Textinput, Button, Loader} from '../../components/ui';
 import {updateColumn} from '../../redux/ducks/Columns';
 import {Form} from 'react-final-form';
 interface IUpdateColumn {

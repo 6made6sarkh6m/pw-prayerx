@@ -4,7 +4,7 @@ import {SwipeListView} from 'react-native-swipe-list-view';
 import {IPrayer} from '../../redux/ducks/Prayers/types';
 import {Dimensions} from 'react-native';
 import {IPrayerItem, ISwipeData} from './Prayers';
-import {Button} from '../ui/Button';
+import {Button} from '../ui';
 import {COLORS} from '../../constants/colors';
 
 interface ICheckedPrayersProps {

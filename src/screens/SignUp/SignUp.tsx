@@ -1,6 +1,4 @@
-import Button from '../../components/ui/Button/Button';
-import Textinput from '../../components/ui/Textinput/Textinput';
-import {Loader} from '../../components/ui/Loader';
+import {Button, Loader, Textinput} from '../../components/ui';
 import React, {FC, useState} from 'react';
 import {ISignUp} from '../../redux/ducks/Auth/types';
 import {useDispatch, useSelector} from 'react-redux';

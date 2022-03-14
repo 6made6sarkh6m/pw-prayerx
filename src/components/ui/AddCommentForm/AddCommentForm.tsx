@@ -5,7 +5,7 @@ import {Form, Field} from 'react-final-form';
 import {hasEmptyValue} from '../../../helpers/validators';
 import {composeValidators} from '../../../utils/composeValidators';
 import {addComment} from '../../../redux/ducks/Comments';
-import CommentIcon from '../icons/CommentIcon';
+import {CommentIcon} from '../icons';
 import {COLORS} from '../../../constants/colors';
 import moment from 'moment';
 interface ICommentProps {
@@ -16,7 +16,7 @@ interface IAddCommentValue {
   body: string;
 }
 
-const AddCommentInput = ({prayerId}: ICommentProps) => {
+const AddCommentForm = ({prayerId}: ICommentProps) => {
   const dispatch = useDispatch();
 
   const onSubmit = (values: IAddCommentValue) => {
@@ -43,7 +43,7 @@ const AddCommentInput = ({prayerId}: ICommentProps) => {
               name="body"
               placeholder="Add a comment..."
               validate={composeValidators(hasEmptyValue)}
-              render={({input, values, placeholder, meta}) => {
+              render={({input, values, placeholder}) => {
                 return (
                   <StyledInput
                     placeholder={placeholder}
@@ -73,13 +73,11 @@ const Root = styled.View`
   border-top-width: 0;
   border-radius: 10px;
   width: 100%;
-  flex-grow: 1;
   overflow: hidden;
 `;
 
 const StyledInput = styled.TextInput`
   display: flex;
-  flex-grow: 1;
   font-size: 17px;
   line-height: 20px;
   color: ${COLORS.concreteGrey};
@@ -87,8 +85,6 @@ const StyledInput = styled.TextInput`
   padding: 15px 0;
 `;
 
-const FieldWrapper = styled.View`
-  flex-grow: 1;
-`;
+const FieldWrapper = styled.View``;
 
-export default AddCommentInput;
+export default AddCommentForm;
