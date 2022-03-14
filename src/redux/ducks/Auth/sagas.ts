@@ -9,12 +9,7 @@ import {
   signUpFailed,
   signUpSuccess,
 } from './index';
-import {
-  startLoading,
-  stopLoading,
-  setErrorMessage,
-  unsetErrorMessage,
-} from '../RequestFlow';
+
 export interface ISignInAction {
   type: typeof signIn.type;
   values: ISignIn;
@@ -26,43 +21,34 @@ export interface ISignUpAction {
 }
 
 export function* signUpSaga({values}: ISignUpAction) {
-  yield put(startLoading());
   try {
     const request: {data: ISignUpResponse} = yield http.post(
       '/auth/sign-up/',
       values,
     );
     if (request.data?.severity) {
-      yield put(setErrorMessage('User already exists'));
+      yield put(signUpFailed());
     } else {
-      yield put(unsetErrorMessage());
+      yield put(signUpSuccess(request.data));
     }
-    yield put(signUpSuccess(request.data));
   } catch (e) {
     yield put(signUpFailed());
-  } finally {
-    yield put(stopLoading());
   }
 }
 
 export function* signInSaga({values}: ISignInAction) {
-  yield put(startLoading());
   try {
     const request: {data: ISignInResponse} = yield http.post(
       '/auth/sign-in/',
       values,
     );
     if (request.data?.message) {
-      yield put(setErrorMessage('Something went wrong'));
+      yield put(signInFailed());
     } else {
-      yield put(unsetErrorMessage());
+      yield put(signInSuccess(request.data));
     }
-
-    yield put(signInSuccess(request.data));
   } catch (e) {
     yield put(signInFailed());
-  } finally {
-    yield put(stopLoading());
   }
 }
 

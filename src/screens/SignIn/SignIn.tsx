@@ -1,17 +1,16 @@
 import {Button, Loader, Textinput} from '../../components/ui';
 import React, {FC, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {ISignIn} from '../../redux/ducks/Auth/types';
-import {signIn} from '../../redux/ducks/Auth';
+import {ISignIn, signIn} from '../../redux/ducks/auth';
+import {
+  selectRequestStatus,
+  selectErrormessage,
+} from '../../redux/ducks/auth/selectors';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParamList} from '../../interfaces/navigator';
 import {ROUTES} from '../../navigation/AuthNavigation/routes';
 import styled from 'styled-components/native';
 import {Form} from 'react-final-form';
-import {
-  selectErrorMessage,
-  selectLoading,
-} from '../../redux/ducks/RequestFlow/selectors';
 import {Text} from 'react-native';
 
 type SignInScreenProps = StackNavigationProp<RootStackParamList, 'SignIn'>;
@@ -20,8 +19,8 @@ type NavProp = {
 };
 const SignIn = ({navigation}: NavProp) => {
   const dispatch = useDispatch();
-  const isLoading = useSelector(selectLoading);
-  const errorMessage = useSelector(selectErrorMessage);
+  const requestStatus = useSelector(selectRequestStatus);
+  const errorMessage = useSelector(selectErrormessage);
   const onSubmit = (values: ISignIn) => {
     dispatch({type: signIn.type, values});
   };
@@ -45,7 +44,7 @@ const SignIn = ({navigation}: NavProp) => {
         }}
       />
 
-      <Loader isLoading={isLoading} />
+      {requestStatus === 'pending' && <Loader isLoading />}
       <Text>{errorMessage}</Text>
     </Root>
   );

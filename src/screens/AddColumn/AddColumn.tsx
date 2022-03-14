@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import {addColumn, IAddColumn} from '../../redux/ducks/columns';
 import {
-  selectLoading,
-  selectErrorMessage,
-} from '../../redux/ducks/RequestFlow/selectors';
+  selectRequestStatus,
+  selectErrormessage,
+} from '../../redux/ducks/columns/selectors';
 import {useDispatch, useSelector} from 'react-redux';
 import styled from 'styled-components/native';
 import {COLORS} from '../../constants/colors';
@@ -26,8 +26,8 @@ type NavProp = {
 const AddColumn = ({navigation}: NavProp) => {
   const dispatch = useDispatch();
 
-  const isLoading = useSelector(selectLoading);
-  const errorMessage = useSelector(selectErrorMessage);
+  const requestStatus = useSelector(selectRequestStatus);
+  const errorMessage = useSelector(selectErrormessage);
 
   const onSubmit = (values: IAddColumn) => {
     dispatch({type: addColumn.type, values});
@@ -57,7 +57,7 @@ const AddColumn = ({navigation}: NavProp) => {
             </View>
           )}
         />
-        <Loader isLoading={isLoading} />
+        <Loader isLoading={requestStatus === 'pending'} />
         <ErrorText>{errorMessage}</ErrorText>
       </Container>
     </Root>

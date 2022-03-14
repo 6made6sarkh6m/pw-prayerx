@@ -9,13 +9,18 @@ import {
   PrayerIcon,
   UserIcon,
 } from '../../components/ui/icons';
-import {Pressable, View} from 'react-native';
+import {Pressable, Text, View} from 'react-native';
 import {COLORS} from '../../constants/colors';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RouteProp} from '@react-navigation/core';
-import {selectPrayerById} from '../../redux/ducks/prayers/selectors';
-import {AddCommentForm} from '../../components/ui';
+import {
+  selectPrayerById,
+  selectRequestStatus,
+  selectErrormessage,
+} from '../../redux/ducks/prayers/selectors';
+import {AddCommentForm, Loader} from '../../components/ui';
 import {getComments} from '../../redux/ducks/comments';
+
 type PrayerDetailScreenRouteProp = RouteProp<
   RootStackParamList,
   'PrayerDetails'
@@ -33,7 +38,8 @@ const PrayerDetails = ({navigation, route}: NavProp) => {
   const dispatch = useDispatch();
   const {prayerId} = route.params;
   const prayerData = useSelector(selectPrayerById(prayerId));
-
+  const requestStatus = useSelector(selectRequestStatus);
+  const errorMessage = useSelector(selectErrormessage);
   useEffect(() => {
     dispatch({type: getComments.type});
   }, []);
@@ -53,39 +59,50 @@ const PrayerDetails = ({navigation, route}: NavProp) => {
           <Title>{prayerData?.title}</Title>
         </View>
       </Header>
-      <Container
-        data={null}
-        renderItem={info => null}
-        ListHeaderComponent={
-          <>
-            <LastPrayedWrap>
-              <Line />
-              <LastPrayedText>Last prayed 8 min ago</LastPrayedText>
-            </LastPrayedWrap>
-            <PrayerInfo />
-            <MembersWrapper>
-              <SectionTitle>MEMBERS</SectionTitle>
-              <MembersListContainer>
-                <AvatarContainer>
-                  <UserIcon fill={COLORS.blindingWhite} />
-                </AvatarContainer>
-                <AvatarContainer>
-                  <UserIcon fill={COLORS.blindingWhite} />
-                </AvatarContainer>
-                <AddMemberBtn>
-                  <AddIcon fill={COLORS.blindingWhite} width={18} height={18} />
-                </AddMemberBtn>
-              </MembersListContainer>
-            </MembersWrapper>
-          </>
-        }
-        ListFooterComponent={
-          <>
-            <CommentsTitle>COMMENTS</CommentsTitle>
-            <CommentsList prayerId={prayerId} />
-          </>
-        }
-      />
+      {requestStatus === 'pending' ? (
+        <Loader isLoading={requestStatus === 'pending'} />
+      ) : errorMessage ? (
+        <Text>{errorMessage}</Text>
+      ) : (
+        <Container
+          data={null}
+          renderItem={info => null}
+          ListHeaderComponent={
+            <>
+              <LastPrayedWrap>
+                <Line />
+                <LastPrayedText>Last prayed 8 min ago</LastPrayedText>
+              </LastPrayedWrap>
+              <PrayerInfo />
+              <MembersWrapper>
+                <SectionTitle>MEMBERS</SectionTitle>
+                <MembersListContainer>
+                  <AvatarContainer>
+                    <UserIcon fill={COLORS.blindingWhite} />
+                  </AvatarContainer>
+                  <AvatarContainer>
+                    <UserIcon fill={COLORS.blindingWhite} />
+                  </AvatarContainer>
+                  <AddMemberBtn>
+                    <AddIcon
+                      fill={COLORS.blindingWhite}
+                      width={18}
+                      height={18}
+                    />
+                  </AddMemberBtn>
+                </MembersListContainer>
+              </MembersWrapper>
+            </>
+          }
+          ListFooterComponent={
+            <>
+              <CommentsTitle>COMMENTS</CommentsTitle>
+              <CommentsList prayerId={prayerId} />
+            </>
+          }
+        />
+      )}
+
       <AddCommentForm prayerId={prayerId} />
     </Root>
   );

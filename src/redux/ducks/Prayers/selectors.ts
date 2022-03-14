@@ -12,3 +12,9 @@ export const selectPrayerById = (prayerId: number) =>
   createSelector(selectPrayers, state =>
     state.find(prayer => prayer.id === prayerId),
   );
+
+export const selectRequestStatus = (state: RootState) =>
+  state.prayers.requestStatus;
+
+export const selectErrormessage = (state: RootState) =>
+  state.prayers.errorMessage;

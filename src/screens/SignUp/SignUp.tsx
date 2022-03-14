@@ -1,21 +1,20 @@
 import {Button, Loader, Textinput} from '../../components/ui';
 import React, {FC, useState} from 'react';
-import {ISignUp} from '../../redux/ducks/Auth/types';
 import {useDispatch, useSelector} from 'react-redux';
-import {signUp} from '../../redux/ducks/Auth';
+import {ISignUp, signUp} from '../../redux/ducks/auth';
 import styled from 'styled-components/native';
 import {Form} from 'react-final-form';
 import {
-  selectLoading,
-  selectErrorMessage,
-} from '../../redux/ducks/RequestFlow/selectors';
+  selectRequestStatus,
+  selectErrormessage,
+} from '../../redux/ducks/auth/selectors';
 import {Text} from 'react-native';
 
 const SignUp = () => {
   const dispatch = useDispatch();
 
-  const isLoading = useSelector(selectLoading);
-  const errorMessage = useSelector(selectErrorMessage);
+  const requestStatus = useSelector(selectRequestStatus);
+  const errorMessage = useSelector(selectErrormessage);
 
   const onSubmit = (values: ISignUp) => {
     dispatch({type: signUp.type, values});
@@ -34,7 +33,7 @@ const SignUp = () => {
           </FieldWrap>
         )}
       />
-      <Loader isLoading={isLoading} />
+      <Loader isLoading={requestStatus === 'pending'} />
       <Text>{errorMessage}</Text>
     </Root>
   );

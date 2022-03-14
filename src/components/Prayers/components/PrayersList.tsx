@@ -1,12 +1,16 @@
 import React, {useEffect, useState, useMemo} from 'react';
-import {Animated, Dimensions} from 'react-native';
+import {Animated, Dimensions, Text} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {SwipeListView} from 'react-native-swipe-list-view';
 import {IPrayer} from '../../../redux/ducks/prayers/types';
-import {selectPrayersByColumnId} from '../../../redux/ducks/prayers/selectors';
+import {
+  selectPrayersByColumnId,
+  selectRequestStatus,
+  selectErrormessage,
+} from '../../../redux/ducks/prayers/selectors';
 import {deletePrayer, getPrayers} from '../../../redux/ducks/prayers';
 import PrayerItem from './PrayerItem';
-import {AddPrayerForm, PrayerDeleteElement} from '../../ui';
+import {AddPrayerForm, Loader, PrayerDeleteElement} from '../../ui';
 import {CheckedPrayers} from '..';
 export interface ISwipeData {
   direction: 'left' | 'right';
@@ -29,6 +33,8 @@ const PrayersList = (props: IPrayersProps) => {
   const columnId = props.columnId;
   const [isAnimating, setIsAnimating] = useState(false);
   const prayers = useSelector(selectPrayersByColumnId(columnId));
+  const requestStatus = useSelector(selectRequestStatus);
+  const errorMessage = useSelector(selectErrormessage);
 
   const handleSwipeValueChange = (data: ISwipeData) => {
     const {key, value} = data;
@@ -56,7 +62,11 @@ const PrayersList = (props: IPrayersProps) => {
     dispatch({type: getPrayers.type});
   }, []);
 
-  return (
+  return requestStatus === 'pending' ? (
+    <Loader isLoading={requestStatus === 'pending'} />
+  ) : errorMessage ? (
+    <Text>{errorMessage}</Text>
+  ) : (
     <SwipeListView
       disableRightSwipe
       data={uncheckedPrayers}

@@ -14,12 +14,7 @@ import {
   updateColumnFailed,
   updateColumnSuccess,
 } from '.';
-import {
-  startLoading,
-  stopLoading,
-  setErrorMessage,
-  unsetErrorMessage,
-} from '../RequestFlow';
+
 import {IAddColumn, IColumn, IUpdateColumn} from './types';
 
 export interface IAddColumnRequestProps {
@@ -47,35 +42,24 @@ export function* loadColumns() {
 }
 
 export function* createColumn({values}: IAddColumnRequestProps) {
-  yield put(startLoading());
   try {
     const request: {data: IColumn} = yield http.post('/columns/', values);
     yield put(addColumnSuccess(request.data));
-    yield put(unsetErrorMessage());
   } catch (e) {
     yield put(addColumnFailed());
-    yield put(setErrorMessage('Something went wrong'));
-  } finally {
-    yield put(stopLoading());
   }
 }
 
 export function* removeColumn({columnId}: IDeleteColumnRequestProps) {
-  yield put(startLoading());
   try {
     yield http.delete(`/columns/${columnId}`);
     yield put(deleteColumnSuccess(columnId));
-    yield put(unsetErrorMessage());
   } catch (e) {
     yield put(deleteColumnFailed());
-    yield put(setErrorMessage('Something went wrong'));
-  } finally {
-    yield put(stopLoading());
   }
 }
 
 export function* changeColumn({data}: IUpdateColumnRequestProps) {
-  yield put(startLoading());
   try {
     const request: {data: IColumn} = yield http.put(
       `/columns/${data.columnId}`,
@@ -83,12 +67,8 @@ export function* changeColumn({data}: IUpdateColumnRequestProps) {
     );
 
     yield put(updateColumnSuccess(request.data));
-    yield put(unsetErrorMessage());
   } catch (e) {
     yield put(updateColumnFailed());
-    yield put(setErrorMessage('Something went wrong'));
-  } finally {
-    yield put(stopLoading());
   }
 }
 

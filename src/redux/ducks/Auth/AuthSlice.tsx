@@ -6,6 +6,7 @@ const initialState: IAuthSlice = {
   name: '',
   email: '',
   requestStatus: REQUEST_STATUS.IDLE,
+  errorMessage: '',
 };
 
 const AuthSlice = createSlice({
@@ -20,15 +21,19 @@ const AuthSlice = createSlice({
       state.name = payload.name;
       state.email = payload.email;
       state.requestStatus = REQUEST_STATUS.SUCCEED;
+      state.errorMessage = '';
     },
     signInFailed(state) {
       state.requestStatus = REQUEST_STATUS.FAILED;
+      state.errorMessage = `Couldn't sign in. Please try again later`;
+      console.log(state.errorMessage);
     },
     signOut(state) {
       state.token = initialState.token;
       state.name = initialState.name;
       state.email = initialState.email;
       state.requestStatus = initialState.requestStatus;
+      state.errorMessage = '';
     },
     signUp(state) {
       state.requestStatus = REQUEST_STATUS.PENDING;
@@ -38,9 +43,11 @@ const AuthSlice = createSlice({
       state.name = payload.name;
       state.email = payload.email;
       state.requestStatus = REQUEST_STATUS.SUCCEED;
+      state.errorMessage = '';
     },
     signUpFailed(state) {
       state.requestStatus = REQUEST_STATUS.FAILED;
+      state.errorMessage = `Couldn't sign up. Please try again later`;
     },
   },
 });

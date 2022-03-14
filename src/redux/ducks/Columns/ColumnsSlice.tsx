@@ -5,10 +5,12 @@ import {REQUEST_STATUS} from '../types';
 interface initialState {
   data: IColumn[];
   requestStatus: string;
+  errorMessage: string;
 }
 const initialState: initialState = {
   data: [],
   requestStatus: REQUEST_STATUS.IDLE,
+  errorMessage: '',
 };
 
 const ColumnsSlice = createSlice({
@@ -21,9 +23,11 @@ const ColumnsSlice = createSlice({
     getColumnsSuccess(state, {payload}: PayloadAction<IColumn[]>) {
       state.data = payload;
       state.requestStatus = REQUEST_STATUS.SUCCEED;
+      state.errorMessage = '';
     },
     getColumnsFailed(state) {
       state.requestStatus = REQUEST_STATUS.FAILED;
+      state.errorMessage = `Couldn't load data. Something went wrong`;
     },
     addColumn(state) {
       state.requestStatus = REQUEST_STATUS.PENDING;
@@ -31,9 +35,11 @@ const ColumnsSlice = createSlice({
     addColumnSuccess(state, {payload}: PayloadAction<IColumn>) {
       state.data.push(payload);
       state.requestStatus = REQUEST_STATUS.SUCCEED;
+      state.errorMessage = '';
     },
     addColumnFailed(state) {
       state.requestStatus = REQUEST_STATUS.FAILED;
+      state.errorMessage = `Couldn't add a column. Something went wrong`;
     },
     deleteColumn(state) {
       state.requestStatus = REQUEST_STATUS.PENDING;
@@ -42,9 +48,11 @@ const ColumnsSlice = createSlice({
       const newState = state.data.filter(column => column.id !== payload);
       state.data = newState;
       state.requestStatus = REQUEST_STATUS.SUCCEED;
+      state.errorMessage = '';
     },
     deleteColumnFailed(state) {
       state.requestStatus = REQUEST_STATUS.FAILED;
+      state.errorMessage = `Couldn't delete a column. Something went wrong`;
     },
     updateColumn(state) {
       state.requestStatus = REQUEST_STATUS.PENDING;
@@ -55,9 +63,11 @@ const ColumnsSlice = createSlice({
         state.data[index] = payload;
       }
       state.requestStatus = REQUEST_STATUS.SUCCEED;
+      state.errorMessage = '';
     },
     updateColumnFailed(state) {
       state.requestStatus = REQUEST_STATUS.FAILED;
+      state.errorMessage = `Couldn't update a column. Something went wrong`;
     },
   },
 });
