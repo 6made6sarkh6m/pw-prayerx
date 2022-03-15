@@ -1,8 +1,7 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {getColumns} from '../../../redux/ducks/columns';
+import {getColumns, IColumn} from '../../../redux/ducks/columns';
 import {selectColumns} from '../../../redux/ducks/columns/selectors';
-import {IColumn} from '../../../redux/ducks/columns/types';
 import {FlatList} from 'react-native';
 import styled from 'styled-components/native';
 import {COLORS} from '../../../constants/colors';

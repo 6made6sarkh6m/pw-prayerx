@@ -1,10 +1,6 @@
-export {ColumnsList} from './Columns';
-export {ColumnItem} from './Columns';
-export {CommentsList} from './Comments';
-export {CommentItem} from './Comments';
+export {ColumnsList, ColumnItem} from './Columns';
+export {CommentsList, CommentItem} from './Comments';
 export {Header} from './Header';
 export {PrayerInfo} from './PrayerInfo';
-export {PrayersList} from './Prayers';
-export {PrayerItem} from './Prayers';
-export {CheckedPrayers} from './Prayers';
+export {PrayersList, PrayerItem, CheckedPrayers} from './Prayers';
 export {SubscribedPrayerText} from './SubscribedPrayerText';

@@ -6,12 +6,11 @@ import {useDispatch} from 'react-redux';
 import styled from 'styled-components/native';
 import {Header} from '../../components';
 import {GoBackIcon, TrashIcon} from '../../components/ui/icons';
-import {deleteColumn} from '../../redux/ducks/columns';
+import {deleteColumn, updateColumn} from '../../redux/ducks/columns';
 import {ROUTES} from '../../navigation/UserNavigation/routes';
 import {COLORS} from '../../constants/colors';
 import {Pressable, View} from 'react-native';
 import {Textinput, Button} from '../../components/ui';
-import {updateColumn} from '../../redux/ducks/columns';
 import {Form} from 'react-final-form';
 interface IUpdateColumn {
   title: string;
