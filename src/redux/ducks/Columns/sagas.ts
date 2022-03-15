@@ -14,6 +14,7 @@ import {
   updateColumnFailed,
   updateColumnSuccess,
 } from '.';
+<<<<<<< HEAD
 import {
   startLoading,
   stopLoading,
@@ -21,6 +22,9 @@ import {
   unsetErrorMessage,
 } from '../RequestFlow';
 import {IAddColumn, IColumn, IUdateColumn} from './types';
+=======
+import {IAddColumn, IColumn, IUpdateColumn} from './types';
+>>>>>>> feature/prayer-details
 
 export interface IAddColumnRequestProps {
   type: typeof addColumn.type;
@@ -34,7 +38,7 @@ export interface IDeleteColumnRequestProps {
 
 export interface IUpdateColumnRequestProps {
   type: typeof updateColumn.type;
-  data: IUdateColumn;
+  data: IUpdateColumn;
 }
 
 export function* loadColumns() {

@@ -1,17 +1,16 @@
 import React, {useEffect} from 'react';
 import {FlatList} from 'react-native';
-import {useDispatch, useSelector} from 'react-redux';
+import {useSelector} from 'react-redux';
 import styled from 'styled-components/native';
-import {IComment} from '../../redux/ducks/Comments/types';
-import {getCommentsByPrayerId} from '../../redux/ducks/Comments/selectors';
-import {getComments} from '../../redux/ducks/Comments';
+import {IComment} from '../../../redux/ducks/comments';
+import {getCommentsByPrayerId} from '../../../redux/ducks/comments/selectors';
 import CommentItem from './CommentItem';
 
 interface ICommentsProps {
   prayerId: number;
 }
 
-const Comments = ({prayerId}: ICommentsProps) => {
+const CommentsList = ({prayerId}: ICommentsProps) => {
   const comments = useSelector(getCommentsByPrayerId(prayerId));
   return (
     <StyledCommentsList
@@ -28,4 +27,4 @@ const StyledCommentsList = styled.FlatList`
   border-color: #e5e5e5;
 ` as unknown as typeof FlatList;
 
-export default Comments;
+export default CommentsList;

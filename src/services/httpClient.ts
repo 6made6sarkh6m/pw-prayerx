@@ -1,6 +1,6 @@
 import axios, {AxiosError, AxiosInstance} from 'axios';
 import store from '../redux/store';
-import {signOut} from '../redux/ducks/Auth';
+import {signOut} from '../redux/ducks/auth';
 import Config from 'react-native-config';
 export class httpClient {
   constructor(private readonly _axios: AxiosInstance) {
