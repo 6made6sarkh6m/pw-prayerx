@@ -5,6 +5,7 @@ export interface IAuthSlice {
   name: string;
   email: string;
   requestStatus: string;
+  errorMessage: string;
 }
 
 export interface ISignIn {

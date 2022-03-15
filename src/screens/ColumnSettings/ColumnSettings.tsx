@@ -6,15 +6,15 @@ import {useDispatch, useSelector} from 'react-redux';
 import styled from 'styled-components/native';
 import {Header} from '../../components';
 import {GoBackIcon, TrashIcon} from '../../components/ui/icons';
+import {deleteColumn, updateColumn} from '../../redux/ducks/columns';
 import {
-  selectLoading,
-  selectErrorMessage,
-} from '../../redux/ducks/RequestFlow/selectors';
+  selectRequestStatus,
+  selectErrormessage,
+} from '../../redux/ducks/columns/selectors';
 import {ROUTES} from '../../navigation/UserNavigation/routes';
 import {COLORS} from '../../constants/colors';
 import {Pressable, View} from 'react-native';
 import {Textinput, Button, Loader} from '../../components/ui';
-import {updateColumn, deleteColumn} from '../../redux/ducks/Columns';
 import {Form} from 'react-final-form';
 interface IUpdateColumn {
   title: string;
@@ -37,11 +37,14 @@ type NavProp = {
 
 const ColumnSettings = ({navigation, route}: NavProp) => {
   const dispatch = useDispatch();
-  const isLoading = useSelector(selectLoading);
-  const errorMessage = useSelector(selectErrorMessage);
+  const requestStatus = useSelector(selectRequestStatus);
+  const errorMessage = useSelector(selectErrormessage);
 
   const handleDeleteColumn = () => {
     dispatch({type: deleteColumn.type, columnId: route.params.columnId});
+    if (!errorMessage) {
+      navigation.goBack();
+    }
 
     if (!errorMessage) {
       navigation.navigate(ROUTES.BOARD);
@@ -92,7 +95,7 @@ const ColumnSettings = ({navigation, route}: NavProp) => {
           )}
         />
       </Container>
-      <Loader isLoading={isLoading} />
+      <Loader isLoading={requestStatus === 'pending'} />
       <ErrorText>{errorMessage}</ErrorText>
     </Root>
   );

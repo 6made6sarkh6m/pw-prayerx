@@ -4,11 +4,13 @@ import {REQUEST_STATUS} from '../types';
 interface InitialState {
   data: IComment[];
   requestStatus: string;
+  errorMessage: string;
 }
 
 const initialState: InitialState = {
   data: [],
   requestStatus: REQUEST_STATUS.IDLE,
+  errorMessage: '',
 };
 
 const CommentsSlice = createSlice({
@@ -22,10 +24,12 @@ const CommentsSlice = createSlice({
     getCommentsSuccess(state, {payload}: PayloadAction<IComment[]>) {
       state.data = payload;
       state.requestStatus = REQUEST_STATUS.SUCCEED;
+      state.errorMessage = ``;
     },
 
     getCommentsFailed(state) {
       state.requestStatus = REQUEST_STATUS.FAILED;
+      state.errorMessage = `Couldn't load data. Something went wrong.`;
     },
 
     addComment(state) {
@@ -35,10 +39,12 @@ const CommentsSlice = createSlice({
     addCommentSuccess(state, {payload}: PayloadAction<IComment>) {
       state.data.push(payload);
       state.requestStatus = REQUEST_STATUS.SUCCEED;
+      state.errorMessage = ``;
     },
 
     addCommentFailed(state) {
       state.requestStatus = REQUEST_STATUS.FAILED;
+      state.errorMessage = `Couldn't add a comment. Something went wrong.`;
     },
 
     deleteComment(state) {
@@ -49,10 +55,12 @@ const CommentsSlice = createSlice({
       const newState = state.data.filter(comment => comment.id !== payload);
       state.data = newState;
       state.requestStatus = REQUEST_STATUS.SUCCEED;
+      state.errorMessage = ``;
     },
 
     deleteCommentFailed(state) {
       state.requestStatus = REQUEST_STATUS.FAILED;
+      state.errorMessage = `Couldn't delete a comment. Something went wrong`;
     },
   },
 });
