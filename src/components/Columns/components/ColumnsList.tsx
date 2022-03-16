@@ -17,7 +17,7 @@ const ColumnsList = () => {
   const requestStatus = useSelector(selectRequestStatus);
   const errorMessage = useSelector(selectErrormessage);
   useEffect(() => {
-    dispatch({type: getColumns.type});
+    dispatch(getColumns());
   }, []);
 
   return requestStatus === 'pending' ? (

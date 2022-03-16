@@ -41,7 +41,7 @@ const PrayerDetails = ({navigation, route}: NavProp) => {
   const requestStatus = useSelector(selectRequestStatus);
   const errorMessage = useSelector(selectErrormessage);
   useEffect(() => {
-    dispatch({type: getComments.type});
+    dispatch(getComments());
   }, []);
 
   return (

@@ -24,7 +24,7 @@ const PrayerItem = ({item}: IPrayerItemProps) => {
   const navigation = useNavigation<PrayerScreenNavigationProp>();
   const [dataItem, setDataItem] = useState(item.item);
   const [checked, setChecked] = useState(dataItem.checked);
-  const comments = useSelector(getCommentsByPrayerId(dataItem.id)).length;
+  const commentsCount = useSelector(getCommentsByPrayerId(dataItem.id)).length;
   return (
     <StyledAnimatedView>
       <Row>
@@ -66,7 +66,7 @@ const PrayerItem = ({item}: IPrayerItemProps) => {
             <IconsList>
               <Icon>
                 <UserIcon />
-                <IconText>{comments}</IconText>
+                <IconText>{commentsCount}</IconText>
               </Icon>
               <Icon>
                 <PrayerIcon />
