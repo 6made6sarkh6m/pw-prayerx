@@ -60,7 +60,7 @@ const PrayerDetails = ({navigation, route}: NavProp) => {
         </View>
       </Header>
       {requestStatus === 'pending' ? (
-        <Loader isLoading={requestStatus === 'pending'} />
+        <Loader isLoading />
       ) : errorMessage ? (
         <Text>{errorMessage}</Text>
       ) : (

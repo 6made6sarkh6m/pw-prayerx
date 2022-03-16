@@ -44,7 +44,7 @@ const SignIn = ({navigation}: NavProp) => {
         }}
       />
 
-      {requestStatus === 'pending' && <Loader isLoading />}
+      <Loader isLoading={requestStatus === 'pending'} />
       <Text>{errorMessage}</Text>
     </Root>
   );

@@ -22,7 +22,7 @@ const ColumnsList = () => {
 
   return requestStatus === 'pending' ? (
     <>
-      <Loader isLoading={requestStatus === 'pending'} />
+      <Loader isLoading />
     </>
   ) : errorMessage ? (
     <Text>{errorMessage}</Text>
