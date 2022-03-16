@@ -12,7 +12,7 @@ const ColumnsList = () => {
   const columns = useSelector(selectColumns);
 
   useEffect(() => {
-    dispatch({type: getColumns.type});
+    dispatch(getColumns());
   }, []);
 
   return (

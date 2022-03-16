@@ -53,7 +53,7 @@ const PrayersList = (props: IPrayersProps) => {
   }, [prayers]);
 
   useEffect(() => {
-    dispatch({type: getPrayers.type});
+    dispatch(getPrayers());
   }, []);
 
   return (

@@ -17,7 +17,7 @@ type NavProp = {
 const Board = ({navigation}: NavProp) => {
   const dispatch = useDispatch();
   const handleSignOut = () => {
-    dispatch({type: signOut.type});
+    dispatch(signOut());
   };
   return (
     <Root>

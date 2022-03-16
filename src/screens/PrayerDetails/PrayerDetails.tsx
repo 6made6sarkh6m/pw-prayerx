@@ -35,7 +35,7 @@ const PrayerDetails = ({navigation, route}: NavProp) => {
   const prayerData = useSelector(selectPrayerById(prayerId));
 
   useEffect(() => {
-    dispatch({type: getComments.type});
+    dispatch(getComments());
   }, []);
 
   return (
