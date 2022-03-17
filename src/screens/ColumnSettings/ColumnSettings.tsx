@@ -2,16 +2,21 @@ import React, {useState} from 'react';
 import {RouteProp} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParamList} from '../../interfaces/navigator';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import styled from 'styled-components/native';
 import {Header} from '../../components';
 import {GoBackIcon, TrashIcon} from '../../components/ui/icons';
 import {deleteColumn, updateColumn} from '../../redux/ducks/columns';
+import {
+  selectRequestStatus,
+  selectErrormessage,
+} from '../../redux/ducks/columns/selectors';
 import {ROUTES} from '../../navigation/UserNavigation/routes';
 import {COLORS} from '../../constants/colors';
 import {Pressable, View} from 'react-native';
-import {Textinput, Button} from '../../components/ui';
+import {Textinput, Button, Loader} from '../../components/ui';
 import {Form} from 'react-final-form';
+import {REQUEST_STATUS} from '../../redux/ducks/types';
 interface IUpdateColumn {
   title: string;
   description: string;
@@ -33,16 +38,23 @@ type NavProp = {
 
 const ColumnSettings = ({navigation, route}: NavProp) => {
   const dispatch = useDispatch();
+  const requestStatus = useSelector(selectRequestStatus);
+  const errorMessage = useSelector(selectErrormessage);
 
   const handleDeleteColumn = () => {
     dispatch({type: deleteColumn.type, columnId: route.params.columnId});
-    navigation.navigate(ROUTES.BOARD);
+    if (!errorMessage) {
+      navigation.goBack();
+    }
   };
 
   const onSubmit = (values: IUpdateColumn) => {
     const data = {columnId: route.params.columnId, values};
     dispatch({type: updateColumn.type, data});
-    navigation.goBack();
+
+    if (!errorMessage) {
+      navigation.goBack();
+    }
   };
 
   return (
@@ -80,6 +92,8 @@ const ColumnSettings = ({navigation, route}: NavProp) => {
           )}
         />
       </Container>
+      <Loader isLoading={requestStatus === REQUEST_STATUS.PENDING} />
+      <ErrorText>{errorMessage}</ErrorText>
     </Root>
   );
 };
@@ -94,6 +108,10 @@ const Container = styled.View`
   flex-direction: column;
   background-color: ${COLORS.blindingWhite};
   padding: 15px;
+`;
+
+const ErrorText = styled.Text`
+  align-self: center;
 `;
 
 export default ColumnSettings;

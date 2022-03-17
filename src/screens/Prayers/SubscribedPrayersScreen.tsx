@@ -2,7 +2,7 @@ import React from 'react';
 import {RouteProp} from '@react-navigation/native';
 import styled from 'styled-components/native';
 import {COLORS} from '../../constants/colors';
-import {Prayers} from '../../components';
+import {PrayersList} from '../../components';
 import {RootStackParamList} from '../../interfaces/navigator';
 
 type SubscribedPrayersRouteProp = RouteProp<
@@ -19,7 +19,7 @@ const SubscribedPrayersScreen = ({route}: NavProps) => {
 
   return (
     <Root>
-      <Prayers columnId={columnId} withoutInput={true} />
+      <PrayersList columnId={columnId} withoutInput={true} />
     </Root>
   );
 };

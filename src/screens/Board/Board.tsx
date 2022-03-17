@@ -1,10 +1,10 @@
 import React from 'react';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {signOut} from '../../redux/ducks/auth';
 import styled from 'styled-components/native';
 import {COLORS} from '../../constants/colors';
 import {ColumnsList, Header} from '../../components';
-import {Pressable} from 'react-native';
+import {Pressable, Text} from 'react-native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParamList} from '../../interfaces/navigator';
 import {Button} from '../../components/ui';
@@ -19,6 +19,7 @@ const Board = ({navigation}: NavProp) => {
   const handleSignOut = () => {
     dispatch(signOut());
   };
+
   return (
     <Root>
       <Header

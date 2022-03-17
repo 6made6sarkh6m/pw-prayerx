@@ -26,7 +26,11 @@ export function* signUpSaga({values}: ISignUpAction) {
       '/auth/sign-up/',
       values,
     );
-    yield put(signUpSuccess(request.data));
+    if (request.data?.severity) {
+      yield put(signUpFailed());
+    } else {
+      yield put(signUpSuccess(request.data));
+    }
   } catch (e) {
     yield put(signUpFailed());
   }
@@ -38,7 +42,11 @@ export function* signInSaga({values}: ISignInAction) {
       '/auth/sign-in/',
       values,
     );
-    yield put(signInSuccess(request.data));
+    if (request.data?.message) {
+      yield put(signInFailed());
+    } else {
+      yield put(signInSuccess(request.data));
+    }
   } catch (e) {
     yield put(signInFailed());
   }

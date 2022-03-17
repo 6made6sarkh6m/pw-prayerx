@@ -15,7 +15,6 @@ import {
   updateColumnSuccess,
 } from '.';
 import {IAddColumn, IColumn, IUpdateColumn} from './types';
-
 export interface IAddColumnRequestProps {
   type: typeof addColumn.type;
   values: IAddColumn;

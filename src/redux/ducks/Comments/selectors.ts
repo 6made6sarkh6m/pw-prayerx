@@ -7,3 +7,8 @@ export const getCommentsByPrayerId = (prayerId: number) =>
   createSelector(getComments, state =>
     state.data.filter(comment => parseInt(comment.prayerId) === prayerId),
   );
+
+export const selectRequestStatus = (state: RootState) =>
+  state.comments.requestStatus;
+export const selectErrormessage = (state: RootState) =>
+  state.comments.errorMessage;
