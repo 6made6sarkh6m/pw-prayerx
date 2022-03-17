@@ -26,7 +26,6 @@ const AuthSlice = createSlice({
     signInFailed(state) {
       state.requestStatus = REQUEST_STATUS.FAILED;
       state.errorMessage = `Couldn't sign in. Please try again later`;
-      console.log(state.errorMessage);
     },
     signOut(state) {
       state.token = initialState.token;

@@ -20,6 +20,7 @@ import {
 } from '../../redux/ducks/prayers/selectors';
 import {AddCommentForm, Loader} from '../../components/ui';
 import {getComments} from '../../redux/ducks/comments';
+import {REQUEST_STATUS} from '../../redux/ducks/types';
 
 type PrayerDetailScreenRouteProp = RouteProp<
   RootStackParamList,
@@ -59,7 +60,7 @@ const PrayerDetails = ({navigation, route}: NavProp) => {
           <Title>{prayerData?.title}</Title>
         </View>
       </Header>
-      {requestStatus === 'pending' ? (
+      {requestStatus === REQUEST_STATUS.PENDING ? (
         <Loader isLoading />
       ) : errorMessage ? (
         <Text>{errorMessage}</Text>

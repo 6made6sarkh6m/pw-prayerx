@@ -9,7 +9,7 @@ interface ILoaderProps {
 const Loader = ({isLoading}: ILoaderProps) => {
   return (
     <ActivityIndicator
-      size={'large'}
+      size="large"
       color={COLORS.warmBeige}
       animating={isLoading}
     />

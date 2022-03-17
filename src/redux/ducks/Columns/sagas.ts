@@ -14,23 +14,7 @@ import {
   updateColumnFailed,
   updateColumnSuccess,
 } from '.';
-<<<<<<< HEAD
-<<<<<<< HEAD
-import {
-  startLoading,
-  stopLoading,
-  setErrorMessage,
-  unsetErrorMessage,
-} from '../RequestFlow';
-import {IAddColumn, IColumn, IUdateColumn} from './types';
-=======
 import {IAddColumn, IColumn, IUpdateColumn} from './types';
->>>>>>> feature/prayer-details
-=======
-
-import {IAddColumn, IColumn, IUpdateColumn} from './types';
->>>>>>> 6fdd64ba170577b595b16e7be84a9cd5a9d3e3eb
-
 export interface IAddColumnRequestProps {
   type: typeof addColumn.type;
   values: IAddColumn;

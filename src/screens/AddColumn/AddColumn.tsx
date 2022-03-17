@@ -14,6 +14,7 @@ import {Button, Textinput, Loader} from '../../components/ui';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParamList} from '../../interfaces/navigator';
 import {Form} from 'react-final-form';
+import {REQUEST_STATUS} from '../../redux/ducks/types';
 
 type AddColumnScreenProps = StackNavigationProp<
   RootStackParamList,
@@ -57,7 +58,7 @@ const AddColumn = ({navigation}: NavProp) => {
             </View>
           )}
         />
-        <Loader isLoading={requestStatus === 'pending'} />
+        <Loader isLoading={requestStatus === REQUEST_STATUS.PENDING} />
         <ErrorText>{errorMessage}</ErrorText>
       </Container>
     </Root>

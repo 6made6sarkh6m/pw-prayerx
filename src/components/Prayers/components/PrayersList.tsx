@@ -12,6 +12,7 @@ import {deletePrayer, getPrayers} from '../../../redux/ducks/prayers';
 import PrayerItem from './PrayerItem';
 import {AddPrayerForm, Loader, PrayerDeleteElement} from '../../ui';
 import {CheckedPrayers} from '..';
+import {REQUEST_STATUS} from '../../../redux/ducks/types';
 export interface ISwipeData {
   direction: 'left' | 'right';
   isOpen: boolean;
@@ -62,7 +63,7 @@ const PrayersList = (props: IPrayersProps) => {
     dispatch(getPrayers());
   }, []);
 
-  return requestStatus === 'pending' ? (
+  return requestStatus === REQUEST_STATUS.PENDING ? (
     <Loader isLoading />
   ) : errorMessage ? (
     <Text>{errorMessage}</Text>

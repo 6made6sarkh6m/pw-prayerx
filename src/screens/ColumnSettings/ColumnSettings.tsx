@@ -16,6 +16,7 @@ import {COLORS} from '../../constants/colors';
 import {Pressable, View} from 'react-native';
 import {Textinput, Button, Loader} from '../../components/ui';
 import {Form} from 'react-final-form';
+import {REQUEST_STATUS} from '../../redux/ducks/types';
 interface IUpdateColumn {
   title: string;
   description: string;
@@ -44,10 +45,6 @@ const ColumnSettings = ({navigation, route}: NavProp) => {
     dispatch({type: deleteColumn.type, columnId: route.params.columnId});
     if (!errorMessage) {
       navigation.goBack();
-    }
-
-    if (!errorMessage) {
-      navigation.navigate(ROUTES.BOARD);
     }
   };
 
@@ -95,7 +92,7 @@ const ColumnSettings = ({navigation, route}: NavProp) => {
           )}
         />
       </Container>
-      <Loader isLoading={requestStatus === 'pending'} />
+      <Loader isLoading={requestStatus === REQUEST_STATUS.PENDING} />
       <ErrorText>{errorMessage}</ErrorText>
     </Root>
   );

@@ -11,6 +11,7 @@ import {
   selectRequestStatus,
   selectErrormessage,
 } from '../../../redux/ducks/columns/selectors';
+import {REQUEST_STATUS} from '../../../redux/ducks/types';
 const ColumnsList = () => {
   const dispatch = useDispatch();
   const columns = useSelector(selectColumns);
@@ -20,10 +21,8 @@ const ColumnsList = () => {
     dispatch(getColumns());
   }, []);
 
-  return requestStatus === 'pending' ? (
-    <>
-      <Loader isLoading />
-    </>
+  return requestStatus === REQUEST_STATUS.PENDING ? (
+    <Loader isLoading />
   ) : errorMessage ? (
     <Text>{errorMessage}</Text>
   ) : (

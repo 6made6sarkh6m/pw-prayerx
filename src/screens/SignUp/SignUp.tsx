@@ -9,7 +9,7 @@ import {
   selectErrormessage,
 } from '../../redux/ducks/auth/selectors';
 import {Text} from 'react-native';
-
+import {REQUEST_STATUS} from '../../redux/ducks/types';
 const SignUp = () => {
   const dispatch = useDispatch();
 
@@ -33,7 +33,7 @@ const SignUp = () => {
           </FieldWrap>
         )}
       />
-      <Loader isLoading={requestStatus === 'pending'} />
+      <Loader isLoading={requestStatus === REQUEST_STATUS.PENDING} />
       <Text>{errorMessage}</Text>
     </Root>
   );

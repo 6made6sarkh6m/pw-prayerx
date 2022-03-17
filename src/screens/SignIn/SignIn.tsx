@@ -12,6 +12,7 @@ import {ROUTES} from '../../navigation/AuthNavigation/routes';
 import styled from 'styled-components/native';
 import {Form} from 'react-final-form';
 import {Text} from 'react-native';
+import {REQUEST_STATUS} from '../../redux/ducks/types';
 
 type SignInScreenProps = StackNavigationProp<RootStackParamList, 'SignIn'>;
 type NavProp = {
@@ -44,7 +45,7 @@ const SignIn = ({navigation}: NavProp) => {
         }}
       />
 
-      <Loader isLoading={requestStatus === 'pending'} />
+      <Loader isLoading={requestStatus === REQUEST_STATUS.PENDING} />
       <Text>{errorMessage}</Text>
     </Root>
   );
