@@ -13,3 +13,5 @@ export {
   deletePrayerFailed,
   deletePrayerSuccess,
 } from './PrayersSlice';
+
+export type {IPrayer, IAddPrayer, IUpdatePrayer} from './types';

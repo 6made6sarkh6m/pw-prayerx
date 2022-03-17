@@ -1,7 +1,7 @@
 import {AnyAction, Dispatch} from '@reduxjs/toolkit';
 import {REHYDRATE} from 'redux-persist/es/constants';
 import {http} from '../../services/httpClient';
-import {signInSuccess, signUpSuccess, signOut} from '../../redux/ducks/Auth';
+import {signInSuccess, signUpSuccess, signOut} from '../ducks/auth';
 
 const authMiddleware =
   () =>

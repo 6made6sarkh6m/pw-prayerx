@@ -2,13 +2,12 @@ import React, {useEffect, useState, useMemo} from 'react';
 import {Animated, Dimensions} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {SwipeListView} from 'react-native-swipe-list-view';
-import {IPrayer} from '../../redux/ducks/Prayers/types';
-import {selectPrayersByColumnId} from '../../redux/ducks/Prayers/selectors';
-import {deletePrayer, getPrayers} from '../../redux/ducks/Prayers';
+import {IPrayer} from '../../../redux/ducks/prayers/types';
+import {selectPrayersByColumnId} from '../../../redux/ducks/prayers/selectors';
+import {deletePrayer, getPrayers} from '../../../redux/ducks/prayers';
 import PrayerItem from './PrayerItem';
-import {AddPrayerInput} from '../../components/ui/AddPrayerInput';
-import {CheckedPrayers} from '.';
-import {PrayerDeleteElement} from '../../components/ui/PrayerDeleteElement';
+import {AddPrayerForm, PrayerDeleteElement} from '../../ui';
+import {CheckedPrayers} from '..';
 export interface ISwipeData {
   direction: 'left' | 'right';
   isOpen: boolean;
@@ -25,7 +24,7 @@ export interface IPrayerItem {
   item: IPrayer;
 }
 
-const Prayers = (props: IPrayersProps) => {
+const PrayersList = (props: IPrayersProps) => {
   const dispatch = useDispatch();
   const columnId = props.columnId;
   const [isAnimating, setIsAnimating] = useState(false);
@@ -54,7 +53,7 @@ const Prayers = (props: IPrayersProps) => {
   }, [prayers]);
 
   useEffect(() => {
-    dispatch({type: getPrayers.type});
+    dispatch(getPrayers());
   }, []);
 
   return (
@@ -71,7 +70,7 @@ const Prayers = (props: IPrayersProps) => {
       useNativeDriver={true}
       keyExtractor={(item: IPrayer) => item.id.toString()}
       ListHeaderComponent={
-        props.withoutInput ? null : <AddPrayerInput columnId={columnId} />
+        props.withoutInput ? null : <AddPrayerForm columnId={columnId} />
       }
       ListFooterComponent={
         prayers.filter(item => item.checked).length > 0 ? (
@@ -87,4 +86,4 @@ const Prayers = (props: IPrayersProps) => {
   );
 };
 
-export default Prayers;
+export default PrayersList;

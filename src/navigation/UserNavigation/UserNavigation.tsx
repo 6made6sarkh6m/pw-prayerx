@@ -6,6 +6,7 @@ import {AddColumn} from '../../screens/AddColumn';
 import {ROUTES} from './routes';
 import {Column} from '../../screens/Column';
 import {ColumnSettings} from '../../screens/ColumnSettings';
+import {PrayerDetails} from '../../screens/PrayerDetails';
 const Stack = createStackNavigator();
 
 const UserNavigation = () => {
@@ -23,6 +24,10 @@ const UserNavigation = () => {
           <Stack.Screen
             name={ROUTES.COLUMN_SETTINGS}
             component={ColumnSettings}
+          />
+          <Stack.Screen
+            name={ROUTES.PRAYER_DETAILS}
+            component={PrayerDetails}
           />
         </Stack.Navigator>
       </NavigationContainer>

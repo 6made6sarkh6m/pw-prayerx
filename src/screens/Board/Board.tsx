@@ -1,15 +1,14 @@
 import React from 'react';
 import {useDispatch} from 'react-redux';
-import {signOut} from '../../redux/ducks/Auth';
+import {signOut} from '../../redux/ducks/auth';
 import styled from 'styled-components/native';
 import {COLORS} from '../../constants/colors';
-import {Columns} from '../../components/Columns';
-import {Header} from '../../components/Header';
+import {ColumnsList, Header} from '../../components';
 import {Pressable} from 'react-native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParamList} from '../../interfaces/navigator';
 import {Button} from '../../components/ui';
-import AddIcon from '../../components/ui/icons/AddIcon';
+import {AddIcon} from '../../components/ui/icons';
 
 type BoardScreenProps = StackNavigationProp<RootStackParamList, 'Board'>;
 type NavProp = {
@@ -18,7 +17,7 @@ type NavProp = {
 const Board = ({navigation}: NavProp) => {
   const dispatch = useDispatch();
   const handleSignOut = () => {
-    dispatch({type: signOut.type});
+    dispatch(signOut());
   };
   return (
     <Root>
@@ -30,7 +29,7 @@ const Board = ({navigation}: NavProp) => {
           </Pressable>
         }
       />
-      <Columns />
+      <ColumnsList />
       <Button text="Sign out" onPress={handleSignOut} />
     </Root>
   );

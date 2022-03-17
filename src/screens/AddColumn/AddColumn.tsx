@@ -1,12 +1,11 @@
 import React, {useState} from 'react';
-import {IAddColumn} from '../../redux/ducks/Columns/types';
-import {addColumn} from '../../redux/ducks/Columns';
+import {addColumn, IAddColumn} from '../../redux/ducks/columns';
 import {useDispatch} from 'react-redux';
 import styled from 'styled-components/native';
 import {COLORS} from '../../constants/colors';
 import {Pressable, View} from 'react-native';
-import {Header} from '../../components/Header';
-import GoBackIcon from '../../components/ui/icons/GoBackIcon';
+import {Header} from '../../components';
+import {GoBackIcon} from '../../components/ui/icons';
 import {Button, Textinput} from '../../components/ui';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParamList} from '../../interfaces/navigator';

@@ -2,8 +2,8 @@ import {COLORS} from '../../../constants/colors';
 import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import styled from 'styled-components/native';
-import {addPrayer} from '../../../redux/ducks/Prayers';
-import AddIcon from '../icons/AddIcon';
+import {addPrayer} from '../../../redux/ducks/prayers';
+import {AddIcon} from '../icons';
 import {Form, Field} from 'react-final-form';
 import {hasEmptyValue} from '../../../helpers/validators';
 import {composeValidators} from '../../../utils/composeValidators';
@@ -15,7 +15,7 @@ interface IAddPrayerValues {
   title: string;
 }
 
-const AddPrayerInput = ({columnId}: IAddPrayerProps) => {
+const AddPrayerForm = ({columnId}: IAddPrayerProps) => {
   const dispatch = useDispatch();
 
   const onSubmit = (values: IAddPrayerValues) => {
@@ -27,8 +27,8 @@ const AddPrayerInput = ({columnId}: IAddPrayerProps) => {
   };
 
   return (
-    <InputWrap>
-      <InputContainer>
+    <Root>
+      <Container>
         <StyledAddIcon />
         <Form
           onSubmit={onSubmit}
@@ -38,7 +38,7 @@ const AddPrayerInput = ({columnId}: IAddPrayerProps) => {
                 name="title"
                 placeholder="Add a prayer..."
                 validate={composeValidators(hasEmptyValue)}
-                render={({input, values, placeholder, meta}) => {
+                render={({input, values, placeholder}) => {
                   return (
                     <>
                       <StyledInput
@@ -57,16 +57,16 @@ const AddPrayerInput = ({columnId}: IAddPrayerProps) => {
             </FieldWrap>
           )}
         />
-      </InputContainer>
-    </InputWrap>
+      </Container>
+    </Root>
   );
 };
 
-const InputWrap = styled.View`
+const Root = styled.View`
   padding: 15px;
 `;
 
-const InputContainer = styled.View`
+const Container = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -100,8 +100,4 @@ const StyledAddIcon = styled(AddIcon).attrs(() => ({
   margin-right: 15px;
 `;
 
-const ErrorText = styled.Text`
-  color: ${COLORS.dangerRed};
-`;
-
-export default AddPrayerInput;
+export default AddPrayerForm;

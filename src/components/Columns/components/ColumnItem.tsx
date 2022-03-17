@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import {COLORS} from '../../constants/colors';
-import {IColumn} from '../../redux/ducks/Columns/types';
+import {COLORS} from '../../../constants/colors';
+import {IColumn} from '../../../redux/ducks/columns';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {RootStackParamList} from '../../interfaces/navigator';
+import {RootStackParamList} from '../../../interfaces/navigator';
 import {useNavigation} from '@react-navigation/native';
-import {ROUTES} from '../../navigation/UserNavigation/routes';
+import {ROUTES} from '../../../navigation/UserNavigation/routes';
 
 type ColumnScreenProps = StackNavigationProp<RootStackParamList, 'Column'>;
 

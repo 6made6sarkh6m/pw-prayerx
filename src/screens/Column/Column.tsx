@@ -1,24 +1,18 @@
 import {RouteProp} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import React from 'react';
-import {Header} from '../../components/Header';
-import GoBackIcon from '../../components/ui/icons/GoBackIcon';
-import SettingsIcon from '../../components/ui/icons/SettingsIcon';
+import {Header, SubscribedPrayerText} from '../../components';
+import {SettingsIcon, GoBackIcon} from '../../components/ui/icons';
 import {RootStackParamList} from '../../interfaces/navigator';
 import {ROUTES} from '../../navigation/UserNavigation/routes';
 import styled from 'styled-components/native';
 import {COLORS} from '../../constants/colors';
-import {Pressable, Text} from 'react-native';
+import {Pressable} from 'react-native';
 import {useSelector} from 'react-redux';
-import {selectColumnById} from '../../redux/ducks/Columns/selectors';
+import {selectColumnById} from '../../redux/ducks/columns/selectors';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
-import {PrayersScreen} from '../Prayers';
-import {SubscribedPrayersScreen} from '../Prayers';
-import {selectPrayersByColumnId} from '../../redux/ducks/Prayers/selectors';
-import {SubscribedPrayerText} from '../../components/SubscribedPrayerText';
-import {Button} from '../../components/ui/Button';
-import {useDispatch} from 'react-redux';
-import {signOut} from '../../redux/ducks/Auth';
+import {PrayersScreen, SubscribedPrayersScreen} from '../Prayers';
+import {selectPrayersByColumnId} from '../../redux/ducks/prayers/selectors';
 type ColumnScreenNavigationProps = StackNavigationProp<
   RootStackParamList,
   'Column'
